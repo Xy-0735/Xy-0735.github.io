@@ -121,6 +121,15 @@
   font-family: var(--font-icon);
   content: "\f105";
 }
+.icon-facebook:before {
+  content: "\f09a";
+}
+.icon-twitter:before {
+  content: "\e61b";
+}
+.icon-weibo:before {
+  content: "\f18a";
+}
 .sidebar-btn-wrapper .sidebar-toc-btn:before {
   font-family: var(--font-icon);
   content: "\f0e8";
@@ -148,6 +157,14 @@
 .icon-taichi:before {
   font-family: var(--font-icon);
   content: "\f6ad";
+}
+.icon-weixin:before {
+  font-family: var(--font-icon);
+  content: "\f1d7";
+}
+.icon-qq:before {
+  font-family: var(--font-icon);
+  content: "\f1d6";
 }
 .icon-image:before {
   font-family: var(--font-icon);
