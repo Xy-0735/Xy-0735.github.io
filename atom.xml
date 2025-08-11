@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>XYY滴小窝</title>
-  <icon>http://example.com/icon.png</icon>
+  <icon>https://xy-0735.github.io/icon.png</icon>
+  <subtitle>可以给我一个三连吗</subtitle>
+  <link href="https://xy-0735.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/atom.xml" rel="self"/>
-  
-  <link href="http://example.com/"/>
+  <link href="https://xy-0735.github.io/"/>
   <updated>2025-08-11T04:22:51.617Z</updated>
-  <id>http://example.com/</id>
+  <id>https://xy-0735.github.io/</id>
   
   <author>
     <name>肖逸元</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>用代码编织回忆：我的高中同学大学去向地图</title>
-    <link href="http://example.com/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/"/>
-    <id>http://example.com/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/</id>
+    <link href="https://xy-0735.github.io/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/"/>
+    <id>https://xy-0735.github.io/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/</id>
     <published>2025-08-10T10:30:00.000Z</published>
     <updated>2025-08-11T04:22:51.617Z</updated>
     
@@ -34,21 +34,21 @@
     
     
     
-    <category term="个人项目" scheme="http://example.com/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"/>
+    <category term="个人项目" scheme="https://xy-0735.github.io/categories/%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE/"/>
     
     
-    <category term="毕业季" scheme="http://example.com/tags/%E6%AF%95%E4%B8%9A%E5%AD%A3/"/>
+    <category term="毕业季" scheme="https://xy-0735.github.io/tags/%E6%AF%95%E4%B8%9A%E5%AD%A3/"/>
     
-    <category term="网页设计" scheme="http://example.com/tags/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/"/>
+    <category term="网页设计" scheme="https://xy-0735.github.io/tags/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/"/>
     
-    <category term="高中回忆" scheme="http://example.com/tags/%E9%AB%98%E4%B8%AD%E5%9B%9E%E5%BF%86/"/>
+    <category term="高中回忆" scheme="https://xy-0735.github.io/tags/%E9%AB%98%E4%B8%AD%E5%9B%9E%E5%BF%86/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2025/08/10/hello-world/"/>
-    <id>http://example.com/2025/08/10/hello-world/</id>
+    <link href="https://xy-0735.github.io/2025/08/10/hello-world/"/>
+    <id>https://xy-0735.github.io/2025/08/10/hello-world/</id>
     <published>2025-08-10T06:00:00.000Z</published>
     <updated>2025-08-11T04:08:41.692Z</updated>
     
@@ -63,12 +63,12 @@
     
     
     
-    <category term="博客公告" scheme="http://example.com/categories/%E5%8D%9A%E5%AE%A2%E5%85%AC%E5%91%8A/"/>
+    <category term="博客公告" scheme="https://xy-0735.github.io/categories/%E5%8D%9A%E5%AE%A2%E5%85%AC%E5%91%8A/"/>
     
     
-    <category term="博客开篇" scheme="http://example.com/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E7%AF%87/"/>
+    <category term="博客开篇" scheme="https://xy-0735.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%BC%80%E7%AF%87/"/>
     
-    <category term="自我介绍" scheme="http://example.com/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
+    <category term="自我介绍" scheme="https://xy-0735.github.io/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
     
   </entry>
   
