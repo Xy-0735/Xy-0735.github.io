@@ -14,7 +14,7 @@
 
   
 
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.anchor_icon = '\f0c1';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
   
   <title>
     Hello World |
@@ -191,6 +191,8 @@
     
     
     
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
   </nav>
   
     
@@ -316,6 +318,14 @@
   </div>
 </div>
 <div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
   
 </div>
 <div class="sidebar-menu">
@@ -597,16 +607,11 @@
       
       
       
-        2020-2025
+        2025
       
       <span class="footer-info-sep rotate"></span>
       肖逸元
     </div>
-    
-      <div>
-        基于&nbsp;<a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
-        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener external nofollow noreferrer" target="_blank">Reimu</a>
-      </div>
     
     
       <div>
@@ -673,6 +678,14 @@
 </div>
 <div class="sidebar-social">
   
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
 </div>
 <div class="sidebar-menu">
   
@@ -735,6 +748,22 @@
 
     </div>
     
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
     
       <div id="aplayer" theme="var(--color-link)"></div>
     
@@ -776,6 +805,10 @@
 
 <script src="/js/pjax_script.js" data-pjax></script>
 
+
+
+  
+<script src="/js/generator_search.js" defer></script>
 
 
 
@@ -1132,7 +1165,7 @@
               envId: '',
               region: '',
               urls: [
-                '/about/index.html'
+                '/friend/index.html'
               ],
               includeReply: false
             }).then((res) => {
@@ -1408,9 +1441,9 @@
       const ap = new APlayer({
         theme: "var(--color-link)",
         container: document.getElementById('aplayer'),
-        audio: [{"name":"晴天","artist":"周杰伦","url":"/audio/qingtian.mp3","cover":"/images/qingtian.jpg"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"}] || [],
+        audio: [{"name":"晴天","artist":"周杰伦","url":"/audio/qingtian.mp3","cover":"/images/qingtian.jpg"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"},{"name":"counting stars","artist":"Onerepublic","url":"/audio/counting stars.mp3","cover":"/images/counting stars.jpg"}] || [],
         fixed: isMobile ? true : (true || false),
-        autoplay: false || false,
+        autoplay: true || false,
         loop: 'All' || 'all',
         order: 'list' || 'list',
         preload: 'auto' || 'auto',

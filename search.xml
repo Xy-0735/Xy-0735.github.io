@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>用代码编织回忆：我的高中同学大学去向地图</title>
+      <link href="/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/"/>
+      <url>/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="缘起毕业季的代码纪念册"><a class="markdownIt-Anchor" href="#缘起毕业季的代码纪念册"></a> 🎓 缘起：毕业季的代码纪念册</h2><p>高中毕业那年夏天，当班级群里开始刷屏各种录取通知书照片时，我突然萌生了一个想法：为什么不做个<br /><strong>可视化去向地图</strong><br />？比起让这些珍贵的消息淹没在聊天记录里，一个永久在线的纪念网页，或许能让我们十年后依然能回味青春的选择。</p><h2 id="作品展示在下方"><a class="markdownIt-Anchor" href="#作品展示在下方"></a> 作品展示在下方</h2><!-- 用 iframe 嵌入 HTML 文件 --><iframe   src="/html/classmate_college_map.html"  # HTML 文件路径（需放在 source/html 目录）  width="100%"   height="800px"   frameborder="0"></iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 毕业季 </tag>
+            
+            <tag> 网页设计 </tag>
+            
+            <tag> 高中回忆 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2025/08/10/hello-world/"/>
+      <url>/2025/08/10/hello-world/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> Hello World</h1><p>这声简单的问候，在程序员的世界里，是旅程的起点，是代码第一次呼吸的证明。而在这里，在我的数字角落，它同样标志着一段新探索的开始——欢迎来到我的个人博客！</p><h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我"></a> 👋 关于我</h2><p>我是微雨扬，一个充满热情的探索者，始终保持对知识的好奇心和学习的热情。</p><h2 id="关于这个空间"><a class="markdownIt-Anchor" href="#关于这个空间"></a> 🌍 关于这个空间</h2><p>这是我的数字自留地，主要分享这些内容：</p><h3 id="思考与洞见"><a class="markdownIt-Anchor" href="#思考与洞见"></a> 思考与洞见</h3><ul><li>行业趋势观察</li><li>读书笔记与读后感</li><li>认知方法论反思</li><li>跨界领域探索</li></ul><h3 id="生活创作"><a class="markdownIt-Anchor" href="#生活创作"></a> 生活创作</h3><ul><li>个人项目记录</li><li>旅行见闻与摄影</li><li>创意实验分享</li><li>效率方法实践</li></ul><h2 id="为什么写博客"><a class="markdownIt-Anchor" href="#为什么写博客"></a> ✨ 为什么写博客？</h2><ol><li><strong>对抗遗忘</strong>：将学习成果固化下来</li><li><strong>梳理思路</strong>：写作促进深度思考</li><li><strong>分享价值</strong>：希望我的经验能帮助他人</li><li><strong>连接同好</strong>：寻找志同道合的伙伴</li><li><strong>自我成长</strong>：持续输出的训练场</li></ol><h2 id="期待与你同行"><a class="markdownIt-Anchor" href="#期待与你同行"></a> 🚀 期待与你同行</h2><p>感谢你访问这个正在生长的知识花园！如果内容对你有所启发，或者你有任何想法愿意分享：</p><ul><li>📧 联系我：1541016466@qq.com</li></ul><blockquote><p><strong>Hello World, Hello You!</strong><br />愿我们都能在探索的路上，发现属于自己的精彩星辰。</p></blockquote><hr /><p><em>本博客使用 <a href="https://hexo.io">Hexo</a> 生成 • 主题 <a href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a></em><br /><em>© 2025 [XYY] • 知识共享</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客公告 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客开篇 </tag>
+            
+            <tag> 自我介绍 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

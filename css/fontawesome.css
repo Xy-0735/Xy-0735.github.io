@@ -121,11 +121,17 @@
   font-family: var(--font-icon);
   content: "\f105";
 }
+.icon-github:before {
+  content: "\f09b";
+}
 .icon-facebook:before {
   content: "\f09a";
 }
 .icon-twitter:before {
   content: "\e61b";
+}
+.icon-bilibili:before {
+  content: "\e3d9";
 }
 .icon-weibo:before {
   content: "\f18a";

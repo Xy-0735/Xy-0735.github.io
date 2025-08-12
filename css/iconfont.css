@@ -123,11 +123,17 @@
   font-family: "iconfont";
   content: "\e630";
 }
+.icon-github:before {
+  content: "\e619";
+}
 .icon-facebook:before {
   content: "\e60e";
 }
 .icon-twitter:before {
   content: "\e62a";
+}
+.icon-bilibili:before {
+  content: "\e603";
 }
 .icon-weibo:before {
   content: "\e62c";
