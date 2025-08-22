@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机抽取工具</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            background: #f9fafc;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eaeef2;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #4b6cb7;
+            font-size: 18px;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toggle-btn:hover {
+            background-color: #edf2f7;
+        }
+        
+        .toggle-btn.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+        }
+        
+        .section-content.expanded {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 130px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 15px;
+            transition: border-color 0.3s;
+            line-height: 1.5;
+            font-family: inherit;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #4b6cb7;
+            box-shadow: 0 0 0 2px rgba(75, 108, 183, 0.2);
+        }
+        
+        .option-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            accent-color: #4b6cb7;
+            cursor: pointer;
+        }
+        
+        label {
+            font-size: 16px;
+            color: #34495e;
+            cursor: pointer;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        #drawBtn {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+        }
+        
+        #resetBtn {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        #drawBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(75, 108, 183, 0.25);
+        }
+        
+        #resetBtn:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result-container {
+            text-align: center;
+            margin-top: 35px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .result-label {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        .result {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1e293b;
+            padding: 20px 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: inline-block;
+            margin-bottom: 15px;
+            min-width: 220px;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .result.highlight {
+            transform: scale(1.03);
+            color: #4b6cb7;
+            box-shadow: 0 8px 20px rgba(75, 108, 183, 0.2);
+        }
+        
+        .animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+        }
+        
+        .animation-container.active {
+            opacity: 1;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(75, 108, 183, 0.2);
+            border-radius: 50%;
+            border-top-color: #4b6cb7;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .name-scroll {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4b6cb7;
+            text-align: center;
+            padding: 15px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            min-width: 200px;
+            transition: transform 0.2s;
+        }
+        
+        .status {
+            font-size: 15px;
+            color: #64748b;
+            margin-top: 12px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 14px;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        
+        @media (max-width: 640px) {
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .result {
+                font-size: 28px;
+                padding: 15px 25px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-random"></i> 随机抽取工具</h1>
+            <p>适用于会议、活动、抽奖等场景</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-header" id="namesHeader">
+                    <div class="section-title">
+                        <i class="fas fa-users"></i> 名单管理
+                    </div>
+                    <button class="toggle-btn" id="toggleNames" title="折叠/展开">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content expanded" id="namesContent">
+                    <textarea id="nameList" placeholder="请输入姓名，以顿号、逗号或空格分隔">张三、李四、王五、赵六、孙七、周八、吴九、郑十、陈晨、刘洋</textarea>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header" id="settingsHeader">
+                    <div class="section-title">
+                        <i class="fas fa-cog"></i> 抽取规则设置
+                    </div>
+                    <button class="toggle-btn" id="toggleSettings" title="折叠/展开">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content expanded" id="settingsContent">
+                    <div class="option-group">
+                        <input type="checkbox" id="noRepeat">
+                        <label for="noRepeat">不允许重复抽取</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button id="drawBtn">
+                    <i class="fas fa-star"></i> 开始抽取
+                </button>
+                <button id="resetBtn">
+                    <i class="fas fa-redo"></i> 重置抽取
+                </button>
+            </div>
+            
+            <div class="result-container">
+                <div class="animation-container" id="animationContainer">
+                    <div class="spinner"></div>
+                </div>
+                
+                <div class="result-label">抽取结果</div>
+                <div class="result" id="result">等待抽取</div>
+                <div class="status" id="status">就绪，点击"开始抽取"按钮</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>随机抽取工具 &copy; 2023 | 简洁易用，公平随机</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const nameListTextarea = document.getElementById('nameList');
+            const noRepeatCheckbox = document.getElementById('noRepeat');
+            const drawBtn = document.getElementById('drawBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultDiv = document.getElementById('result');
+            const statusDiv = document.getElementById('status');
+            const animationContainer = document.getElementById('animationContainer');
+            const toggleNamesBtn = document.getElementById('toggleNames');
+            const toggleSettingsBtn = document.getElementById('toggleSettings');
+            const namesContent = document.getElementById('namesContent');
+            const settingsContent = document.getElementById('settingsContent');
+            const namesHeader = document.getElementById('namesHeader');
+            const settingsHeader = document.getElementById('settingsHeader');
+            
+            // 变量初始化
+            let names = [];
+            let remainingNames = [];
+            let selectedNames = [];
+            let isDrawing = false;
+            let animationInterval = null;
+            
+            // 初始化
+            function init() {
+                parseNames();
+                remainingNames = [...names];
+                selectedNames = [];
+                updateStatus();
+                resultDiv.textContent = "等待抽取";
+                resultDiv.classList.remove('highlight');
+            }
+            
+            // 解析名单
+            function parseNames() {
+                const text = nameListTextarea.value.trim();
+                // 支持顿号、逗号、空格、换行等多种分隔符
+                names = text.split(/[、,，\s\n]+/).filter(name => name !== '');
+            }
+            
+            // 更新状态显示
+            function updateStatus() {
+                if (names.length === 0) {
+                    statusDiv.textContent = "名单为空，请添加姓名";
+                    return;
+                }
+                
+                if (noRepeatCheckbox.checked) {
+                    statusDiv.textContent = `总人数: ${names.length}，已抽取: ${selectedNames.length}，剩余: ${remainingNames.length}`;
+                    
+                    if (remainingNames.length === 0) {
+                        statusDiv.textContent = "所有人已被抽取完毕！";
+                    }
+                } else {
+                    statusDiv.textContent = `总人数: ${names.length}，已进行 ${selectedNames.length} 次抽取`;
+                }
+            }
+            
+            // 随机抽取一个姓名
+            function drawRandom() {
+                if (names.length === 0) {
+                    alert("名单为空，请添加姓名！");
+                    return null;
+                }
+                
+                if (noRepeatCheckbox.checked) {
+                    if (remainingNames.length === 0) {
+                        alert("所有人已被抽取完毕！请重置或取消'不允许重复'选项。");
+                        return null;
+                    }
+                    
+                    const randomIndex = Math.floor(Math.random() * remainingNames.length);
+                    const selectedName = remainingNames[randomIndex];
+                    
+                    // 从剩余名单中移除
+                    remainingNames.splice(randomIndex, 1);
+                    selectedNames.push(selectedName);
+                    
+                    return selectedName;
+                } else {
+                    const randomIndex = Math.floor(Math.random() * names.length);
+                    const selectedName = names[randomIndex];
+                    selectedNames.push(selectedName);
+                    
+                    return selectedName;
+                }
+            }
+            
+            // 执行抽取动画
+            function startDrawingAnimation(callback) {
+                isDrawing = true;
+                drawBtn.disabled = true;
+                animationContainer.classList.add('active');
+                
+                // 清除之前的动画间隔
+                if (animationInterval) {
+                    clearInterval(animationInterval);
+                }
+                
+                // 模拟抽取过程
+                let counter = 0;
+                animationInterval = setInterval(() => {
+                    if (noRepeatCheckbox.checked && remainingNames.length > 0) {
+                        const randomIndex = Math.floor(Math.random() * remainingNames.length);
+                        resultDiv.textContent = remainingNames[randomIndex];
+                    } else if (names.length > 0) {
+                        const randomIndex = Math.floor(Math.random() * names.length);
+                        resultDiv.textContent = names[randomIndex];
+                    }
+                    
+                    counter++;
+                    
+                    // 结束动画
+                    if (counter > 15) {
+                        clearInterval(animationInterval);
+                        animationContainer.classList.remove('active');
+                        drawBtn.disabled = false;
+                        isDrawing = false;
+                        
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                }, 100);
+            }
+            
+            // 事件监听
+            nameListTextarea.addEventListener('change', init);
+            noRepeatCheckbox.addEventListener('change', updateSettings);
+            
+            function updateSettings() {
+                // 当设置改变时，重新初始化剩余名单
+                remainingNames = [...names];
+                selectedNames = [];
+                updateStatus();
+            }
+            
+            drawBtn.addEventListener('click', function() {
+                if (isDrawing) return;
+                
+                startDrawingAnimation(function() {
+                    const result = drawRandom();
+                    if (result) {
+                        resultDiv.textContent = result;
+                        resultDiv.classList.add('highlight');
+                        updateStatus();
+                    }
+                });
+            });
+            
+            resetBtn.addEventListener('click', function() {
+                init();
+            });
+            
+            // 切换名单区域显示
+            toggleNamesBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                namesContent.classList.toggle('expanded');
+                namesContent.classList.toggle('collapsed');
+                toggleNamesBtn.classList.toggle('rotated');
+            });
+            
+            // 切换设置区域显示
+            toggleSettingsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                settingsContent.classList.toggle('expanded');
+                settingsContent.classList.toggle('collapsed');
+                toggleSettingsBtn.classList.toggle('rotated');
+            });
+            
+            // 点击标题也可以切换
+            namesHeader.addEventListener('click', function() {
+                namesContent.classList.toggle('expanded');
+                namesContent.classList.toggle('collapsed');
+                toggleNamesBtn.classList.toggle('rotated');
+            });
+            
+            settingsHeader.addEventListener('click', function() {
+                settingsContent.classList.toggle('expanded');
+                settingsContent.classList.toggle('collapsed');
+                toggleSettingsBtn.classList.toggle('rotated');
+            });
+            
+            // 初始化
+            init();
+        });
+    </script>
+</body>
+</html>

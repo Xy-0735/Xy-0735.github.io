@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>骰子随机数生成器</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn.add {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+        }
+        
+        .btn.remove {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+        
+        .btn.reroll {
+            background: linear-gradient(to right, #9b59b6, #8e44ad);
+        }
+        
+        .dice-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px 20px;
+            border-radius: 50px;
+        }
+        
+        select, input {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+        
+        .dice-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .die {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .die:hover {
+            transform: translateY(-10px);
+        }
+        
+        .die::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(to right, #3498db, #9b59b6);
+        }
+        
+        .letter {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .history {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .history h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #3498db;
+        }
+        
+        .history-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .history-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .history-values {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .history-time {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .dice-count {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .instructions {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .rolling {
+            animation: roll 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .dice-container {
+                gap: 15px;
+            }
+            
+            .die {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>骰子随机数生成器</h1>
+            <p class="subtitle">增加/减少骰子数量 · 自定义面数 · 记录历史结果</p>
+        </header>
+        
+        <div class="controls">
+            <button class="btn add" id="addBtn">增加数字</button>
+            <button class="btn remove" id="removeBtn">减少数字</button>
+            
+            <div class="dice-type">
+                <label for="sidesSelect">骰子面数：</label>
+                <select id="sidesSelect">
+                    <option value="6">6面</option>
+                    <option value="10">10面</option>
+                    <option value="20">20面</option>
+                    <option value="custom">自定义</option>
+                </select>
+                <input type="number" id="customSides" min="2" max="100" value="6" style="display: none; width: 80px;">
+            </div>
+            
+            <div class="dice-count">
+                <span>骰子数量：</span>
+                <span id="diceCount">4</span>
+            </div>
+            
+            <button class="btn reroll" id="rerollBtn">重新随机</button>
+        </div>
+        
+        <div class="dice-container" id="diceContainer">
+            <!-- Dice will be dynamically added here -->
+        </div>
+        
+        <div class="history">
+            <h2>历史记录</h2>
+            <div class="history-list" id="historyList">
+                <!-- History items will be added here -->
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <p>提示：增加骰子会从当前最小字母向前添加（如 W→V），减少骰子会从左侧开始移除</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM元素
+            const diceContainer = document.getElementById('diceContainer');
+            const addBtn = document.getElementById('addBtn');
+            const removeBtn = document.getElementById('removeBtn');
+            const rerollBtn = document.getElementById('rerollBtn');
+            const sidesSelect = document.getElementById('sidesSelect');
+            const customSides = document.getElementById('customSides');
+            const historyList = document.getElementById('historyList');
+            const diceCount = document.getElementById('diceCount');
+            
+            // 初始状态
+            let dice = [
+                { letter: 'W', value: 7 },
+                { letter: 'X', value: 1 },
+                { letter: 'Y', value: 7 },
+                { letter: 'Z', value: 6 }
+            ];
+            
+            let sides = 6;
+            let history = [];
+            
+            // 初始化
+            renderDice();
+            updateDiceCount();
+            
+            // 增加骰子
+            addBtn.addEventListener('click', () => {
+                // 获取当前最小的字母
+                const currentLetters = dice.map(d => d.letter);
+                const minCharCode = Math.min(...currentLetters.map(c => c.charCodeAt(0)));
+                
+                // 检查是否达到字母表开头
+                if (minCharCode <= 65) { // 65是'A'
+                    alert('无法再添加骰子，已到达字母表开头！');
+                    return;
+                }
+                
+                // 创建新骰子（前一个字母）
+                const newLetter = String.fromCharCode(minCharCode - 1);
+                const newValue = Math.floor(Math.random() * sides) + 1;
+                
+                // 添加到数组开头
+                dice.unshift({ letter: newLetter, value: newValue });
+                
+                renderDice();
+                updateDiceCount();
+                addToHistory();
+            });
+            
+            // 减少骰子
+            removeBtn.addEventListener('click', () => {
+                if (dice.length <= 1) {
+                    alert('至少需要保留一个骰子！');
+                    return;
+                }
+                
+                // 移除第一个骰子
+                dice.shift();
+                
+                renderDice();
+                updateDiceCount();
+                addToHistory();
+            });
+            
+            // 重新随机
+            rerollBtn.addEventListener('click', () => {
+                // 为所有骰子生成新值
+                dice.forEach(die => {
+                    die.value = Math.floor(Math.random() * sides) + 1;
+                    
+                    // 添加滚动动画
+                    const dieElement = document.querySelector(`[data-letter="${die.letter}"]`);
+                    if (dieElement) {
+                        dieElement.classList.add('rolling');
+                        setTimeout(() => {
+                            dieElement.classList.remove('rolling');
+                        }, 500);
+                    }
+                });
+                
+                renderDice();
+                addToHistory();
+            });
+            
+            // 切换骰子面数
+            sidesSelect.addEventListener('change', () => {
+                if (sidesSelect.value === 'custom') {
+                    customSides.style.display = 'inline-block';
+                    sides = parseInt(customSides.value) || 6;
+                } else {
+                    customSides.style.display = 'none';
+                    sides = parseInt(sidesSelect.value);
+                }
+                
+                // 重新生成所有骰子的值
+                dice.forEach(die => {
+                    die.value = Math.floor(Math.random() * sides) + 1;
+                });
+                
+                renderDice();
+                addToHistory();
+            });
+            
+            // 自定义面数输入
+            customSides.addEventListener('change', () => {
+                const newSides = parseInt(customSides.value);
+                if (newSides >= 2 && newSides <= 100) {
+                    sides = newSides;
+                    
+                    // 重新生成所有骰子的值
+                    dice.forEach(die => {
+                        die.value = Math.floor(Math.random() * sides) + 1;
+                    });
+                    
+                    renderDice();
+                    addToHistory();
+                } else {
+                    alert('请输入2-100之间的有效面数！');
+                    customSides.value = sides;
+                }
+            });
+            
+            // 渲染骰子
+            function renderDice() {
+                diceContainer.innerHTML = '';
+                
+                dice.forEach(die => {
+                    const dieElement = document.createElement('div');
+                    dieElement.className = 'die';
+                    dieElement.setAttribute('data-letter', die.letter);
+                    dieElement.innerHTML = `
+                        <div class="letter">${die.letter}</div>
+                        <div class="value">${die.value}</div>
+                    `;
+                    diceContainer.appendChild(dieElement);
+                });
+            }
+            
+            // 更新骰子数量显示
+            function updateDiceCount() {
+                diceCount.textContent = dice.length;
+            }
+            
+            // 添加到历史记录
+            function addToHistory() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString();
+                const values = dice.map(d => d.value).join(', ');
+                
+                history.unshift({ time: timeString, values });
+                
+                // 最多保留20条历史记录
+                if (history.length > 20) {
+                    history.pop();
+                }
+                
+                renderHistory();
+            }
+            
+            // 渲染历史记录
+            function renderHistory() {
+                historyList.innerHTML = '';
+                
+                if (history.length === 0) {
+                    historyList.innerHTML = '<div class="history-item">暂无记录</div>';
+                    return;
+                }
+                
+                history.forEach((item, index) => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    historyItem.innerHTML = `
+                        <div class="history-values">${item.values}</div>
+                        <div class="history-time">${item.time}</div>
+                    `;
+                    historyList.appendChild(historyItem);
+                });
+            }
+            
+            // 初始添加一条历史记录
+            addToHistory();
+        });
+    </script>
+</body>
+</html>
