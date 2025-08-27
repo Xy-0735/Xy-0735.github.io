@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>hexo pro！ 你的博客后台管理系统</title>
+      <link href="/2025/08/22/hexo-pro-%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2025/08/22/hexo-pro-%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="管理系统界面如图"><a class="markdownIt-Anchor" href="#管理系统界面如图"></a> 管理系统界面如图</h2><p><img src="/images/image_1755834985885.png" alt="image_1755834985885.png" /></p><h2 id="开发者说明"><a class="markdownIt-Anchor" href="#开发者说明"></a> 开发者说明</h2><p>本文内容引用了 GitHub 上的开源项目 [wuzheng228/hexo-pro]（地址：<a href="https://github.com/wuzheng228/hexo-pro">https://github.com/wuzheng228/hexo-pro</a>。</p><h2 id="博客系统特点"><a class="markdownIt-Anchor" href="#博客系统特点"></a> 博客系统特点</h2><h3 id="核心优势"><a class="markdownIt-Anchor" href="#核心优势"></a> 核心优势</h3><ul><li>🚀 极致易用：界面友好，操作直观，零学习成本上手</li><li>🌗 多主题支持：一键切换暗黑/明亮模式，适配不同使用场景</li><li>📱 移动端适配：响应式设计，手机、平板、PC 全面支持</li><li>🔒 安全可靠：支持多用户权限管理，数据安全有保障</li><li>⚡ 高效集成：与 Hexo 生态无缝对接，支持主流插件与主题</li></ul><hr /><h3 id="功能亮点"><a class="markdownIt-Anchor" href="#功能亮点"></a> 功能亮点</h3><p>• 文章管理 ：创建、编辑、删除文章，支持 Front-matter 可视化编辑<br />• 页面管理：轻松管理静态页面<br />• 图床集成：支持图片粘贴上传与批量管理<br />• 配置管理：可视化编辑 Hexo 配置文件<br />• 全局搜索：基于 Fuse.js 的极速全文检索<br />• 一键部署：多种部署方式，轻松上线<br />• 国际化支持：多语言界面，全球用户友好<br />• 桌面端专属：多项目管理、自动认证、原生菜单、离线支持、智能端口管理等<br />• 更多功能：……</p><h2 id="项目演示视频"><a class="markdownIt-Anchor" href="#项目演示视频"></a> 项目演示视频</h2><iframe   src="//player.bilibili.com/player.html?isOutside=true&aid=114488359525784&bvid=BV1mzEMzYEPA&cid=29905194722&p=1"   scrolling="no"   border="0"   frameborder="no"   framespacing="0"   allowfullscreen="true"   style="width: 100%; height: 450px;"></iframe><h2 id="特别鸣谢"><a class="markdownIt-Anchor" href="#特别鸣谢"></a> 特别鸣谢</h2><p>该项目在 编辑博客 的实现思路给了我很大启发，也为我带来便利， 在此感谢<a href="https://b23.tv/Iy5nUOv">【消灭猕猴桃】</a>的开源贡献，引用过程已遵循项目开源协议。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 作品分享 </tag>
+            
+            <tag> 编程开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>随机点名工具研究</title>
+      <link href="/2025/08/21/%E9%9A%8F%E6%9C%BA%E7%82%B9%E5%90%8D%E5%B7%A5%E5%85%B7%E7%A0%94%E7%A9%B6/"/>
+      <url>/2025/08/21/%E9%9A%8F%E6%9C%BA%E7%82%B9%E5%90%8D%E5%B7%A5%E5%85%B7%E7%A0%94%E7%A9%B6/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="随机数理论研究"><a class="markdownIt-Anchor" href="#随机数理论研究"></a> 随机数理论研究</h2><p>参考真随机数研究网站的理论说明实操开发,具体说明详见网站文章<br /><a href="https://www.random.org">https://www.random.org</a></p><h2 id="构建思路"><a class="markdownIt-Anchor" href="#构建思路"></a> 构建思路</h2><p>步骤：</p><ol><li>构建HTML结构：包括文本框、复选框、按钮和结果显示区域（用于自定义弹窗）。</li><li>使用CSS美化界面。</li><li>使用JavaScript实现逻辑：</li></ol><ul><li>读取文本框中的名单，分割成数组。</li><li>记录已抽取的姓名（在不允许重复的情况下）。</li><li>当点击抽取按钮时，根据是否允许重复来从候选池中随机抽取一个姓名。</li><li>如果不允许重复且候选池为空，则提示用户。</li><li>显示抽取结果（使用自定义弹窗）。</li></ul><h2 id="ui设计"><a class="markdownIt-Anchor" href="#ui设计"></a> UI设计</h2><p>名单管理功能<br />◦ 提供了一个文本区域用于输入和修改名单<br />◦ 初始名单已预设为要求的姓名<br />◦ 支持多种分隔符（顿号、逗号、空格、换行）<br />2. 随机抽取功能<br />◦ 点击&quot;开始抽取&quot;按钮进行随机抽取<br />◦ 抽取结果会以醒目的弹窗形式展示<br />◦ 同时在小面板上也会显示抽取结果<br />3. 抽取规则设置<br />◦ 提供&quot;不允许重复&quot;选项<br />◦ 勾选后已抽取的姓名会自动从候选池中移除<br />◦ 未勾选时每次从完整名单中随机选择<br />4. 用户体验优化<br />◦ 美观的界面设计，采用渐变色彩和卡片式布局<br />◦ 状态提示区域显示当前抽取进度<br />◦ 抽取结果有动画效果增强视觉体验<br />◦ 响应式设计，适配不同屏幕尺寸<br />这个工具非常适合在会议、活动或课堂等场景中使用，界面简洁大方，操作简单直观。</p><h2 id="访问链接"><a class="markdownIt-Anchor" href="#访问链接"></a> 访问链接</h2><!-- 跳转链接 --><a href="/html/随机抽取器.html" target="_blank" style="display: block; margin: 10px 0; color: #007bff; text-decoration: underline;">  点击在新窗口打开随机数生成器</a><h2 id="作品展示在下方"><a class="markdownIt-Anchor" href="#作品展示在下方"></a> 作品展示在下方</h2><!-- 用 iframe 嵌入 HTML 文件 --><iframe   src="/html/随机抽取器.html"  # HTML 文件路径（需放在 source/html 目录）  width="100%"   height="800px"   frameborder="0"></iframe>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 编程开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>随机数生成器制作</title>
+      <link href="/2025/08/18/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8%E5%88%B6%E4%BD%9C/"/>
+      <url>/2025/08/18/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8%E5%88%B6%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="工具说明"><a class="markdownIt-Anchor" href="#工具说明"></a> 工具说明</h2><p>这个随机数生成器支持自定义生成，生成结果历史记录保存，方便在各类场景中使用。</p><h2 id="实现说明"><a class="markdownIt-Anchor" href="#实现说明"></a> 实现说明</h2><p>核心基于JavaScript的<code>Math.random()</code>方法封装，通过区间映射算法将随机数转换到指定范围。界面采用原生HTML+CSS实现响应式设计，适配电脑和手机端使用。</p><h2 id="使用场景"><a class="markdownIt-Anchor" href="#使用场景"></a> 使用场景</h2><ul><li>活动抽奖时生成随机获奖号码</li><li>模拟测试数据生成</li></ul><h2 id="访问链接"><a class="markdownIt-Anchor" href="#访问链接"></a> 访问链接</h2><!-- 跳转链接 --><a href="/html/随机数生成器.html" target="_blank" style="display: block; margin: 10px 0; color: #007bff; text-decoration: underline;">  点击在新窗口打开随机数生成器</a><h2 id="作品展示在下方"><a class="markdownIt-Anchor" href="#作品展示在下方"></a> 作品展示在下方</h2><!-- 用 iframe 嵌入 HTML 文件 --><iframe   src="/html/随机数生成器.html"  # HTML 文件路径（需放在 source/html 目录）  width="100%"   height="800px"   frameborder="0"></iframe>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 网页设计 </tag>
+            
+            <tag> 编程开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我如何制作博客</title>
+      <link href="/2025/08/14/%E6%88%91%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%8D%9A%E5%AE%A2/"/>
+      <url>/2025/08/14/%E6%88%91%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E5%8D%9A%E5%AE%A2/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="从零开始用hexo搭建专业博客及多平台部署全指南"><a class="markdownIt-Anchor" href="#从零开始用hexo搭建专业博客及多平台部署全指南"></a> <strong>🔧 从零开始：用Hexo搭建专业博客及多平台部署全指南</strong></h1><h2 id="目录"><a class="markdownIt-Anchor" href="#目录"></a> <strong>📋 目录</strong></h2><ol><li><a href="#1-hexo%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">Hexo环境搭建</a></li><li><a href="#2-%E5%88%9B%E5%BB%BA%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E5%8D%9A%E5%AE%A2">创建并配置基础博客</a></li><li><a href="#3-%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E4%B8%8E%E4%B8%AA%E6%80%A7%E5%8C%96">主题更换与个性化</a></li><li><a href="#4-%E9%83%A8%E7%BD%B2%E5%88%B0github-pages">部署到GitHub Pages</a></li><li><a href="#5-%E9%80%9A%E8%BF%87netlify%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE">通过Netlify优化国内访问</a></li><li><a href="#6-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">常见问题与解决方案</a></li></ol><h2 id="1-hexo环境搭建"><a class="markdownIt-Anchor" href="#1-hexo环境搭建"></a> <strong>1. Hexo环境搭建</strong></h2><h3 id="11-必备工具安装"><a class="markdownIt-Anchor" href="#11-必备工具安装"></a> <strong>1.1 必备工具安装</strong></h3><p>Hexo基于Node.js运行，需要先安装以下工具：</p><ul><li><strong>Node.js</strong>（v14.0.0+）：提供运行环境</li><li><strong>Git</strong>：用于版本控制和部署</li></ul><h4 id="验证安装是否成功"><a class="markdownIt-Anchor" href="#验证安装是否成功"></a> <strong>验证安装是否成功</strong></h4><p>打开终端（Windows：CMD/PowerShell；Mac/Linux：Terminal），输入以下命令：</p><h4 id="检查nodejs版本"><a class="markdownIt-Anchor" href="#检查nodejs版本"></a> 检查Node.js版本</h4><p>node -v</p><p>示例输出：v16.14.2</p><h4 id="检查npm版本nodejs自带"><a class="markdownIt-Anchor" href="#检查npm版本nodejs自带"></a> 检查npm版本（Node.js自带）</h4><p>npm -v</p><p>示例输出：8.5.0</p><h4 id="检查git版本"><a class="markdownIt-Anchor" href="#检查git版本"></a> 检查Git版本</h4><p>git --version<br />示例输出：git version 2.34.1<br />若命令均能正常输出版本号，则表示环境准备完成。</p><h3 id="12-安装hexo脚手架"><a class="markdownIt-Anchor" href="#12-安装hexo脚手架"></a> <strong>1.2 安装Hexo脚手架</strong></h3><p>使用npm全局安装Hexo命令行工具：</p><h3 id="全局安装hexo"><a class="markdownIt-Anchor" href="#全局安装hexo"></a> 全局安装Hexo</h3><p>npm install -g hexo-cli</p><h3 id="验证安装"><a class="markdownIt-Anchor" href="#验证安装"></a> 验证安装</h3><p>hexo -v</p><h4 id="示例输出hexo-cli-430"><a class="markdownIt-Anchor" href="#示例输出hexo-cli-430"></a> 示例输出：hexo-cli: 4.3.0 …</h4><h2 id="2-创建并配置基础博客"><a class="markdownIt-Anchor" href="#2-创建并配置基础博客"></a> <strong>2. 创建并配置基础博客</strong></h2><h3 id="21-初始化博客项目"><a class="markdownIt-Anchor" href="#21-初始化博客项目"></a> <strong>2.1 初始化博客项目</strong></h3><h4 id="创建博客目录并初始化"><a class="markdownIt-Anchor" href="#创建博客目录并初始化"></a> 创建博客目录并初始化</h4><p>hexo init my-hexo-blog</p><h4 id="进入博客目录"><a class="markdownIt-Anchor" href="#进入博客目录"></a> 进入博客目录</h4><p>cd my-hexo-blog</p><h4 id="安装依赖包"><a class="markdownIt-Anchor" href="#安装依赖包"></a> 安装依赖包</h4><p>npm install<br />执行完成后，博客目录结构如下：<br />my-hexo-blog/<br />├── _config.yml       # 全局配置文件<br />├── package.json      # 项目依赖配置<br />├── source/           # 源文件目录<br />│   └── _posts/       # 博客文章存放处<br />└── themes/           # 主题目录</p><h3 id="22-基本操作命令"><a class="markdownIt-Anchor" href="#22-基本操作命令"></a> <strong>2.2 基本操作命令</strong></h3><h4 id="新建一篇文章"><a class="markdownIt-Anchor" href="#新建一篇文章"></a> 新建一篇文章</h4><p>hexo new “我的第一篇Hexo博客”</p><h4 id="会在source_posts目录下生成对应的markdown文件"><a class="markdownIt-Anchor" href="#会在source_posts目录下生成对应的markdown文件"></a> 会在source/_posts目录下生成对应的Markdown文件</h4><h3 id="生成静态网页"><a class="markdownIt-Anchor" href="#生成静态网页"></a> 生成静态网页</h3><p>hexo generate  # 可简写为 hexo g</p><h3 id="启动本地服务器预览"><a class="markdownIt-Anchor" href="#启动本地服务器预览"></a> 启动本地服务器预览</h3><p>hexo server    # 可简写为 hexo s</p><h4 id="默认访问地址"><a class="markdownIt-Anchor" href="#默认访问地址"></a> 默认访问地址：</h4><p><a href="http://localhost:4000">http://localhost:4000</a></p><h3 id="清理缓存文件"><a class="markdownIt-Anchor" href="#清理缓存文件"></a> 清理缓存文件</h3><p>hexo clean     # 部署前建议执行，避免缓存导致的问题<br />启动服务后，打开浏览器访问 <code>http://localhost:4000</code> 即可看到默认主题的博客页面。</p><h3 id="23-全局配置修改"><a class="markdownIt-Anchor" href="#23-全局配置修改"></a> <strong>2.3 全局配置修改</strong></h3><p>编辑根目录下的 <code>_config.yml</code> 文件（建议使用VS Code等编辑器），修改基础信息：</p><h4 id="site"><a class="markdownIt-Anchor" href="#site"></a> Site</h4><p>title: 我的技术博客        # 博客标题<br />subtitle: 分享技术与生活    # 副标题<br />description: 这是我的个人博客 # 博客描述（用于SEO）<br />author: 张三               # 作者名<br />language: zh-CN            # 语言（中文）<br />timezone: Asia/Shanghai    # 时区（上海）</p><h4 id="url"><a class="markdownIt-Anchor" href="#url"></a> URL</h4><p>url: <a href="https://yourname.github.io">https://yourname.github.io</a>  # 博客最终访问地址<br />root: /                          # 根目录<br />修改后保存，执行 <code>hexo s</code> 重启服务即可看到变化。</p><h2 id="3-主题更换与个性化"><a class="markdownIt-Anchor" href="#3-主题更换与个性化"></a> <strong>3. 主题更换与个性化</strong></h2><p>Hexo默认主题为<code>landscape</code>，我们可以更换为更美观的主题，这里以热门的<code>Butterfly</code>主题为例。</p><h3 id="31-安装butterfly主题"><a class="markdownIt-Anchor" href="#31-安装butterfly主题"></a> <strong>3.1 安装Butterfly主题</strong></h3><h4 id="克隆主题到themes目录"><a class="markdownIt-Anchor" href="#克隆主题到themes目录"></a> 克隆主题到themes目录</h4><p>git clone -b master <a href="https://github.com/jerryc127/hexo-theme-butterfly.git">https://github.com/jerryc127/hexo-theme-butterfly.git</a> themes/butterfly</p><h3 id="32-启用主题"><a class="markdownIt-Anchor" href="#32-启用主题"></a> <strong>3.2 启用主题</strong></h3><p>修改根目录 <code>_config.yml</code> 中的主题配置：</p><h4 id="找到theme配置项修改为butterfly"><a class="markdownIt-Anchor" href="#找到theme配置项修改为butterfly"></a> 找到theme配置项，修改为butterfly</h4><p>theme: butterfly</p><h3 id="33-主题配置优化"><a class="markdownIt-Anchor" href="#33-主题配置优化"></a> <strong>3.3 主题配置优化</strong></h3><p>为了避免主题升级时覆盖自定义配置，建议使用独立配置文件：</p><h4 id="复制主题配置文件到根目录"><a class="markdownIt-Anchor" href="#复制主题配置文件到根目录"></a> 复制主题配置文件到根目录</h4><p>cp themes/butterfly/_config.yml _config.butterfly.yml<br />编辑 <code>_config.butterfly.yml</code> 进行个性化设置：</p><h4 id="331-配置导航菜单"><a class="markdownIt-Anchor" href="#331-配置导航菜单"></a> <strong>3.3.1 配置导航菜单</strong></h4><p>menu:<br />首页: / || fa fa-home<br />归档: /archives/ || fa fa-archive<br />标签: /tags/ || fa fa-tags<br />分类: /categories/ || fa fa-folder-open<br />关于: /about/ || fa fa-user</p><h4 id="332-设置社交链接"><a class="markdownIt-Anchor" href="#332-设置社交链接"></a> <strong>3.3.2 设置社交链接</strong></h4><p>social:<br />Github: <a href="https://github.com/yourname">https://github.com/yourname</a> || fa fa-github<br />知乎: <a href="https://zhihu.com/people/yourname">https://zhihu.com/people/yourname</a> || fa fa-book<br />邮箱: <a href="mailto:your@email.com">mailto:your@email.com</a> || fa fa-envelope</p><h4 id="333-配置网站图标"><a class="markdownIt-Anchor" href="#333-配置网站图标"></a> <strong>3.3.3 配置网站图标</strong></h4><p>favicon:<br />icon: /img/favicon.ico  # 网站图标路径<br />apple_touch_icon: /img/apple-touch-icon.png  # 苹果设备图标<br />设置完成后，需要在 <code>source</code> 目录下创建 <code>img</code> 文件夹并放入对应的图片文件。</p><h3 id="34-安装主题依赖"><a class="markdownIt-Anchor" href="#34-安装主题依赖"></a> <strong>3.4 安装主题依赖</strong></h3><p>Butterfly主题需要额外依赖：</p><h4 id="安装必要插件"><a class="markdownIt-Anchor" href="#安装必要插件"></a> 安装必要插件</h4><p>npm install hexo-renderer-pug hexo-renderer-stylus --save<br />执行 <code>hexo clean &amp;&amp; hexo s</code> 查看效果。</p><h2 id="4-部署到github-pages"><a class="markdownIt-Anchor" href="#4-部署到github-pages"></a> <strong>4. 部署到GitHub Pages</strong></h2><p>GitHub Pages提供免费的静态网站托管服务，适合展示博客。</p><h3 id="41-准备github仓库"><a class="markdownIt-Anchor" href="#41-准备github仓库"></a> <strong>4.1 准备GitHub仓库</strong></h3><ol><li>登录GitHub账号，点击右上角 <code>+</code> 号，选择 <code>New repository</code></li><li>仓库名称必须为：<code>用户名.github.io</code>（例如：<code>octocat.github.io</code>）</li><li>选择 <code>Public</code> 公开仓库</li><li>点击 <code>Create repository</code> 完成创建</li></ol><h3 id="42-配置hexo部署参数"><a class="markdownIt-Anchor" href="#42-配置hexo部署参数"></a> <strong>4.2 配置Hexo部署参数</strong></h3><ol><li>安装部署插件：<br />npm install hexo-deployer-git --save</li><li>编辑根目录 <code>_config.yml</code>，配置部署信息：<br />deploy:<br />type: git<br />repo: <a href="https://github.com/%E4%BD%A0%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BD%A0%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D.github.io.git">https://github.com/你的用户名/你的用户名.github.io.git</a></li></ol><h4 id="例如httpsgithubcomoctocatoctocatgithubiogit"><a class="markdownIt-Anchor" href="#例如httpsgithubcomoctocatoctocatgithubiogit"></a> 例如：<a href="https://github.com/octocat/octocat.github.io.git">https://github.com/octocat/octocat.github.io.git</a></h4><p>branch: main  # 主分支（GitHub新仓库默认分支为main）</p><h3 id="43-部署博客"><a class="markdownIt-Anchor" href="#43-部署博客"></a> <strong>4.3 部署博客</strong></h3><h4 id="清理缓存"><a class="markdownIt-Anchor" href="#清理缓存"></a> 清理缓存</h4><p>hexo clean</p><h4 id="生成并部署"><a class="markdownIt-Anchor" href="#生成并部署"></a> 生成并部署</h4><p>hexo g -d  # 等同于 hexo generate &amp;&amp; hexo deploy<br />首次部署会要求输入GitHub账号和密码（或token），验证通过后即可完成部署。</p><p>几分钟后，访问 <code>https://你的用户名.github.io</code> 即可看到你的博客。</p><h2 id="5-通过netlify优化国内访问"><a class="markdownIt-Anchor" href="#5-通过netlify优化国内访问"></a> <strong>5. 通过Netlify优化国内访问</strong></h2><p>GitHub Pages在国内访问速度较慢，使用Netlify可以显著提升访问速度。</p><h3 id="51-注册并连接仓库"><a class="markdownIt-Anchor" href="#51-注册并连接仓库"></a> <strong>5.1 注册并连接仓库</strong></h3><ol><li>访问 <a href="https://netlify.com">Netlify官网</a> 注册账号（可使用GitHub账号直接登录）</li><li>登录后点击 <code>New site from Git</code></li><li>选择 <code>GitHub</code>，授权访问你的博客仓库</li><li>选择你的博客仓库（<code>用户名.github.io</code>）</li></ol><h3 id="52-配置构建参数"><a class="markdownIt-Anchor" href="#52-配置构建参数"></a> <strong>5.2 配置构建参数</strong></h3><p>在部署设置页面，填写：</p><ul><li><strong>Build command</strong>: <code>hexo clean &amp;&amp; hexo generate</code></li><li><strong>Publish directory</strong>: <code>public</code></li></ul><p>点击 <code>Deploy site</code> 开始部署，Netlify会自动执行构建命令并部署。</p><h3 id="53-配置自定义域名可选"><a class="markdownIt-Anchor" href="#53-配置自定义域名可选"></a> <strong>5.3 配置自定义域名（可选）</strong></h3><ol><li>在Netlify站点控制台，点击 <code>Domain settings</code></li><li>点击 <code>Add custom domain</code>，输入你购买的域名（例如：<code>blog.example.com</code>）</li><li>在域名提供商的DNS管理界面，添加以下记录：<ul><li>类型：<code>CNAME</code></li><li>主机记录：<code>blog</code>（或<code>@</code>表示主域名）</li><li>记录值：<code>你的Netlify子域名</code>（例如：<code>xxxxxx.netlify.app</code>）</li></ul></li></ol><h3 id="54-启用https"><a class="markdownIt-Anchor" href="#54-启用https"></a> <strong>5.4 启用HTTPS</strong></h3><p>Netlify会自动为你的域名配置SSL证书，在 <code>Domain settings</code> 中找到 <code>HTTPS</code> 选项，开启强制HTTPS访问。</p><h2 id="6-常见问题与解决方案"><a class="markdownIt-Anchor" href="#6-常见问题与解决方案"></a> <strong>6. 常见问题与解决方案</strong></h2><h3 id="61-本地预览样式错乱"><a class="markdownIt-Anchor" href="#61-本地预览样式错乱"></a> <strong>6.1 本地预览样式错乱</strong></h3><h4 id="1-清理缓存并重新生成"><a class="markdownIt-Anchor" href="#1-清理缓存并重新生成"></a> 1. 清理缓存并重新生成</h4><p>hexo clean &amp;&amp; hexo g</p><h4 id="2-检查主题是否正确安装"><a class="markdownIt-Anchor" href="#2-检查主题是否正确安装"></a> 2. 检查主题是否正确安装</h4><p>ls themes/butterfly  # 应显示主题文件</p><h4 id="3-确认依赖已安装"><a class="markdownIt-Anchor" href="#3-确认依赖已安装"></a> 3. 确认依赖已安装</h4><p>npm list hexo-renderer-pug</p><h3 id="62-部署后页面空白"><a class="markdownIt-Anchor" href="#62-部署后页面空白"></a> <strong>6.2 部署后页面空白</strong></h3><ul><li>检查 <code>_config.yml</code> 中的 <code>url</code> 配置是否正确</li><li>确认部署分支是否为 <code>main</code> 或 <code>master</code></li><li>查看部署日志（GitHub Actions或Netlify构建日志）排查错误</li></ul><h3 id="63-图片无法显示"><a class="markdownIt-Anchor" href="#63-图片无法显示"></a> <strong>6.3 图片无法显示</strong></h3><ul><li>使用相对路径引用图片：<code>![描述](img/图片名.jpg)</code></li><li>确保图片放在 <code>source/img</code> 目录下</li><li>避免使用中文文件名，可能导致部署后无法访问</li></ul><h3 id="64-国内访问速度优化"><a class="markdownIt-Anchor" href="#64-国内访问速度优化"></a> <strong>6.4 国内访问速度优化</strong></h3><ul><li>确保已通过Netlify部署</li><li>图片资源可使用阿里云OSS、七牛云等国内CDN存储</li><li>禁用不必要的外部资源（如Google字体、国外评论系统）</li></ul><h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> <strong>🎉 总结</strong></h2><p>通过以上步骤，你已经成功搭建了一个基于Hexo的博客，并实现了多平台部署。后续只需专注于内容创作，通过以下命令发布新文章：</p><h3 id="新建文章"><a class="markdownIt-Anchor" href="#新建文章"></a> 新建文章</h3><p>hexo new “文章标题”</p><h3 id="编辑完成后部署"><a class="markdownIt-Anchor" href="#编辑完成后部署"></a> 编辑完成后部署</h3><p>hexo clean &amp;&amp; hexo g -d<br />博客会自动同步到GitHub Pages和Netlify，国内外用户都能快速访问你的内容。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 编程开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>葬送的芙莉莲&amp;第五人格</title>
+      <link href="/2025/08/13/%E8%91%AC%E9%80%81%E7%9A%84%E8%8A%99%E8%8E%89%E8%8E%B2-%E7%AC%AC%E4%BA%94%E4%BA%BA%E6%A0%BC/"/>
+      <url>/2025/08/13/%E8%91%AC%E9%80%81%E7%9A%84%E8%8A%99%E8%8E%89%E8%8E%B2-%E7%AC%AC%E4%BA%94%E4%BA%BA%E6%A0%BC/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="当芙莉莲的温柔照进庄园记一场让人泪目的第五人格联动对局"><a class="markdownIt-Anchor" href="#当芙莉莲的温柔照进庄园记一场让人泪目的第五人格联动对局"></a> 当芙莉莲的温柔照进庄园——记一场让人泪目的第五人格联动对局</h1><p>最近在B站刷到一支《葬送的芙莉莲》联动《第五人格》的视频，不是因为操作有多秀，也不是因为胜负多惊险，而是最后那几秒的画面，像动画里的柔光一样，轻轻落在了心里。和原著一毛一样啊！！</p><h2 id="先放个视频这场联动藏着两个世界的温柔"><a class="markdownIt-Anchor" href="#先放个视频这场联动藏着两个世界的温柔"></a> 先放个视频：这场联动藏着两个世界的温柔</h2><p>（点击播放，建议开弹幕食用）</p><iframe   src="//player.bilibili.com/player.html?isOutside=true&aid=114989192972879&bvid=BV16utCzVEbr&cid=31554535486&p=1"   scrolling="no"   border="0"   frameborder="no"   framespacing="0"   allowfullscreen="true"   style="width: 100%; height: 450px;"></iframe>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 作品分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客功能更新</title>
+      <link href="/2025/08/12/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%9B%B4%E6%96%B0/"/>
+      <url>/2025/08/12/%E5%8D%9A%E5%AE%A2%E5%8A%9F%E8%83%BD%E6%9B%B4%E6%96%B0/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="博客功能详解这些新特性你都了解吗"><a class="markdownIt-Anchor" href="#博客功能详解这些新特性你都了解吗"></a> 博客功能详解：这些新特性你都了解吗？</h1><p>最近给博客添了不少新功能，从内容互动到体验优化都做了升级，这里详细说说每个功能的用法和亮点——</p><h3 id="mark-stylebackground-color-4a90e2-color-white音乐播放功能-mark边读边听的沉浸体验"><a class="markdownIt-Anchor" href="#mark-stylebackground-color-4a90e2-color-white音乐播放功能-mark边读边听的沉浸体验"></a> 🎵 <mark style="background-color: #4a90e2; color: white;">音乐播放功能 </mark>：边读边听的沉浸体验</h3><p>博客侧边栏新增了固定音乐播放器，支持：</p><ul><li>内置默认歌单（以轻音乐、独立民谣为主，避免喧宾夺主）；</li><li>可手动切换歌曲、调节音量，也能一键暂停/播放；</li><li>页面滚动时播放器会固定在视野内，不用担心切换文章时音乐中断；</li><li>支持后台播放（切换标签页也不会停），适合长时间阅读时营造氛围。</li></ul><h3 id="mark-stylebackground-color-4a90e2-color-white站内搜索功能-mark精准定位你想看的内容"><a class="markdownIt-Anchor" href="#mark-stylebackground-color-4a90e2-color-white站内搜索功能-mark精准定位你想看的内容"></a> 🔍 <mark style="background-color: #4a90e2; color: white;">站内搜索功能 </mark>：精准定位你想看的内容</h3><p>导航栏右侧的搜索框终于能用啦！核心功能：</p><ul><li>搜索范围覆盖全站文章（包括标题、正文、标签、分类）；</li><li>支持关键词联想（输入部分文字会自动弹出相关文章标题）；</li><li>结果按「相关度+发布时间」排序，最新且匹配度高的内容排在前面；</li><li>搜索无结果时会显示「热门推荐文章」，帮你发现可能感兴趣的内容。</li></ul><h3 id="mark-stylebackground-color-4a90e2-color-white极简评论功能-mark不用注册填个邮箱就能聊"><a class="markdownIt-Anchor" href="#mark-stylebackground-color-4a90e2-color-white极简评论功能-mark不用注册填个邮箱就能聊"></a> 💬 <mark style="background-color: #4a90e2; color: white;">极简评论功能 </mark>：不用注册，填个邮箱就能聊</h3><p>终于开放评论功能了，而且特意做了简化：</p><ul><li>无需注册账号，只需填写「邮箱+昵称（可选）+评论内容」就能提交；</li><li>邮箱仅用于区分评论者身份（不会公开显示），无需验证即可发布；</li><li>支持评论区实时互动：别人的评论可以直接回复，回复会嵌套显示在原评论下方；</li><li>评论内容会经过基础过滤（屏蔽违规词），确保互动环境友好。</li></ul><h3 id="mark-stylebackground-color-4a90e2-color-white社交直达功能-mark一键跳转到我的其他平台"><a class="markdownIt-Anchor" href="#mark-stylebackground-color-4a90e2-color-white社交直达功能-mark一键跳转到我的其他平台"></a> 🔗 <mark style="background-color: #4a90e2; color: white;">社交直达功能 </mark>：一键跳转到我的其他平台</h3><p>导航栏左侧新增了两个平台图标，点击即跳转：</p><ul><li>蓝色B站图标：点击直接打开我的<mark>B站空间</mark>（新窗口跳转），能看到我发的视频和动态；</li><li>黑色GitHub图标：跳转到博客源码仓库（包含主题配置、插件清单等），欢迎提issue或star；</li><li>图标悬停时会有轻微放大效果，一眼就能认出对应的平台～</li></ul><p>如果使用中遇到任何问题，直接在文章评论区告诉我就行，随时调整优化！ 😊</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 网页设计 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>用代码编织回忆：我的高中同学大学去向地图</title>
+      <link href="/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/"/>
+      <url>/2025/08/10/%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%BB%87%E5%9B%9E%E5%BF%86%EF%BC%9A%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD%E5%90%8C%E5%AD%A6%E5%A4%A7%E5%AD%A6%E5%8E%BB%E5%90%91%E5%9C%B0%E5%9B%BE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="缘起毕业季的代码纪念册"><a class="markdownIt-Anchor" href="#缘起毕业季的代码纪念册"></a> 🎓 缘起：毕业季的代码纪念册</h2><p>高中毕业那年夏天，当班级群里开始刷屏各种录取通知书照片时，我突然萌生了一个想法：为什么不做个可视化去向地图？<br />比起让这些珍贵的消息淹没在聊天记录里，一个永久在线的纪念网页，或许能让我们十年后依然能回味青春的选择。</p><h2 id="访问链接"><a class="markdownIt-Anchor" href="#访问链接"></a> 访问链接</h2><!-- 跳转链接 --><a href="/html/classmate_college_map.html" target="_blank" style="display: block; margin: 10px 0; color: #007bff; text-decoration: underline;">  点击在新窗口打开</a><h2 id="作品展示在下方"><a class="markdownIt-Anchor" href="#作品展示在下方"></a> 作品展示在下方</h2><!-- 用 iframe 嵌入 HTML 文件 --><iframe   src="/html/classmate_college_map.html"  # HTML 文件路径（需放在 source/html 目录）  width="100%"   height="800px"   frameborder="0"></iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网页设计 </tag>
+            
+            <tag> 毕业季 </tag>
+            
+            <tag> 高中回忆 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2025/08/10/hello-world/"/>
+      <url>/2025/08/10/hello-world/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> Hello World</h1><p>这声简单的问候，在程序员的世界里，是旅程的起点，是代码第一次呼吸的证明。而在这里，在我的数字角落，它同样标志着一段新探索的开始——欢迎来到我的个人博客！</p><h2 id="关于我"><a class="markdownIt-Anchor" href="#关于我"></a> 👋 关于我</h2><p>我是微雨扬，一个充满热情的探索者，始终保持对知识的好奇心和学习的热情。</p><h2 id="关于这个空间"><a class="markdownIt-Anchor" href="#关于这个空间"></a> 🌍 关于这个空间</h2><p>这是我的数字自留地，主要分享这些内容：</p><h3 id="思考与洞见"><a class="markdownIt-Anchor" href="#思考与洞见"></a> 思考与洞见</h3><ul><li>行业趋势观察</li><li>读书笔记与读后感</li><li>认知方法论反思</li><li>跨界领域探索</li></ul><h3 id="生活创作"><a class="markdownIt-Anchor" href="#生活创作"></a> 生活创作</h3><ul><li>个人项目记录</li><li>旅行见闻与摄影</li><li>创意实验分享</li><li>效率方法实践</li></ul><h2 id="为什么写博客"><a class="markdownIt-Anchor" href="#为什么写博客"></a> ✨ 为什么写博客？</h2><ol><li><strong>对抗遗忘</strong>：将学习成果固化下来</li><li><strong>梳理思路</strong>：写作促进深度思考</li><li><strong>分享价值</strong>：希望我的经验能帮助他人</li><li><strong>连接同好</strong>：寻找志同道合的伙伴</li><li><strong>自我成长</strong>：持续输出的训练场</li></ol><h2 id="期待与你同行"><a class="markdownIt-Anchor" href="#期待与你同行"></a> 🚀 期待与你同行</h2><p>感谢你访问这个正在生长的知识花园！如果内容对你有所启发，或者你有任何想法愿意分享：</p><ul><li>📧 联系我：1541016466@qq.com</li></ul><blockquote><p><strong>Hello World, Hello You!</strong><br />愿我们都能在探索的路上，发现属于自己的精彩星辰。</p></blockquote><hr /><p><em>本博客使用 <a href="https://hexo.io">Hexo</a> 生成 • 主题 <a href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a></em><br /><em>© 2025 [XYY] • 知识共享</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客公告 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 博客开篇 </tag>
+            
+            <tag> 自我介绍 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
