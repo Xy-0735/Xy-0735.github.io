@@ -2538,6 +2538,17 @@ pre .javascript .function {
   font-size: 12px;
   margin-right: 5px;
 }
+#waifu {
+  right: 0 !important;
+  left: auto !important;
+}
+#waifu-tool {
+  right: auto !important;
+  left: -10px !important;
+}
+#waifu-toggle {
+  z-index: 1;
+}
 .sidebar-top {
   position: fixed;
   bottom: 30px;
