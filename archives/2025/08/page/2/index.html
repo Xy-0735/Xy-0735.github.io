@@ -14,7 +14,7 @@
 
   
 
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":true,"count":75,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":true,"count":20,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
   
   <title>
     归档: 2025/8 |
@@ -26,7 +26,7 @@
     <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
   
   
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
   
   
     <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
@@ -46,8 +46,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xy-0735.github.io/images/banner.webp">
 <meta property="article:author" content="微雨扬">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xy-0735.github.io/images/banner.webp">
+<meta name="twitter:card" content="&lt;twitter:card&gt;">
+<meta name="twitter:image" content="https://xy-0735.github.io/archives/2025/08/page/2/%3Ctwitter:image%3E">
+<meta name="twitter:creator" content="@&lt;twitter:creator&gt;">
+<meta name="twitter:site" content="<twitter:site>">
+<meta property="fb:admins" content="&lt;fb:admin_id&gt;">
+<meta property="fb:app_id" content="&lt;fb:app_id&gt;">
   
   
     <link rel="alternate" href="/atom.xml" title="XYY滴小窝" type="application/atom+xml">
@@ -137,6 +141,15 @@
 </div>
 <div id="heatmap-tooltip"></div>
 
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
 
     <div id="container">
       <div id="wrap">
@@ -964,15 +977,9 @@
 
 
 
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      for (let registration of registrations) {
-        registration.unregister();
-      }
-    });
-  }
-</script>
+  
+<script src="/js/service_worker.js"></script>
+
 
 
 
@@ -998,7 +1005,7 @@
       const ap = new APlayer({
         theme: "var(--color-link)",
         container: document.getElementById('aplayer'),
-        audio: [{"name":"One step Ahead","artist":"AxR","url":"/audio/One step Ahead.mp3","cover":"/images/One step Ahead.jpg","lrc":"/lrc/One Step Ahead-AxR-歌词.lrc"},{"name":"弄舌","artist":"王子健","url":"/audio/弄舌.mp3","cover":"/images/弄舌.jpg","lrc":"/lrc/弄舌.lrc"},{"name":"晴天","artist":"周杰伦","url":"/audio/qingtian.mp3","cover":"/images/qingtian.jpg","lrc":"/lrc/晴天.lrc"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"},{"name":"counting stars","artist":"Onerepublic","url":"/audio/counting stars.mp3","cover":"/images/counting stars.jpg","lrc":"/lrc/Counting Stars-OneRepublic-歌词.lrc"},{"name":"introduction","artist":"phigros","url":"/audio/introduction.mp3","cover":"/images/introduction.jpg"},{"name":"壁上观","artist":"一棵小葱","url":"/audio/壁上观.mp3","cover":"/images/壁上观.jpg","lrc":"/lrc/壁上观.lrc"},{"name":"lemon","artist":"米津玄师","url":"/audio/lemon.mp3","cover":"/images/lemon.jpg","lrc":"/lrc/Lemon-米津玄師-歌词.lrc"},{"name":"Born Again","artist":"LISA&Doja Cat&RAYE","url":"/audio/Born Again.mp3","cover":"/images/Born Again.jpg","lrc":"/lrc/Born Again-LISA&Doja Cat&RAYE-歌词.lrc"},{"name":"Doar Cu Tine","artist":"ProdbyMend","url":"/audio/Doar Cu Tine.mp3","cover":"/images/Doar Cu Tine.jpg","lrc":"/lrc/Doar Cu Tine (雷军进行曲)-ProdbyMend-歌词.lrc"},{"name":"One Last Kiss","artist":"宇多田ヒカル","url":"/audio/One Last Kiss.mp3","cover":"/images/One Last Kiss.jpg","lrc":"/lrc/One Last Kiss-宇多田ヒカル-歌词.lrc"},{"name":"Wake way","artist":"DJ小布","url":"/audio/Wake way.mp3","cover":"/images/Wake way.jpg","lrc":"/lrc/Wake way-DJ小布-歌词.lrc"},{"name":"鸟之诗","artist":"Lia","url":"/audio/鸟之诗.mp3","cover":"/images/鸟之诗.jpg","lrc":"/lrc/鳥の詩 (鸟之诗) (Single Version)-Lia-歌词.lrc"}] || [],
+        audio: [{"name":"One step Ahead","artist":"AxR","url":"/audio/One step Ahead.mp3","cover":"/images/One step Ahead.jpg","lrc":"/lrc/One Step Ahead-AxR-歌词.lrc"},{"name":"今天不是明天","artist":"feat. 兰音Reine","url":"/audio/今天不是明天.mp3","cover":"/images/今天不是明天.jpg","lrc":"/lrc/今天不是明天 (feat. 兰音Reine)-电音联盟&音波狂潮&兰音Reine&V-Festival&PIKASONIC-歌词.lrc"},{"name":"弄舌","artist":"王子健","url":"/audio/弄舌.mp3","cover":"/images/弄舌.jpg","lrc":"/lrc/弄舌.lrc"},{"name":"晴天","artist":"周杰伦","url":"/audio/qingtian.mp3","cover":"/images/qingtian.jpg","lrc":"/lrc/晴天.lrc"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"},{"name":"counting stars","artist":"Onerepublic","url":"/audio/counting stars.mp3","cover":"/images/counting stars.jpg","lrc":"/lrc/Counting Stars-OneRepublic-歌词.lrc"},{"name":"introduction","artist":"phigros","url":"/audio/introduction.mp3","cover":"/images/introduction.jpg"},{"name":"壁上观","artist":"一棵小葱","url":"/audio/壁上观.mp3","cover":"/images/壁上观.jpg","lrc":"/lrc/壁上观.lrc"},{"name":"lemon","artist":"米津玄师","url":"/audio/lemon.mp3","cover":"/images/lemon.jpg","lrc":"/lrc/Lemon-米津玄師-歌词.lrc"},{"name":"Born Again","artist":"LISA&Doja Cat&RAYE","url":"/audio/Born Again.mp3","cover":"/images/Born Again.jpg","lrc":"/lrc/Born Again-LISA&Doja Cat&RAYE-歌词.lrc"},{"name":"Doar Cu Tine","artist":"ProdbyMend","url":"/audio/Doar Cu Tine.mp3","cover":"/images/Doar Cu Tine.jpg","lrc":"/lrc/Doar Cu Tine (雷军进行曲)-ProdbyMend-歌词.lrc"},{"name":"One Last Kiss","artist":"宇多田ヒカル","url":"/audio/One Last Kiss.mp3","cover":"/images/One Last Kiss.jpg","lrc":"/lrc/One Last Kiss-宇多田ヒカル-歌词.lrc"},{"name":"Wake way","artist":"DJ小布","url":"/audio/Wake way.mp3","cover":"/images/Wake way.jpg","lrc":"/lrc/Wake way-DJ小布-歌词.lrc"},{"name":"鸟之诗","artist":"Lia","url":"/audio/鸟之诗.mp3","cover":"/images/鸟之诗.jpg","lrc":"/lrc/鳥の詩 (鸟之诗) (Single Version)-Lia-歌词.lrc"}] || [],
         fixed: isMobile ? true : (true || false),
         autoplay: true || false,
         loop: 'All' || 'all',
