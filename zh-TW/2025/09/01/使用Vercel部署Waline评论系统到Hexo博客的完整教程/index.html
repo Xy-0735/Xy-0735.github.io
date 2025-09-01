@@ -1,0 +1,2265 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-TW"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":true,"count":20,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本部落格所有文章除特別聲明外，均採用 BY-NC-SA 授權協議。轉載請註明出處！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
+  
+  <title>
+    使用Vercel部署Waline评论系统到Hexo博客的完整教程 |
+    
+    XYY滴小窝
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="简介 最近有很多朋友私信问到评论系统的问题，对于静态博客用户而言，评论系统的搭建常常陷入&quot;便捷与安全不可兼得&quot;的困境：无后端方案虽轻量却存在数据泄露风险，传统带后端系统又门槛过高。而Waline作为基于Valine开发的新一代评论系统，通过&quot;带后端架构+轻量化部署&quot;的创新模式，完美平衡了安全性与易用性，成为Hexo等静态博客的理想选择，本网站也采用此评论系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+<meta property="og:url" content="https://xy-0735.github.io/zh-TW/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="XYY滴小窝">
+<meta property="og:description" content="简介 最近有很多朋友私信问到评论系统的问题，对于静态博客用户而言，评论系统的搭建常常陷入&quot;便捷与安全不可兼得&quot;的困境：无后端方案虽轻量却存在数据泄露风险，传统带后端系统又门槛过高。而Waline作为基于Valine开发的新一代评论系统，通过&quot;带后端架构+轻量化部署&quot;的创新模式，完美平衡了安全性与易用性，成为Hexo等静态博客的理想选择，本网站也采用此评论系">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2025-09-01T06:18:42.000Z">
+<meta property="article:modified_time" content="2025-09-01T07:35:16.651Z">
+<meta property="article:author" content="微雨扬">
+<meta property="article:tag" content="网页设计">
+<meta property="article:tag" content="编程开发">
+<meta name="twitter:card" content="&lt;twitter:card&gt;">
+<meta name="twitter:image" content="https://xy-0735.github.io/zh-TW/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/%3Ctwitter:image%3E">
+<meta name="twitter:creator" content="@&lt;twitter:creator&gt;">
+<meta name="twitter:site" content="<twitter:site>">
+<meta property="fb:admins" content="&lt;fb:admin_id&gt;">
+<meta property="fb:app_id" content="&lt;fb:app_id&gt;">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="XYY滴小窝" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+    
+      
+<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy+Ub9QgnxUYJmwOhYCK" crossorigin="anonymous">
+
+    
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt+HsAtOaUsXwJGRb4&#x2F;SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU&#x2F;voDBY5XE2lVh" crossorigin="anonymous">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈禱中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/">首頁</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/archives">歸檔</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/about">關於</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/friend">友鏈</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 訂閱" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜尋"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">正體中文</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" >English</li>
+          
+            <li data-value="zh-TW" class="selected">正體中文</li>
+          
+            <li data-value="ja" >日本語</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2025/09/01/使用Vercel部署Waline评论系统到Hexo博客的完整教程/';
+            
+              langMap['en'] = '/en/2025/09/01/使用Vercel部署Waline评论系统到Hexo博客的完整教程/';
+            
+              langMap['zh-TW'] = '/zh-TW/2025/09/01/使用Vercel部署Waline评论系统到Hexo博客的完整教程/';
+            
+              langMap['ja'] = '/ja/2025/09/01/使用Vercel部署Waline评论系统到Hexo博客的完整教程/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/%E8%BE%B9%E6%A1%86%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0%E7%A0%94%E7%A9%B6.jpg" alt="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">使用Vercel部署Waline评论系统到Hexo博客的完整教程</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#waline%E8%AE%A9%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%97%A2%E5%AE%89%E5%85%A8%E5%8F%88%E5%BC%BA%E5%A4%A7"><span class="toc-number">1.1.</span> <span class="toc-text"> Waline：让评论系统既安全又强大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9vercel%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.</span> <span class="toc-text"> 为什么选择Vercel部署？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text"> 准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E6%A0%B8%E5%BF%83%E8%B4%A6%E5%8F%B7%E5%87%86%E5%A4%87"><span class="toc-number">2.1.</span> <span class="toc-text"> 一、核心账号准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-vercel-%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 1. Vercel 账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-leancloud-%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 2. LeanCloud 账号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text"> 二、本地工具环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 1. 基础开发环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-vercel-cli%E5%8F%AF%E9%80%89%E4%BD%86%E6%8E%A8%E8%8D%90"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 2. Vercel CLI（可选但推荐）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-hexo-%E5%8D%9A%E5%AE%A2%E7%8E%AF%E5%A2%83%E6%A3%80%E6%9F%A5"><span class="toc-number">2.3.</span> <span class="toc-text"> 三、Hexo 博客环境检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E5%8F%AF%E9%80%89%E5%87%86%E5%A4%87%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8C%89%E9%9C%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text"> 四、可选准备：自定义域名（按需配置）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text"> 详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#leancloud%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text"> LeanCloud配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 1. 注册与登录账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E5%BC%80%E5%8F%91%E7%89%88%E5%BA%94%E7%94%A8"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 2. 创建开发版应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E5%87%AD%E8%AF%81"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 3. 获取应用凭证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E5%9F%9F%E5%90%8D%E5%8F%AF%E9%80%89"><span class="toc-number">3.1.4.</span> <span class="toc-text"> 4. 配置安全域名（可选）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%9B%BD%E5%86%85%E7%89%88%E7%89%B9%E6%AE%8A%E9%85%8D%E7%BD%AE%E4%BB%85%E5%9B%BD%E5%86%85%E7%94%A8%E6%88%B7"><span class="toc-number">3.1.5.</span> <span class="toc-text"> 5. 国内版特殊配置（仅国内用户）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vercel%E9%83%A8%E7%BD%B2waline%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">3.2.</span> <span class="toc-text"> Vercel部署Waline服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%83%A8%E7%BD%B2waline%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 部署Waline服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. 配置环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 重新部署项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9C%B0%E5%9D%80"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 4. 获取服务端地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo%E5%8D%9A%E5%AE%A2%E9%9B%86%E6%88%90waline"><span class="toc-number">3.3.</span> <span class="toc-text"> Hexo博客集成Waline</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%AE%89%E8%A3%85waline%E9%9B%86%E6%88%90%E6%8F%92%E4%BB%B6"><span class="toc-number">3.3.1.</span> <span class="toc-text"> 一、安装Waline集成插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">3.3.2.</span> <span class="toc-text"> 二、主题配置文件准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E4%B8%8E%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 三、核心配置参数与示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E4%B8%BB%E6%B5%81%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.4.</span> <span class="toc-text"> 四、主流主题配置代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-next%E4%B8%BB%E9%A2%98_confignextyml"><span class="toc-number">3.3.4.1.</span> <span class="toc-text"> 1. Next主题（_config.next.yml）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-butterfly%E4%B8%BB%E9%A2%98_configbutterflyyml"><span class="toc-number">3.3.4.2.</span> <span class="toc-text"> 2. Butterfly主题（_config.butterfly.yml）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-yunsea%E7%AD%89%E5%85%B6%E4%BB%96%E4%B8%BB%E9%A2%98"><span class="toc-number">3.3.4.3.</span> <span class="toc-text"> 3. Yun&#x2F;Sea等其他主题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94-%E9%85%8D%E7%BD%AE%E7%94%9F%E6%95%88%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">3.3.5.</span> <span class="toc-text"> 五、配置生效与验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="toc-number">4.1.</span> <span class="toc-text"> 评论功能个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%9F%BA%E7%A1%80%E4%BA%A4%E4%BA%92%E9%85%8D%E7%BD%AE%E4%BB%8E%E6%8F%90%E7%A4%BA%E5%88%B0%E6%98%BE%E7%A4%BA%E5%AF%86%E5%BA%A6"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 一、基础交互配置：从提示到显示密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E5%A4%B4%E5%83%8F%E9%A3%8E%E6%A0%BC%E5%AE%9A%E5%88%B6%E4%BB%8E%E6%A0%B7%E5%BC%8F%E5%88%B0%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 二、头像风格定制：从样式到隐私保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E7%AD%89%E7%BA%A7%E6%A0%87%E7%AD%BE%E4%B8%8E%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F%E5%A2%9E%E5%BC%BA%E4%BA%92%E5%8A%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E5%B9%B3%E8%A1%A1"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 三、等级标签与信息隐藏：增强互动与隐私平衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E6%A0%B7%E5%BC%8F%E6%B7%B1%E5%BA%A6%E5%AE%9A%E5%88%B6%E4%BB%8E%E9%A2%9C%E8%89%B2%E5%88%B0%E5%AD%97%E4%BD%93"><span class="toc-number">4.1.4.</span> <span class="toc-text"> 四、样式深度定制：从颜色到字体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.1.5.</span> <span class="toc-text"> 五、完整配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8E%E5%8F%8D%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BA"><span class="toc-number">4.2.</span> <span class="toc-text"> 安全与反垃圾评论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%8F%8D%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BA%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 一、反垃圾评论服务配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E8%AF%84%E8%AE%BA%E5%AE%A1%E6%A0%B8%E4%B8%8E%E5%86%85%E5%AE%B9%E7%AE%A1%E6%8E%A7"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 二、评论审核与内容管控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E5%AE%89%E5%85%A8%E5%9F%9F%E5%90%8D%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 三、安全域名与访问控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E6%A0%B8%E5%BF%83%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E6%80%BB%E8%A1%A8"><span class="toc-number">4.2.4.</span> <span class="toc-text"> 四、核心安全配置参数总表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.3.</span> <span class="toc-text"> 邮件通知设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 基础配置步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E9%82%AE%E7%AE%B1smtp%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-number">4.3.1.1.</span> <span class="toc-text"> 主流邮箱SMTP参数配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AEdocker%E9%83%A8%E7%BD%B2%E5%9C%BA%E6%99%AF"><span class="toc-number">4.3.1.2.</span> <span class="toc-text"> 环境变量配置（Docker部署场景）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 核心环境变量说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%A8%A1%E6%9D%BF"><span class="toc-number">4.3.3.</span> <span class="toc-text"> 自定义邮件模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-number">4.3.4.</span> <span class="toc-text"> 常见问题排查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">5.</span> <span class="toc-text"> 常见问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text"> 部署失败问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF"><span class="toc-number">5.1.1.</span> <span class="toc-text"> 环境变量配置错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#leancloud-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.2.</span> <span class="toc-text"> LeanCloud 应用配置问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%85%B3%E8%81%94%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.3.</span> <span class="toc-text"> 项目关联与部署方式问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%8E%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.4.</span> <span class="toc-text"> 缓存与依赖问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vercel-%E9%83%A8%E7%BD%B2%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.5.</span> <span class="toc-text"> Vercel 部署日志查看方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98"><span class="toc-number">5.2.</span> <span class="toc-text"> 评论不显示问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E6%A3%80%E6%9F%A5"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 一、基础配置检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E4%B8%BB%E9%A2%98%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 二、主题兼容性处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E8%BF%9B%E9%98%B6%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%97%A0%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%8A%A5%E9%94%99%E6%97%B6"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 三、进阶问题排查（无控制台报错时）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98"><span class="toc-number">5.3.</span> <span class="toc-text"> 国内访问问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4%E7%BB%91%E5%AE%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">5.3.1.</span> <span class="toc-text"> 解决步骤：绑定自定义域名</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%9C%A8-vercel-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">5.3.1.1.</span> <span class="toc-text"> 1. 在 Vercel 中添加自定义域名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%9C%A8%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%95%86%E5%A4%84%E8%AE%BE%E7%BD%AE-cname-%E8%A7%A3%E6%9E%90"><span class="toc-number">5.3.1.2.</span> <span class="toc-text"> 2. 在域名服务商处设置 CNAME 解析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%9B%B4%E6%96%B0-hexo-%E9%85%8D%E7%BD%AE%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9C%B0%E5%9D%80"><span class="toc-number">5.3.1.3.</span> <span class="toc-text"> 3. 更新 Hexo 配置中的服务端地址</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo%E6%96%87%E7%AB%A0front-matter%E9%85%8D%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text"> Hexo文章Front-matter配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">6.1.</span> <span class="toc-text"> 一、完整配置示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">6.2.</span> <span class="toc-text"> 二、核心参数详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%8A%80%E5%B7%A7%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%A8%A1%E6%9D%BF"><span class="toc-number">6.3.</span> <span class="toc-text"> 三、自动配置技巧：修改文章模板</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
+  <div class="sidebar-author-name">微雨扬</div>
+  <div class="sidebar-description">欢迎光临</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">13</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-使用Vercel部署Waline评论系统到Hexo博客的完整教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2025-09-01T06:18:42.000Z" itemprop="datePublished">2025-09-01</time>
+    <time style="display: none;" id="post-update-time">2025-09-01</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/zh-TW/categories/hexo/" data-aos="zoom-in">hexo</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h2 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h2>
+<p>最近有很多朋友私信问到评论系统的问题，对于静态博客用户而言，评论系统的搭建常常陷入&quot;便捷与安全不可兼得&quot;的困境：无后端方案虽轻量却存在数据泄露风险，传统带后端系统又门槛过高。而<strong>Waline</strong>作为基于Valine开发的新一代评论系统，通过&quot;带后端架构+轻量化部署&quot;的创新模式，完美平衡了安全性与易用性，成为Hexo等静态博客的理想选择，本网站也采用此评论系统，所以参考了很多文献资料写了这篇文章。</p>
+<h3 id="waline让评论系统既安全又强大"><a class="markdownIt-Anchor" href="#waline让评论系统既安全又强大"></a> Waline：让评论系统既安全又强大</h3>
+<p>Waline在继承Valine简洁基因的基础上，重点强化了<strong>安全内核</strong>与<strong>功能深度</strong>。其采用多重加密技术保护用户数据，从源头解决了Valine因前端暴露LeanCloud密钥导致的安全隐患，同时通过匿名登录内容校验、防灌水机制和敏感信息过滤，有效抵御垃圾评论攻击。功能层面，它提供了媲美专业社区的交互体验：支持文字、表情、图片等多元评论形式，兼容Markdown语法、数据公式甚至HTML嵌入；内置评论审核、回复通知、举报处理等管理工具，搭配多套主题样式和自定义设置，满足从个人博客到技术站点的多样化需求</p>
+<p><strong>Waline核心优势速览</strong><br />
+✅ <strong>安全升级</strong>：基于Valine架构重构，多重加密防护+防垃圾评论机制<br />
+✅ <strong>功能全面</strong>：支持Markdown/表情/图片评论，内置评论管理与多平台登录<br />
+✅ <strong>跨平台兼容</strong>：无缝对接Hexo、VuePress等静态博客系统</p>
+<h3 id="为什么选择vercel部署"><a class="markdownIt-Anchor" href="#为什么选择vercel部署"></a> 为什么选择Vercel部署？</h3>
+<p>作为带后端的评论系统，Waline需要独立的服务端支撑，而<strong>Vercel</strong>凭借其&quot;零运维&quot;特性成为最佳部署方案。这个流行的前端部署平台提供了一站式解决方案：通过GitHub仓库连接即可完成部署，全程无需命令行操作；全球CDN节点确保评论加载毫秒级响应；免费套餐包含自动SSL证书、Serverless函数支持和无限流量，完全覆盖个人博客的使用场景。相比其他部署方式，Vercel将原本需要数小时的服务器配置流程压缩到&quot;点击授权-自动部署&quot;的几分钟内，让技术新手也能轻松拥有专业级评论系统。</p>
+<p>本文将聚焦**“Vercel部署Waline+Hexo集成”**的完整流程，从服务端部署、数据库配置到前端集成，全程提供可复用的操作指南和避坑技巧。无论你是初次接触评论系统的博客新手，还是希望升级现有评论功能的进阶用户，都能通过本教程在15分钟内搭建起安全、高效且美观的互动系统，让静态博客真正&quot;活&quot;起来。</p>
+<h2 id="准备工作"><a class="markdownIt-Anchor" href="#准备工作"></a> 准备工作</h2>
+<p>在开始部署 Waline 评论系统前，请确保完成以下准备工作，这将帮助你顺利推进后续部署流程。我们将从账号注册、工具环境配置到博客环境检查三个维度进行梳理，并标注关键注意事项。</p>
+<h3 id="一-核心账号准备"><a class="markdownIt-Anchor" href="#一-核心账号准备"></a> 一、核心账号准备</h3>
+<p>部署 Waline 需依赖两个关键平台：<strong>Vercel</strong>（服务端部署）和 <strong>LeanCloud</strong>（数据存储），建议提前完成注册与基础配置。</p>
+<h4 id="1-vercel-账号"><a class="markdownIt-Anchor" href="#1-vercel-账号"></a> 1. Vercel 账号</h4>
+<ul>
+<li><strong>作用</strong>：作为 Waline 服务端的托管平台，提供免费部署与全球 CDN 加速能力。</li>
+<li><strong>注册方法</strong>：访问[<a target="_blank" rel="noopener" href="https://vercel.com/">官网</a>]，推荐使用 GitHub 账号快捷登录（无需额外注册，直接关联代码仓库）。</li>
+<li><strong>注意事项</strong>：登录后无需额外配置，后续部署时直接关联 Waline 代码仓库即可。</li>
+</ul>
+<h4 id="2-leancloud-账号"><a class="markdownIt-Anchor" href="#2-leancloud-账号"></a> 2. LeanCloud 账号</h4>
+<ul>
+<li><strong>作用</strong>：提供数据库服务，存储评论内容、用户信息等核心数据。</li>
+<li><strong>注册与配置</strong>：
+<ol>
+<li>访问[<a target="_blank" rel="noopener" href="https://console.leancloud.app/">leancloud</a>]，注册账号（国内用户建议选择<strong>华东/华北节点</strong>，海外用户可选国际版）。</li>
+<li>创建应用：进入控制台后点击“创建应用”，选择“开发版”（免费额度满足个人博客需求）。</li>
+<li>获取密钥：在应用设置的“应用 Keys”中，记录 <strong>App ID</strong>、<strong>App Key</strong> 和 <strong>Master Key</strong>（后续部署需填入这三个参数）。</li>
+</ol>
+</li>
+<li><strong>特殊要求</strong>：国内节点应用需额外<strong>绑定已备案域名</strong>（路径：设置 → 安全中心 → Web 安全域名），否则评论数据无法正常读写。</li>
+</ul>
+<h3 id="二-本地工具环境配置"><a class="markdownIt-Anchor" href="#二-本地工具环境配置"></a> 二、本地工具环境配置</h3>
+<p>确保本地已安装以下工具，用于执行部署命令和管理 Hexo 博客：</p>
+<h4 id="1-基础开发环境"><a class="markdownIt-Anchor" href="#1-基础开发环境"></a> 1. 基础开发环境</h4>
+<ul>
+<li>
+<p><strong>Node.js 与 npm/yarn</strong></p>
+<ul>
+<li><strong>作用</strong>：运行 Hexo 博客和安装 Waline 相关依赖。</li>
+<li><strong>检查方法</strong>：终端执行 <code>node -v</code> 和 <code>npm -v</code>（或 <code>yarn -v</code>），输出版本号即表示已安装（推荐 Node.js ≥ 14.0.0，npm ≥ 6.0.0）。</li>
+</ul>
+</li>
+<li>
+<p><strong>Git</strong></p>
+<ul>
+<li><strong>作用</strong>：版本控制工具，用于拉取 Waline 源码和管理 Hexo 博客代码。</li>
+<li><strong>检查方法</strong>：终端执行 <code>git --version</code>，输出版本号即正常。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-vercel-cli可选但推荐"><a class="markdownIt-Anchor" href="#2-vercel-cli可选但推荐"></a> 2. Vercel CLI（可选但推荐）</h4>
+<ul>
+<li><strong>作用</strong>：本地执行 Vercel 部署命令，无需每次登录网页控制台。</li>
+<li><strong>安装方法</strong>：终端执行 <code>npm i -g vercel</code>（全局安装），安装后用 <code>vercel -v</code> 验证版本。</li>
+</ul>
+<h3 id="三-hexo-博客环境检查"><a class="markdownIt-Anchor" href="#三-hexo-博客环境检查"></a> 三、Hexo 博客环境检查</h3>
+<p>部署 Waline 前，需确保 Hexo 博客已正常运行，且主题支持评论系统配置：</p>
+<ul>
+<li><strong>基础环境</strong>：已通过 <code>hexo init</code> 创建博客项目，执行 <code>hexo s</code> 可在本地 <code>http://localhost:4000</code> 预览。</li>
+<li><strong>主题兼容性</strong>：推荐使用支持 Waline 的主题，如 Next（≥8.18.2）、Yun、Sea 等，需确认主题配置文件（如 <code>_config.next.yml</code>）中存在评论系统相关设置项。</li>
+<li><strong>配置文件规范</strong>：建议通过<strong>主题配置文件覆盖</strong>（而非直接修改主题默认配置），例如在博客根目录创建 <code>_config.next.yml</code> 单独管理主题设置。</li>
+</ul>
+<h3 id="四-可选准备自定义域名按需配置"><a class="markdownIt-Anchor" href="#四-可选准备自定义域名按需配置"></a> 四、可选准备：自定义域名（按需配置）</h3>
+<p>若需使用个性化域名访问 Waline 服务（如 <code>comment.yourblog.com</code>），需提前准备：</p>
+<ul>
+<li>已备案域名（国内用户），并在域名解析平台添加指向 Vercel 的 CNAME 记录。</li>
+<li>用途：绑定 Vercel 部署的服务端或 LeanCloud 国内版应用（解决域名限制问题）。</li>
+</ul>
+<p><strong>关键提示</strong>：所有账号注册完成后，请妥善保存相关密钥（如 LeanCloud 的 Master Key），后续部署步骤将频繁使用。若使用国内版 LeanCloud，务必提前完成域名备案和绑定，避免因跨域问题导致评论功能失效。</p>
+<p>完成以上准备后，即可进入 Waline 服务端部署和 Hexo 集成环节。</p>
+<h2 id="详细步骤"><a class="markdownIt-Anchor" href="#详细步骤"></a> 详细步骤</h2>
+<h3 id="leancloud配置"><a class="markdownIt-Anchor" href="#leancloud配置"></a> LeanCloud配置</h3>
+<p>Waline 评论系统的数据存储依赖于 LeanCloud 平台，我们需要先完成账号注册与应用配置。以下是详细步骤：</p>
+<h4 id="1-注册与登录账号"><a class="markdownIt-Anchor" href="#1-注册与登录账号"></a> 1. 注册与登录账号</h4>
+<p>访问 LeanCloud 控制台（国际版[<a target="_blank" rel="noopener" href="https://console.leancloud.app">国际版</a>]，国内版[<a target="_blank" rel="noopener" href="https://console.leancloud.cn">国内版</a>]），使用邮箱或第三方账号注册并登录。<br />
+<strong>注意</strong>：国内版需完成域名备案，为避免额外流程，<strong>推荐优先使用国际版</strong>。</p>
+<h4 id="2-创建开发版应用"><a class="markdownIt-Anchor" href="#2-创建开发版应用"></a> 2. 创建开发版应用</h4>
+<p>登录后进入控制台，点击 <strong>「创建应用」</strong>，按以下步骤操作：</p>
+<ul>
+<li>输入应用名称（自定义，如「MyBlogComments」）；</li>
+<li>选择 <strong>「开发版」</strong>（免费额度满足个人博客需求）；</li>
+<li>点击 <strong>「创建」</strong> 完成应用初始化。</li>
+</ul>
+<h4 id="3-获取应用凭证"><a class="markdownIt-Anchor" href="#3-获取应用凭证"></a> 3. 获取应用凭证</h4>
+<p>应用创建后，进入左侧导航栏 <strong>「设置」→「应用凭证」</strong>，记录以下关键信息（后续部署需用到）：</p>
+<ul>
+<li><strong>APP ID</strong>：应用唯一标识；</li>
+<li><strong>APP Key</strong>：应用访问密钥；</li>
+<li><strong>Master Key</strong>：高级操作密钥（用于数据管理）。</li>
+</ul>
+<p><strong>重要提示</strong>：Master Key 拥有最高权限，请勿泄露给第三方。建议截图或使用密码管理器保存这三个密钥。</p>
+<h4 id="4-配置安全域名可选"><a class="markdownIt-Anchor" href="#4-配置安全域名可选"></a> 4. 配置安全域名（可选）</h4>
+<p>为防止未授权网站调用 API，需在 <strong>「设置」→「安全中心」→「Web 安全域名」</strong> 中添加博客域名（如 <code>https://yourblog.com</code>）。本地调试时，<code>localhost</code> 会自动放行，无需额外配置。</p>
+<h4 id="5-国内版特殊配置仅国内用户"><a class="markdownIt-Anchor" href="#5-国内版特殊配置仅国内用户"></a> 5. 国内版特殊配置（仅国内用户）</h4>
+<p>若使用 LeanCloud 国内版，需完成两项额外操作：</p>
+<ol>
+<li><strong>备案绑定域名</strong>：在 LeanCloud 控制台绑定已备案的自定义域名；</li>
+<li><strong>记录服务器地址</strong>：将绑定的域名（如 <code>https://comments.yourblog.com</code>）作为 <code>LEAN_SERVER</code> 环境变量值，后续部署时需配置。</li>
+</ol>
+<p><strong>国内用户必看</strong>：未配置 <code>LEAN_SERVER</code> 会导致服务连接失败。国际版用户可跳过此步骤。</p>
+<p>完成以上配置后，你已获得 LeanCloud 应用的核心凭证，接下来可用于 Vercel 部署时的环境变量设置。</p>
+<h3 id="vercel部署waline服务端"><a class="markdownIt-Anchor" href="#vercel部署waline服务端"></a> Vercel部署Waline服务端</h3>
+<p>通过Vercel模板部署Waline服务端是最快捷的方式，全程无需本地配置环境，只需通过网页操作即可完成。以下是详细步骤：</p>
+<h4 id="1-部署waline服务"><a class="markdownIt-Anchor" href="#1-部署waline服务"></a> 1. 部署Waline服务</h4>
+<p>首先访问Waline官方模板页面（可通过Waline文档或GitHub仓库找到），点击页面中的 <strong>“Deploy to Vercel”</strong> 按钮，系统会自动跳转至Vercel部署界面。使用GitHub账号登录Vercel后，输入项目名称（如<code>waline-server</code>），点击 <strong>“Create”</strong> 创建项目，Vercel将自动基于模板初始化仓库并开始部署。此时只需等待部署进度条完成，首次部署会生成一个临时预览地址，但暂不可用——因为还需要配置关键环境变量。</p>
+<h4 id="2-配置环境变量"><a class="markdownIt-Anchor" href="#2-配置环境变量"></a> 2. 配置环境变量</h4>
+<p>环境变量是Waline连接数据库的核心配置，必须准确填写才能确保服务正常运行。部署完成后，进入Vercel项目控制台，点击 <strong>“Settings” &gt; “Environment Variables”</strong>，添加以下变量：</p>
+<table>
+<thead>
+<tr>
+<th>环境变量 key</th>
+<th>说明</th>
+<th>示例值格式</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LEAN_ID</code></td>
+<td>LeanCloud 应用的 App ID</td>
+<td><code>iGxxxxxxxxxxxxxxxxxxxxxxA</code></td>
+<td>所有用户必须配置</td>
+</tr>
+<tr>
+<td><code>LEAN_KEY</code></td>
+<td>LeanCloud 应用的 App Key</td>
+<td><code>7fxxxxxxxxxxxxxxxxxxxxxxB</code></td>
+<td>所有用户必须配置</td>
+</tr>
+<tr>
+<td><code>LEAN_MASTER_KEY</code></td>
+<td>LeanCloud 应用的 Master Key</td>
+<td><code>9cxxxxxxxxxxxxxxxxxxxxxxC</code></td>
+<td>所有用户必须配置</td>
+</tr>
+<tr>
+<td><code>LEAN_SERVER</code></td>
+<td>LeanCloud 服务地址</td>
+<td><code>https://your-leancloud-domain.com</code></td>
+<td>国内用户额外配置</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>环境变量值需从 LeanCloud 控制台的「应用设置 &gt; 应用 Keys」中获取，确保复制时无空格或多余字符。</li>
+<li>国内用户若使用 LeanCloud 国内版，必须添加 <code>LEAN_SERVER</code> 并填写已备案的自定义域名（需提前在 LeanCloud 绑定域名），否则会因跨域问题导致评论功能失效。</li>
+</ul>
+<p>添加完成后点击 <strong>“Save”</strong> 保存变量，此时变量不会立即生效，必须执行「重新部署」操作。</p>
+<h4 id="3-重新部署项目"><a class="markdownIt-Anchor" href="#3-重新部署项目"></a> 3. 重新部署项目</h4>
+<p>环境变量修改后，Vercel 不会自动更新现有部署，需手动触发重新部署使配置生效。进入项目控制台的 <strong>“Deployments”</strong> 标签页，找到最新的部署记录（通常在列表顶部），点击右侧的 <strong>“Redeploy”</strong> 按钮，确认后等待部署完成（约1-3分钟）。</p>
+<h4 id="4-获取服务端地址"><a class="markdownIt-Anchor" href="#4-获取服务端地址"></a> 4. 获取服务端地址</h4>
+<p>重新部署成功后，部署记录的 STATUS 会显示为 <strong>“Ready”</strong>，点击右侧的 <strong>“Visit”</strong> 按钮即可访问服务端。此时浏览器地址栏的 URL（如 <code>https://waline-server.vercel.app</code>）即为 <strong>Waline 服务端地址</strong>，请务必复制保存——后续在 Hexo 博客配置中需要填写该地址（对应 <code>serverurl</code> 参数）。</p>
+<p>若需要自定义域名（可选），可进入 <strong>“Settings” &gt; “Domains”</strong>，输入你的域名（如 <code>waline.yourblog.com</code>），并在域名服务商处添加 CNAME 解析（指向 <code>cname.vercel-dns.com</code>）。配置完成后，自定义域名将作为服务端地址的替代选项，建议同时保留默认的 Vercel 域名作为备用。</p>
+<p><strong>关键提示</strong>：服务端地址是连接博客与评论系统的桥梁，若后续更换域名或重新部署，需同步更新博客配置中的 <code>serverurl</code>，否则评论功能会失效。</p>
+<h3 id="hexo博客集成waline"><a class="markdownIt-Anchor" href="#hexo博客集成waline"></a> Hexo博客集成Waline</h3>
+<p>完成Waline服务端部署后，需在Hexo博客中安装集成插件并配置主题文件，实现评论系统的前端对接。以下是详细步骤：</p>
+<h4 id="一-安装waline集成插件"><a class="markdownIt-Anchor" href="#一-安装waline集成插件"></a> 一、安装Waline集成插件</h4>
+<p>首先在Hexo博客根目录打开终端，执行以下命令安装Waline官方Hexo插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @waline/hexo-next --save</span><br></pre></td></tr></table></figure>
+<p>该插件会自动处理Waline客户端资源的引入，无需手动添加脚本文件，适用于大多数主流Hexo主题。</p>
+<h4 id="二-主题配置文件准备"><a class="markdownIt-Anchor" href="#二-主题配置文件准备"></a> 二、主题配置文件准备</h4>
+<p>为避免直接修改主题默认配置文件（升级时可能被覆盖），不同主题推荐采用以下方式维护配置：</p>
+<ul>
+<li>
+<p><strong>Next主题（推荐）</strong>：<br />
+创建独立配置文件<code>_config.next.yml</code>（需Hexo 5.0+），通过命令复制默认配置：</p>
+<ul>
+<li>npm安装主题：<code>cp node_modules/hexo-theme-next/_config.yml _config.next.yml</code></li>
+<li>Git克隆主题：<code>cp themes/next/_config.yml _config.next.yml</code><br />
+后续所有配置均在<code>_config.next.yml</code>中进行。</li>
+</ul>
+</li>
+<li>
+<p><strong>其他主题（Butterfly/Fluid/Yun等）</strong>：<br />
+直接编辑主题目录下的配置文件，如<code>_config.butterfly.yml</code>、<code>_config.yun.yml</code>等，无需额外创建文件。</p>
+</li>
+</ul>
+<h4 id="三-核心配置参数与示例"><a class="markdownIt-Anchor" href="#三-核心配置参数与示例"></a> 三、核心配置参数与示例</h4>
+<p>在主题配置文件中添加<code>waline</code>配置块，关键参数说明及完整示例如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用描述</th>
+<th>默认值/建议值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable</code></td>
+<td>是否启用Waline评论系统</td>
+<td><code>true</code>（必须设置为启用）</td>
+</tr>
+<tr>
+<td><code>serverURL</code></td>
+<td>Vercel部署的服务端地址（<strong>需替换为你的实际域名</strong>）</td>
+<td><code>https://your-waline.vercel.app</code></td>
+</tr>
+<tr>
+<td><code>meta</code></td>
+<td>评论者信息字段，可选值：<code>nick</code>（昵称）、<code>mail</code>（邮箱）、<code>link</code>（网址）</td>
+<td><code>[nick, mail]</code></td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>评论框默认提示文字</td>
+<td><code>请文明评论，共同维护良好氛围~</code></td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td>头像风格，可选值：<code>mm</code>（随机卡通）、<code>identicon</code>（几何图形）等</td>
+<td><code>mm</code></td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>每页显示评论数量</td>
+<td><code>10</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="四-主流主题配置代码示例"><a class="markdownIt-Anchor" href="#四-主流主题配置代码示例"></a> 四、主流主题配置代码示例</h4>
+<h5 id="1-next主题_confignextyml"><a class="markdownIt-Anchor" href="#1-next主题_confignextyml"></a> 1. Next主题（_config.next.yml）</h5>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">https://your-waline.vercel.app</span>  <span class="comment"># 替换为你的Vercel服务端地址</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">&quot;欢迎留下你的想法~&quot;</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>]  <span class="comment"># 仅收集昵称和邮箱</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span>  <span class="comment"># 使用随机卡通头像</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span>  <span class="comment"># 每页显示10条评论</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-CN</span>  <span class="comment"># 界面语言为简体中文</span></span><br><span class="line">  <span class="comment"># 关闭访问量统计（如需启用需确保服务端已配置）</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-butterfly主题_configbutterflyyml"><a class="markdownIt-Anchor" href="#2-butterfly主题_configbutterflyyml"></a> 2. Butterfly主题（_config.butterfly.yml）</h5>
+<p>Butterfly主题通过<code>comment</code>配置项集成评论系统，需先设置类型为Waline：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">Waline</span>  <span class="comment"># 指定使用Waline评论</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">https://your-waline.vercel.app</span>  <span class="comment"># 服务端地址</span></span><br><span class="line">  <span class="attr">pageview:</span> <span class="literal">true</span>  <span class="comment"># 开启文章阅读量统计</span></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">&quot;请在此输入评论...&quot;</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>]  <span class="comment"># 额外收集网址信息</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">identicon</span>  <span class="comment"># 使用几何图形头像</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-yunsea等其他主题"><a class="markdownIt-Anchor" href="#3-yunsea等其他主题"></a> 3. Yun/Sea等其他主题</h5>
+<p>以Yun主题为例，基础配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">https://your-waline.vercel.app</span>  <span class="comment"># 替换为实际地址</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span>  <span class="comment"># 开启访问量统计</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">&quot;期待你的评论~&quot;</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>]  <span class="comment"># 仅需昵称</span></span><br></pre></td></tr></table></figure>
+<h4 id="五-配置生效与验证"><a class="markdownIt-Anchor" href="#五-配置生效与验证"></a> 五、配置生效与验证</h4>
+<p>完成配置后，执行以下命令重新生成博客并启动本地服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p>访问博客文章页面，若评论区显示&quot;Waline&quot;输入框且能正常加载，则说明集成成功。若无法显示，建议检查：</p>
+<ol>
+<li><code>serverURL</code>是否与Vercel部署的域名一致；</li>
+<li>主题配置文件是否放置在正确路径；</li>
+<li>浏览器控制台是否有资源加载错误（F12开发者工具查看）。</li>
+</ol>
+<p><strong>注意事项</strong>：若原博客使用Valine评论系统，需先移除Valine相关配置（如<code>valine: enable: false</code>），避免脚本冲突。部分主题（如Linear）支持直接替换Valine为Waline，仅需修改<code>comment.type</code>参数即可。</p>
+<h2 id="自定义配置"><a class="markdownIt-Anchor" href="#自定义配置"></a> 自定义配置</h2>
+<h3 id="评论功能个性化"><a class="markdownIt-Anchor" href="#评论功能个性化"></a> 评论功能个性化</h3>
+<p>评论系统作为博客与读者互动的核心窗口，其样式和功能的个性化设置能显著提升用户体验。通过修改主题配置文件，我们可以轻松调整评论框提示、头像风格、显示信息等细节，让评论区既符合博客整体风格，又兼具独特性。</p>
+<h4 id="一-基础交互配置从提示到显示密度"><a class="markdownIt-Anchor" href="#一-基础交互配置从提示到显示密度"></a> 一、基础交互配置：从提示到显示密度</h4>
+<p><strong>评论框提示文字</strong>是读者接触到的第一个交互元素，通过 <code>placeholder</code> 配置项可自定义引导语，例如设置为温馨提示或博客特色标语：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">&quot;分享你的想法吧~ 文明评论，让交流更有价值 ✨&quot;</span>  <span class="comment"># 自定义评论框提示文字</span></span><br></pre></td></tr></table></figure>
+<p>这一设置能有效降低读者的评论门槛，传递博客的互动理念。</p>
+<p><strong>评论者信息字段</strong>控制需要收集的用户数据，通过 <code>meta</code> 配置项指定显示在评论头部的信息，默认支持 <code>nick</code>（昵称）、<code>mail</code>（邮箱）、<code>link</code>（链接），可根据隐私需求调整：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">meta:</span> [[<span class="number">28</span>]<span class="string">(nick)</span>][[<span class="number">29</span>]<span class="string">(mail)</span>]  <span class="comment"># 仅显示昵称和邮箱，隐藏链接字段</span></span><br><span class="line">  <span class="attr">requiredMeta:</span> [[<span class="number">28</span>]<span class="string">(nick)</span>]  <span class="comment"># 仅强制填写昵称，邮箱设为选填</span></span><br></pre></td></tr></table></figure>
+<p>这样既简化了评论流程，又避免过度收集信息。</p>
+<p><strong>每页评论数</strong>通过 <code>pageSize</code> 控制显示密度，默认值为 10，可根据评论区长度和阅读习惯调整：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">15</span>  <span class="comment"># 每页显示15条评论，减少翻页操作</span></span><br></pre></td></tr></table></figure>
+<p>若博客评论量较大，建议适当增大数值以提升浏览效率。</p>
+<h4 id="二-头像风格定制从样式到隐私保护"><a class="markdownIt-Anchor" href="#二-头像风格定制从样式到隐私保护"></a> 二、头像风格定制：从样式到隐私保护</h4>
+<p>头像作为评论者的视觉标识，其样式和加载方式可通过多项配置灵活调整。<strong>头像风格</strong>通过 <code>avatar</code> 配置项选择，支持 Gravatar 官方风格及第三方样式，常见选项包括：</p>
+<ul>
+<li><code>mm</code>：随机生成的卡通人物头像</li>
+<li><code>monsterid</code>：怪物风格抽象头像</li>
+<li><code>robohash</code>：机器人造型头像</li>
+<li><code>identicon</code>：几何图形组合头像（默认）</li>
+</ul>
+<p>配置示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">&quot;monsterid&quot;</span>  <span class="comment"># 使用怪物风格头像，增加评论区趣味性</span></span><br></pre></td></tr></table></figure>
+<p>若需使用自定义 Gravatar 源或代理加速，可进一步调整头像地址和代理设置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">AVATAR_PROXY:</span> <span class="string">&quot;https://cdn.example.com/avatar&quot;</span>  <span class="comment"># 自定义头像代理地址，提升加载速度</span></span><br><span class="line">  <span class="attr">GRAVATAR_STR:</span> <span class="string">&quot;https://secure.gravatar.com/avatar/<span class="template-variable">&#123;&#123;mail|md5&#125;&#125;</span>?s=80&quot;</span>  <span class="comment"># 指定 Gravatar 地址及尺寸</span></span><br></pre></td></tr></table></figure>
+<p>若希望完全关闭头像代理（如注重隐私保护），可将 <code>AVATAR_PROXY</code> 设为 <code>false</code>。</p>
+<h4 id="三-等级标签与信息隐藏增强互动与隐私平衡"><a class="markdownIt-Anchor" href="#三-等级标签与信息隐藏增强互动与隐私平衡"></a> 三、等级标签与信息隐藏：增强互动与隐私平衡</h4>
+<p><strong>等级标签功能</strong>能根据用户评论数量自动划分身份标识，增加社区互动感。通过配置环境变量 <code>LEVELS</code> 定义等级阈值（如 <code>0,10,20,50,100,200</code>），系统会根据评论数为用户打上对应标签：</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>评论数范围</th>
+<th>默认标签</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 ≤ count &lt; 10</td>
+<td>潜水</td>
+<td>新访客或低频评论用户</td>
+</tr>
+<tr>
+<td>1</td>
+<td>10 ≤ count &lt; 20</td>
+<td>冒泡</td>
+<td>偶尔参与互动的用户</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20 ≤ count &lt; 50</td>
+<td>吐槽</td>
+<td>活跃评论者</td>
+</tr>
+<tr>
+<td>3</td>
+<td>50 ≤ count &lt; 100</td>
+<td>活跃</td>
+<td>核心互动用户</td>
+</tr>
+<tr>
+<td>4</td>
+<td>100 ≤ count &lt; 200</td>
+<td>话痨</td>
+<td>高频互动的忠实读者</td>
+</tr>
+<tr>
+<td>5</td>
+<td>200 ≤ count</td>
+<td>传说</td>
+<td>博客社区的意见领袖</td>
+</tr>
+</tbody>
+</table>
+<p>若需隐藏评论者的设备信息或归属地，可通过以下配置增强隐私保护：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">DISABLE_USERAGENT:</span> <span class="literal">true</span>  <span class="comment"># 隐藏评论者的浏览器/设备信息</span></span><br><span class="line">  <span class="attr">DISABLE_REGION:</span> <span class="literal">true</span>     <span class="comment"># 不显示评论者的地理位置（如&quot;北京&quot;）</span></span><br></pre></td></tr></table></figure>
+<p>这些设置尤其适合注重用户隐私的博客场景。</p>
+<h4 id="四-样式深度定制从颜色到字体"><a class="markdownIt-Anchor" href="#四-样式深度定制从颜色到字体"></a> 四、样式深度定制：从颜色到字体</h4>
+<p>通过 CSS 变量和自定义样式表，可进一步调整评论区的视觉风格，使其与博客主题统一。<strong>基础颜色</strong>可通过修改 <code>--waline-*</code> 系列 CSS 变量实现，例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 在主题自定义 CSS 文件中添加 */</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--waline-bgcolor</span>: <span class="number">#f9f9f9</span>; <span class="comment">/* 评论区背景色 */</span></span><br><span class="line">  <span class="attr">--waline-text-color</span>: <span class="number">#333</span>; <span class="comment">/* 评论文字颜色 */</span></span><br><span class="line">  <span class="attr">--waline-border</span>: <span class="number">#eee</span>;     <span class="comment">/* 边框颜色 */</span></span><br><span class="line">  <span class="attr">--waline-hover</span>: <span class="number">#f0f0f0</span>;   <span class="comment">/* 鼠标悬停效果色 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>字体美化</strong>可通过引入外部字体库并全局设置，例如使用更具可读性的中文手写字体：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 引入开源字体并应用于评论区 */</span></span><br><span class="line"><span class="keyword">@import</span> url(<span class="string">&quot;https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/style.css&quot;</span>);</span><br><span class="line"><span class="selector-id">#waline-comment</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;LXGW WenKai Screen&quot;</span>, sans-serif <span class="meta">!important</span>;  <span class="comment">/* 为评论区单独设置字体 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些调整能让评论区从视觉上与博客整体设计融为一体，提升页面一致性。</p>
+<p><strong>配置小贴士</strong></p>
+<ol>
+<li>所有配置需在主题的 <code>_config.yml</code> 或 <code>waline.yml</code> 中修改，具体路径参考主题文档。</li>
+<li>修改后需重启 Hexo 服务（<code>hexo s</code>）使配置生效，部分样式调整可能需要清除浏览器缓存。</li>
+<li>头像代理和 Gravatar 地址建议使用稳定的 CDN，避免因链接失效导致头像加载异常。</li>
+</ol>
+<h4 id="五-完整配置示例"><a class="markdownIt-Anchor" href="#五-完整配置示例"></a> 五、完整配置示例</h4>
+<p>以下是一个整合上述功能的配置片段，可根据实际需求调整：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="comment"># 基础交互</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">&quot;欢迎分享你的观点~ 请遵守社区规范哦！&quot;</span></span><br><span class="line">  <span class="attr">meta:</span> [[<span class="number">28</span>]<span class="string">(nick)</span>][[<span class="number">29</span>]<span class="string">(mail)</span>]</span><br><span class="line">  <span class="attr">requiredMeta:</span> [[<span class="number">28</span>]<span class="string">(nick)</span>]</span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">12</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 头像设置</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">&quot;mm&quot;</span>  <span class="comment"># 卡通人物头像</span></span><br><span class="line">  <span class="attr">AVATAR_PROXY:</span> <span class="string">&quot;https://avatar.75cdn.workers.dev&quot;</span>  <span class="comment"># 使用默认代理加速</span></span><br><span class="line">  <span class="attr">GRAVATAR_STR:</span> <span class="string">&quot;https://seccdn.libravatar.org/avatar/<span class="template-variable">&#123;&#123;mail|md5&#125;&#125;</span>&quot;</span>  <span class="comment"># 默认 Gravatar 地址</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 隐私与等级</span></span><br><span class="line">  <span class="attr">DISABLE_USERAGENT:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">DISABLE_REGION:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 在环境变量中设置 LEVELS=0,10,20,50,100,200 开启等级标签</span></span><br></pre></td></tr></table></figure>
+<p>通过这些配置，评论区将兼具功能性与个性化，既能满足读者的互动需求，又能体现博客的独特风格。根据博客定位（如技术博客、生活记录、学术分享），可侧重调整信息收集范围和视觉风格，让评论区成为内容生态的有机组成部分。</p>
+<h3 id="安全与反垃圾评论"><a class="markdownIt-Anchor" href="#安全与反垃圾评论"></a> 安全与反垃圾评论</h3>
+<p>开放评论区是博客与读者互动的重要窗口，但垃圾评论和恶意提交可能影响阅读体验。Waline 提供了多层次安全防护机制，通过合理配置环境变量即可有效保障评论区安全。以下是关键安全策略及配置指南：</p>
+<h4 id="一-反垃圾评论服务配置"><a class="markdownIt-Anchor" href="#一-反垃圾评论服务配置"></a> 一、反垃圾评论服务配置</h4>
+<p>Waline 内置多种反垃圾机制，可通过环境变量启用专业反垃圾服务和人机验证，从源头拦截恶意评论。</p>
+<p><strong>1. Akismet 反垃圾服务</strong><br />
+作为业界知名的反垃圾评论服务，Akismet 能自动识别垃圾评论。Waline 默认集成该服务，无需额外部署即可使用。</p>
+<ul>
+<li><strong>环境变量</strong>：<code>AKISMET_KEY</code></li>
+<li><strong>作用</strong>：填写 Akismet 服务的 API Key 以启用功能；若无需使用，需显式设置为 <code>false</code>（直接留空可能导致默认 Key 继续生效）。</li>
+<li><strong>默认值</strong>：<code>70542d86693e</code>（测试用 Key，生产环境建议替换为个人 Key）。</li>
+</ul>
+<p><strong>2. 人机验证机制</strong><br />
+针对自动化工具提交的恶意评论，可启用第三方人机验证（需服务端与客户端同步配置）：</p>
+<ul>
+<li><strong>reCAPTCHA V3</strong>：需同时配置 <code>RECAPTCHA_V3_KEY</code>（客户端验证 Key）和 <code>RECAPTCHA_V3_SECRET</code>（服务端密钥）。</li>
+<li><strong>Cloudflare Turnstile</strong>：轻量级验证方案，配置 <code>TURNSTILE_KEY</code> 即可启用，适合对用户体验要求较高的场景。</li>
+</ul>
+<h4 id="二-评论审核与内容管控"><a class="markdownIt-Anchor" href="#二-评论审核与内容管控"></a> 二、评论审核与内容管控</h4>
+<p>通过审核机制和频率限制，可进一步过滤可疑评论，防止评论区被滥用。</p>
+<p><strong>1. 评论人工审核</strong><br />
+开启审核后，所有新评论需经管理员在 Waline 后台确认后才会显示，避免不当内容直接公开。</p>
+<ul>
+<li><strong>环境变量</strong>：<code>COMMENT_AUDIT</code></li>
+<li><strong>配置值</strong>：设为 <code>true</code> 启用审核，<code>false</code> 则评论直接发布。</li>
+</ul>
+<p><strong>注意</strong>：启用审核后需定期登录 Waline 管理后台（通常通过 <code>YOUR_DEPLOY_URL/ui</code> 访问）处理待审核评论，避免评论积压影响互动及时性。</p>
+<p><strong>2. IP 评论频率限制</strong><br />
+限制同一 IP 地址的评论发布速度，防止短时间内大量灌水。</p>
+<ul>
+<li><strong>环境变量</strong>：<code>IPQPS</code></li>
+<li><strong>作用</strong>：单位为秒，默认值 <code>60</code>（即 1 分钟内同一 IP 仅允许提交 1 条评论）；设为 <code>0</code> 表示不限制。</li>
+</ul>
+<h4 id="三-安全域名与访问控制"><a class="markdownIt-Anchor" href="#三-安全域名与访问控制"></a> 三、安全域名与访问控制</h4>
+<p>通过限制评论系统的调用来源，防止未授权网站滥用你的评论服务。</p>
+<p><strong>安全域名配置</strong><br />
+指定允许提交评论的域名，仅来自这些域名的请求会被处理，有效避免跨站请求伪造（CSRF）。</p>
+<ul>
+<li><strong>环境变量</strong>：<code>SECURE_DOMAINS</code></li>
+<li><strong>配置值</strong>：填写博客域名（如 <code>example.com</code>），多个域名用逗号分隔（如 <code>blog.example.com,www.example.com</code>）。</li>
+</ul>
+<h4 id="四-核心安全配置参数总表"><a class="markdownIt-Anchor" href="#四-核心安全配置参数总表"></a> 四、核心安全配置参数总表</h4>
+<p>以下是所有安全相关环境变量的汇总，可直接在 Vercel 项目的「Settings → Environment Variables」中添加：</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>作用描述</th>
+<th>默认值</th>
+<th>配置示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AKISMET_KEY</code></td>
+<td>Akismet 反垃圾服务 Key，禁用需设为 <code>false</code></td>
+<td><code>70542d86693e</code></td>
+<td><code>your_akismet_key</code> 或 <code>false</code></td>
+</tr>
+<tr>
+<td><code>COMMENT_AUDIT</code></td>
+<td>是否开启评论审核</td>
+<td><code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>IPQPS</code></td>
+<td>IP 评论频率限制（秒/条）</td>
+<td><code>60</code></td>
+<td><code>30</code>（30秒/条）或 <code>0</code>（不限）</td>
+</tr>
+<tr>
+<td><code>SECURE_DOMAINS</code></td>
+<td>允许评论的安全域名</td>
+<td>无</td>
+<td><code>blog.example.com</code></td>
+</tr>
+<tr>
+<td><code>RECAPTCHA_V3_KEY</code></td>
+<td>reCAPTCHA V3 客户端 Key</td>
+<td>无</td>
+<td><code>6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI</code></td>
+</tr>
+<tr>
+<td><code>RECAPTCHA_V3_SECRET</code></td>
+<td>reCAPTCHA V3 服务端密钥</td>
+<td>无</td>
+<td><code>6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe</code></td>
+</tr>
+<tr>
+<td><code>TURNSTILE_KEY</code></td>
+<td>Cloudflare Turnstile 验证 Key</td>
+<td>无</td>
+<td><code>0x4AAAAAAABCdL4hO-xxxxxx</code></td>
+</tr>
+</tbody>
+</table>
+<p>通过以上配置，可构建多层次防护体系：Akismet 自动过滤垃圾内容，人机验证拦截自动化攻击，审核机制和频率限制控制内容质量，安全域名防止未授权调用。建议根据博客流量和评论量逐步调整参数，在安全性和用户体验间找到平衡。</p>
+<h3 id="邮件通知设置"><a class="markdownIt-Anchor" href="#邮件通知设置"></a> 邮件通知设置</h3>
+<p>邮件通知功能是提升博客互动体验的重要环节，它能让你及时收到新评论提醒，同时确保评论者在收到回复时第一时间获知。当有新评论提交时，系统会向博主邮箱发送通知；当某条评论被回复时，则会通过评论者填写的邮箱进行提醒。通知中的站点名称和地址将自动读取你在“站点管理/系统设置/站点配置”中填写的信息。</p>
+<h4 id="基础配置步骤"><a class="markdownIt-Anchor" href="#基础配置步骤"></a> 基础配置步骤</h4>
+<p>首先需要在系统中启用邮件通知功能，然后填写SMTP服务相关信息。以下是详细配置指南：</p>
+<h5 id="主流邮箱smtp参数配置"><a class="markdownIt-Anchor" href="#主流邮箱smtp参数配置"></a> 主流邮箱SMTP参数配置</h5>
+<p>不同邮箱服务商的SMTP设置存在差异，这里以QQ邮箱和163邮箱为例进行说明：</p>
+<p><strong>QQ邮箱配置</strong></p>
+<ul>
+<li><strong>SMTP地址(host)</strong>：个人邮箱使用<code>smtp.qq.com</code>，企业邮箱使用<code>smtp.exmail.qq.com</code></li>
+<li><strong>SMTP端口</strong>：<code>465</code>（SSL加密）或<code>587</code>（TLS加密）</li>
+<li><strong>SMTP用户名</strong>：你的QQ邮箱完整地址（如<code>12345678@qq.com</code>）</li>
+<li><strong>SMTP密码</strong>：需在QQ邮箱设置中生成的<strong>授权码</strong>（非登录密码）</li>
+<li><strong>发件地址</strong>：必须与SMTP用户名一致，否则可能出现<code>501 Mail from address must be same as authorization user</code>错误</li>
+</ul>
+<p><strong>163邮箱配置</strong>（参考通用规则）</p>
+<ul>
+<li><strong>SMTP地址</strong>：<code>smtp.163.com</code></li>
+<li><strong>SMTP端口</strong>：<code>465</code>或<code>994</code>（SSL）</li>
+<li><strong>SMTP密码</strong>：163邮箱需开启“SMTP服务”并设置独立授权码</li>
+</ul>
+<p><strong>注意事项</strong>：所有邮箱的SMTP密码均为独立授权码，而非登录密码。获取方式通常在邮箱设置的“账户”或“安全”选项中，例如QQ邮箱需进入“设置→账户→POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务”，开启“SMTP服务”后点击“生成授权码”。</p>
+<h5 id="环境变量配置docker部署场景"><a class="markdownIt-Anchor" href="#环境变量配置docker部署场景"></a> 环境变量配置（Docker部署场景）</h5>
+<p>如果你的Waline通过Docker Compose部署，需在<code>docker-compose.yml</code>中添加以下环境变量：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="attr">SMTP_SERVICE:</span> <span class="string">&#x27;QQ&#x27;</span>           <span class="comment"># 邮件服务商（如QQ、163，不支持时需手动配置SMTP_HOST和SMTP_PORT）</span></span><br><span class="line">  <span class="attr">SMTP_USER:</span> <span class="string">&#x27;12345678@qq.com&#x27;</span> <span class="comment"># 发件人邮箱地址</span></span><br><span class="line">  <span class="attr">SMTP_PASS:</span> <span class="string">&#x27;xxx&#x27;</span>             <span class="comment"># 邮箱授权码（非登录密码）</span></span><br><span class="line">  <span class="attr">SMTP_SECURE:</span> <span class="string">&#x27;true&#x27;</span>          <span class="comment"># 启用SSL加密（端口465时设为true，587时可设为false）</span></span><br><span class="line">  <span class="attr">AUTHOR_EMAIL:</span> <span class="string">&#x27;12345678@qq.com&#x27;</span> <span class="comment"># 博主邮箱（接收新评论通知）</span></span><br><span class="line">  <span class="attr">SITE_NAME:</span> <span class="string">&#x27;我的技术博客&#x27;</span>     <span class="comment"># 博客名称（显示在邮件通知中）</span></span><br><span class="line">  <span class="attr">SITE_URL:</span> <span class="string">&#x27;https://example.com&#x27;</span> <span class="comment"># 博客地址（通知中的链接跳转地址）</span></span><br></pre></td></tr></table></figure>
+<h4 id="核心环境变量说明"><a class="markdownIt-Anchor" href="#核心环境变量说明"></a> 核心环境变量说明</h4>
+<p>配置邮件通知时，需区分必备和选填变量，确保关键参数正确设置：</p>
+<p><strong>必备变量</strong></p>
+<ul>
+<li><code>SMTP_SERVICE</code>/<code>SMTP_HOST</code>/<code>SMTP_PORT</code>：邮件服务器信息（二选一，<code>SMTP_SERVICE</code>支持主流服务商自动填充服务器信息）</li>
+<li><code>SMTP_USER</code>：发件人邮箱地址</li>
+<li><code>SMTP_PASS</code>：邮箱授权码</li>
+<li><code>SITE_NAME</code>/<code>SITE_URL</code>：博客名称和地址（用于通知内容中的站点标识）</li>
+<li><code>AUTHOR_EMAIL</code>：博主邮箱（接收新评论通知，博主自身评论不会触发通知）</li>
+</ul>
+<p><strong>选填变量</strong>（自定义通知体验）</p>
+<ul>
+<li><code>SENDER_NAME</code>：自定义发件人名称（如“博客小助手”）</li>
+<li><code>MAIL_SUBJECT</code>/<code>MAIL_TEMPLATE</code>：评论回复邮件的标题和内容模板</li>
+<li><code>MAIL_SUBJECT_ADMIN</code>/<code>MAIL_TEMPLATE_ADMIN</code>：博主收到新评论的通知标题和内容模板</li>
+</ul>
+<h4 id="自定义邮件模板"><a class="markdownIt-Anchor" href="#自定义邮件模板"></a> 自定义邮件模板</h4>
+<p>通过修改<code>MAIL_TEMPLATE</code>变量，你可以设计符合博客风格的通知邮件。模板支持HTML格式，但需注意将内部双引号用反斜杠转义（如<code>\&quot;</code>）。以下是一个模板示例，包含评论上下文展示和品牌元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">\</span>&quot;<span class="attr">background:</span> #<span class="attr">f5f5f5</span>; <span class="attr">padding:</span> <span class="attr">20px</span>;\&quot;&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">\</span>&quot;<span class="attr">max-width:</span> <span class="attr">600px</span>; <span class="attr">margin:</span> <span class="attr">0</span> <span class="attr">auto</span>; <span class="attr">background:</span> <span class="attr">white</span>; <span class="attr">padding:</span> <span class="attr">30px</span>; <span class="attr">border-radius:</span> <span class="attr">8px</span>;\&quot;&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span> <span class="attr">style</span>=<span class="string">\</span>&quot;<span class="attr">color:</span> #<span class="attr">333</span>;\&quot;&gt;</span>您在「&#123;&#123;site.name&#125;&#125;」的评论有了新回复<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hi &#123;&#123;parent.nick&#125;&#125;，您曾评论：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">\</span>&quot;<span class="attr">background:</span> #<span class="attr">f9f9f9</span>; <span class="attr">padding:</span> <span class="attr">15px</span>; <span class="attr">border-radius:</span> <span class="attr">4px</span>; <span class="attr">margin:</span> <span class="attr">15px</span> <span class="attr">0</span>;\&quot;&gt;</span></span><br><span class="line">      &#123;&#123;parent.comment | safe&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;self.nick&#125;&#125; 回复：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">\</span>&quot;<span class="attr">background:</span> #<span class="attr">f0f8ff</span>; <span class="attr">padding:</span> <span class="attr">15px</span>; <span class="attr">border-radius:</span> <span class="attr">4px</span>; <span class="attr">margin:</span> <span class="attr">15px</span> <span class="attr">0</span>;\&quot;&gt;</span></span><br><span class="line">      &#123;&#123;self.comment | safe&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">\</span>&quot;&#123;&#123;<span class="attr">site.url</span>&#125;&#125;&#123;&#123;<span class="attr">url</span>&#125;&#125;\&quot; <span class="attr">style</span>=<span class="string">\</span>&quot;<span class="attr">display:</span> <span class="attr">inline-block</span>; <span class="attr">padding:</span> <span class="attr">10px</span> <span class="attr">20px</span>; <span class="attr">background:</span> #<span class="attr">007bff</span>; <span class="attr">color:</span> <span class="attr">white</span>; <span class="attr">text-decoration:</span> <span class="attr">none</span>; <span class="attr">border-radius:</span> <span class="attr">4px</span>;\&quot;&gt;</span>查看完整对话<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>模板中的<code>&#123;&#123;site.name&#125;&#125;</code>、<code>&#123;&#123;parent.nick&#125;&#125;</code>等为动态变量，会自动替换为实际内容：</p>
+<ul>
+<li><code>&#123;&#123;site.name&#125;&#125;</code>/<code>&#123;&#123;site.url&#125;&#125;</code>：博客名称和地址</li>
+<li><code>&#123;&#123;parent.nick&#125;&#125;</code>/<code>&#123;&#123;parent.comment&#125;&#125;</code>：被回复者的昵称和评论内容</li>
+<li><code>&#123;&#123;self.nick&#125;&#125;</code>/<code>&#123;&#123;self.comment&#125;&#125;</code>：回复者的昵称和回复内容</li>
+<li><code>&#123;&#123;url&#125;&#125;</code>：评论所在页面的链接</li>
+</ul>
+<h4 id="常见问题排查"><a class="markdownIt-Anchor" href="#常见问题排查"></a> 常见问题排查</h4>
+<p>若配置后邮件通知不生效，可按以下步骤检查：</p>
+<ol>
+<li><strong>授权码是否正确</strong>：确认SMTP密码为邮箱生成的独立授权码，而非登录密码。</li>
+<li><strong>端口与加密方式匹配</strong>：端口465对应<code>SMTP_SECURE: 'true'</code>，端口587通常对应<code>SMTP_SECURE: 'false'</code>。</li>
+<li><strong>发件地址一致性</strong>：确保<code>SMTP_USER</code>与实际发件地址完全一致。</li>
+<li><strong>服务重启</strong>：修改配置后重启Waline服务，使设置生效</li>
+</ol>
+<p>通过以上配置，你的博客评论系统将具备完善的邮件通知能力，既提升了博主的管理效率，也让访客感受到更及时的互动反馈。</p>
+<h2 id="常见问题解决"><a class="markdownIt-Anchor" href="#常见问题解决"></a> 常见问题解决</h2>
+<h3 id="部署失败问题"><a class="markdownIt-Anchor" href="#部署失败问题"></a> 部署失败问题</h3>
+<p>在使用 Vercel 部署 Waline 评论系统时，可能会遇到各类失败情况。以下是结合实际部署场景总结的常见问题及解决方案，帮助你快速定位并解决问题。</p>
+<h4 id="环境变量配置错误"><a class="markdownIt-Anchor" href="#环境变量配置错误"></a> 环境变量配置错误</h4>
+<p>这是最常见的部署失败原因，主要表现为服务启动后无法连接数据库或功能异常。需重点检查 Vercel 部署设置中的环境变量是否完整且正确：</p>
+<ul>
+<li><strong>核心变量检查</strong>：确保 <code>LEAN_ID</code>（应用 ID）、<code>LEAN_KEY</code>（应用 Key）、<code>LEAN_MASTER_KEY</code>（主 Key）均从 LeanCloud 应用控制台准确复制，避免多余空格或字符。</li>
+<li><strong>重新部署生效</strong>：修改环境变量后，必须在 Vercel 项目控制台点击 <strong>Redepoly</strong> 重新部署，直接保存变量不会触发服务更新。</li>
+</ul>
+<p><strong>注意</strong>：环境变量名称区分大小写，例如 <code>LEAN_ID</code> 不可误写为 <code>lean_id</code> 或 <code>Lean_Id</code>，否则会导致服务初始化失败。</p>
+<h4 id="leancloud-应用配置问题"><a class="markdownIt-Anchor" href="#leancloud-应用配置问题"></a> LeanCloud 应用配置问题</h4>
+<p>若部署后出现 <code>Not initialized</code> 错误或 404 页面，通常与 LeanCloud 应用配置相关：</p>
+<ul>
+<li><strong>应用创建验证</strong>：登录 LeanCloud 控制台，确认目标应用已成功创建，且所在区域（如华北、华东）与 Waline 服务端匹配。</li>
+<li><strong>权限设置检查</strong>：进入应用「设置 &gt; 安全中心」，确保「Web 安全域名」已添加你的博客域名（如 <code>https://yourblog.com</code>），或暂时关闭「Referer 验证」进行测试。</li>
+</ul>
+<h4 id="项目关联与部署方式问题"><a class="markdownIt-Anchor" href="#项目关联与部署方式问题"></a> 项目关联与部署方式问题</h4>
+<p>部分用户会因项目未正确关联 Git 仓库导致部署失败：</p>
+<ul>
+<li><strong>Git 仓库关联</strong>：通过 Vercel 导入项目时，需确保选择正确的 Git 仓库及分支（通常为 <code>main</code> 或 <code>master</code>），并开启自动部署选项。</li>
+<li><strong>CLI 部署备选方案</strong>：若通过网页端导入失败，可在本地项目根目录使用 Vercel CLI 执行 <code>vercel --prod</code> 命令强制部署，该方式会自动关联本地仓库并上传代码。</li>
+</ul>
+<h4 id="缓存与依赖问题"><a class="markdownIt-Anchor" href="#缓存与依赖问题"></a> 缓存与依赖问题</h4>
+<p>部署过程中可能因缓存或依赖下载异常导致失败：</p>
+<ul>
+<li><strong>清除缓存重新部署</strong>：在 Vercel 部署记录页面，点击对应部署记录右侧的「更多 &gt; Clear Cache &amp; Redeploy」，强制清除旧缓存并重新拉取依赖。</li>
+<li><strong>依赖源优化</strong>：若部署日志中出现依赖下载超时，可在项目根目录添加 <code>.npmrc</code> 文件，配置国内镜像源（如 <code>registry=https://registry.npmmirror.com</code>）。</li>
+</ul>
+<h4 id="vercel-部署日志查看方法"><a class="markdownIt-Anchor" href="#vercel-部署日志查看方法"></a> Vercel 部署日志查看方法</h4>
+<p>当上述步骤无法解决问题时，需通过部署日志定位具体错误：</p>
+<ol>
+<li>登录 Vercel 控制台，进入对应项目；</li>
+<li>点击顶部「Deployments」选项卡，选择最近一次失败的部署记录；</li>
+<li>在部署详情页中，查看「Build Logs」或「Runtime Logs」，重点关注标红的错误信息（如 <code>Error: LeanCloud initialization failed</code>），根据提示进一步排查。</li>
+</ol>
+<p>通过以上步骤，多数部署问题可被定位并解决。若遇到复杂错误，建议将完整日志与错误截图提交至 Waline 官方仓库或相关技术社区，获取更针对性的帮助。</p>
+<h3 id="评论不显示问题"><a class="markdownIt-Anchor" href="#评论不显示问题"></a> 评论不显示问题</h3>
+<p>评论区空白是部署 Waline 时最常见的问题，以下是分步骤排查方案，帮你快速定位症结所在。</p>
+<h4 id="一-基础配置检查"><a class="markdownIt-Anchor" href="#一-基础配置检查"></a> 一、基础配置检查</h4>
+<p><strong>1. 服务端地址是否正确</strong><br />
+首先确认 Hexo 主题配置文件（如 <code>_config.next.yml</code> 或 <code>_config.butterfly.yml</code>）中的 <code>serverURL</code> 字段是否准确指向部署后的 Vercel 服务端地址，格式应为 <code>https://xxxx.vercel.app</code>（需替换为你的实际域名）。错误的地址会导致评论系统无法连接后端，直接造成空白。<br />
+同时检查服务端环境变量是否完整（如 <code>MONGODB_URI</code>、<code>JWT_SECRET</code> 等），缺失关键变量会导致服务端无法正常启动。</p>
+<p><strong>2. 重新生成博客内容</strong><br />
+修改配置后若未重新生成，新设置不会生效。在终端执行以下命令清理缓存并重建：<br />
+<code>hexo clean &amp;&amp; hexo g</code><br />
+生成完成后重新部署（如 <code>hexo d</code>），并强制刷新浏览器页面（快捷键 <code>Ctrl+Shift+R</code>）。</p>
+<p><strong>3. 验证服务端运行状态</strong><br />
+直接在浏览器访问你的 Waline 服务端地址（如 <code>https://xxxx.vercel.app</code>），若页面显示 “Waline server is running” 或评论管理界面，则服务端正常；若显示 404 或错误页面，需检查 Vercel 部署日志中的环境变量配置或构建错误。</p>
+<h4 id="二-主题兼容性处理"><a class="markdownIt-Anchor" href="#二-主题兼容性处理"></a> 二、主题兼容性处理</h4>
+<p>不同 Hexo 主题对 Waline 的支持程度不同，需针对性调整：</p>
+<p><strong>1. Next 主题</strong></p>
+<ul>
+<li><strong>推荐方案</strong>：确保主题版本 ≥ 8.14.0，新版本已内置 Waline 支持，在主题配置中直接开启即可：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">https://xxxx.vercel.app</span> <span class="comment"># 填入你的服务端地址</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>旧版本处理</strong>：若无法升级，需手动在文章模板中添加评论容器，参考[<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/third-party-services/comments#waline">网站</a>]。</li>
+</ul>
+<p><strong>2. Butterfly 主题</strong></p>
+<ul>
+<li>检查 <code>_config.butterfly.yml</code> 中是否正确配置 <code>comment: waline</code>，并填写 <code>serverURL</code>。</li>
+<li>若评论区仍空白，可能是主题评论组件路径错误，需修改模板文件。例如打开 <code>&lt;博客根目录&gt;\themes\butterfly\layout\includes\comments\index.ejs</code>，确认 Waline 组件路径是否正确，如将错误路径 <code>partials/_comments/waline</code> 修正为主题实际使用的组件路径（如 <code>includes/comments/waline</code>）。</li>
+</ul>
+<h4 id="三-进阶问题排查无控制台报错时"><a class="markdownIt-Anchor" href="#三-进阶问题排查无控制台报错时"></a> 三、进阶问题排查（无控制台报错时）</h4>
+<p>若浏览器控制台无报错但评论区空白，需检查以下隐藏问题：</p>
+<p><strong>1. 评论容器 DOM 结构异常</strong><br />
+主题更新可能导致评论容器的 ID 或类名变化（如从 <code>waline-container</code> 改为 <code>comment-container</code>），Waline 初始化时找不到目标元素。</p>
+<ul>
+<li><strong>解决</strong>：通过浏览器「检查元素」确认评论区域的容器 ID，在 Waline 初始化脚本中指定正确的 <code>el</code> 参数，例如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Waline</span>.<span class="title function_">init</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&#x27;#comment-container&#x27;</span>, <span class="comment">// 与主题容器 ID 保持一致</span></span><br><span class="line">  <span class="attr">serverURL</span>: <span class="string">&#x27;https://xxxx.vercel.app&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>2. 初始化脚本加载时机错误</strong><br />
+若脚本在容器元素渲染前执行，会因找不到 DOM 元素导致初始化失败。</p>
+<ul>
+<li><strong>解决</strong>：将初始化脚本放在 <code>&lt;/body&gt;</code> 前或使用 DOM 加载完成事件：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title class_">Waline</span>.<span class="title function_">init</span>(&#123; <span class="attr">el</span>: <span class="string">&#x27;#waline-container&#x27;</span>, <span class="attr">serverURL</span>: <span class="string">&#x27;https://xxxx.vercel.app&#x27;</span> &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>3. 样式冲突导致隐藏</strong><br />
+主题 CSS 可能意外覆盖 Waline 样式（如设置 <code>display: none</code> 或 <code>visibility: hidden</code>）。</p>
+<ul>
+<li><strong>解决</strong>：在浏览器「检查元素」中查看评论容器的 <code>computed</code> 样式，删除或覆盖冲突规则，例如：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.waline-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block <span class="meta">!important</span>; <span class="comment">/* 强制显示评论容器 */</span></span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>; <span class="comment">/* 避免高度被设为 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>排查 checklist</strong></p>
+<ol>
+<li>✅ 服务端地址格式为 <code>https://xxxx.vercel.app</code>（无多余斜杠或路径）</li>
+<li>✅ 执行 <code>hexo clean &amp;&amp; hexo g</code> 重建博客</li>
+<li>✅ 访问服务端地址确认服务正常运行</li>
+<li>✅ 主题版本与 Waline 兼容（优先更新主题）</li>
+<li>✅ 浏览器「检查元素」确认容器 ID 和样式正常</li>
+</ol>
+<p>通过以上步骤，90% 的评论不显示问题均可解决。若仍有异常，建议在 Waline 官方 issues 或主题社区提交具体报错信息和环境配置，获取进一步帮助。</p>
+<h3 id="国内访问问题"><a class="markdownIt-Anchor" href="#国内访问问题"></a> 国内访问问题</h3>
+<p>许多用户在部署 Waline 评论系统后会遇到国内访问缓慢甚至无法加载的问题，这主要是因为 Vercel 默认分配的 <code>vercel.app</code> 域名在国内存在<strong>域名污染</strong>问题，导致评论系统无法正常使用。不过好在 Vercel 的服务器 IP 并未被屏蔽，我们可以通过<strong>绑定自定义域名</strong>的方式彻底解决这个问题，让国内用户顺畅访问评论系统。</p>
+<h4 id="解决步骤绑定自定义域名"><a class="markdownIt-Anchor" href="#解决步骤绑定自定义域名"></a> 解决步骤：绑定自定义域名</h4>
+<h5 id="1-在-vercel-中添加自定义域名"><a class="markdownIt-Anchor" href="#1-在-vercel-中添加自定义域名"></a> 1. 在 Vercel 中添加自定义域名</h5>
+<p>首先需要在 Vercel 项目中配置你的自有域名。进入 Waline 项目的 <strong>Settings → Domains</strong> 页面，输入你准备用于评论系统的域名（例如 <code>comment.yourblog.com</code>），点击添加后等待 Vercel 验证域名所有权。</p>
+<h5 id="2-在域名服务商处设置-cname-解析"><a class="markdownIt-Anchor" href="#2-在域名服务商处设置-cname-解析"></a> 2. 在域名服务商处设置 CNAME 解析</h5>
+<p>登录你的域名服务商（如阿里云、腾讯云等）的 DNS 管理平台，添加以下解析记录，将自定义域名指向 Vercel 的服务器：</p>
+<table>
+<thead>
+<tr>
+<th>记录类型</th>
+<th>主机记录</th>
+<th>记录值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td>comment</td>
+<td><a target="_blank" rel="noopener" href="http://cname.vercel-dns.com">cname.vercel-dns.com</a></td>
+<td>假设使用 <code>comment</code> 作为子域名</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>@</td>
+<td><a target="_blank" rel="noopener" href="http://cname.vercel-dns.com">cname.vercel-dns.com</a></td>
+<td>若直接使用主域名（如 <code>yourblog.com</code>）</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>www</td>
+<td><a target="_blank" rel="noopener" href="http://cname.vercel-dns.com">cname.vercel-dns.com</a></td>
+<td>若使用 <code>www</code> 子域名</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>主机记录可根据需求选择，建议使用独立子域名（如 <code>comment</code>）避免与博客主域名冲突。</p>
+</blockquote>
+<h5 id="3-更新-hexo-配置中的服务端地址"><a class="markdownIt-Anchor" href="#3-更新-hexo-配置中的服务端地址"></a> 3. 更新 Hexo 配置中的服务端地址</h5>
+<p>完成域名解析后，需要在 Hexo 的 Waline 配置中，将 <code>serverURL</code> 字段修改为新绑定的自定义域名（例如 <code>https://comment.yourblog.com</code>），确保博客能正确连接到评论系统。</p>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>域名解析生效可能需要 10 分钟到 24 小时，可通过 <code>ping</code> 命令或 DNS 检测工具确认解析状态。</li>
+<li>若使用 LeanCloud 国内版作为数据库，还需在 Vercel 环境变量中设置 <code>LEAN_SERVER</code> 为国内服务地址，确保数据交互正常。</li>
+</ul>
+<p>通过以上步骤，国内用户即可通过你的自定义域名顺畅访问 Waline 评论系统，避免因 Vercel 默认域名问题导致的访问障碍。这种方案不仅稳定可靠，还能提升博客的专业度和用户体验。</p>
+<h2 id="hexo文章front-matter配置"><a class="markdownIt-Anchor" href="#hexo文章front-matter配置"></a> Hexo文章Front-matter配置</h2>
+<p>在Hexo博客中，每篇文章的头部都藏着一个“配置中枢”——Front-matter。这个以 <code>---</code> 分隔的区域，通过 <code>键: 值</code> 的格式定义了文章的核心属性，而 <strong><code>comments: true</code></strong> 正是开启Waline评论系统的关键开关。下面我们一步步拆解如何正确配置，让每篇文章都能顺利召唤出评论区。</p>
+<h3 id="一-完整配置示例"><a class="markdownIt-Anchor" href="#一-完整配置示例"></a> 一、完整配置示例</h3>
+<p>以下是包含Waline评论启用开关的标准Front-matter配置，直接复制到文章头部即可使用：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">使用Vercel部署Waline评论系统到Hexo博客</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2025-08-30 11:56:00</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">技术教程</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Hexo</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Waline</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">评论系统</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">详细介绍如何在Hexo博客中通过Vercel部署Waline评论系统</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">true</span>  <span class="comment"># 关键参数：启用评论功能</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>这个配置中，<code>comments: true</code> 明确告诉Hexo“此文章需要显示评论区”。如果某篇文章暂时不想开放评论，只需将其改为 <code>comments: false</code> 即可临时关闭。</p>
+<h3 id="二-核心参数详解"><a class="markdownIt-Anchor" href="#二-核心参数详解"></a> 二、核心参数详解</h3>
+<p>除了 <code>comments</code>，这些参数也直接影响评论系统的正常工作，建议按需求配置：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用说明</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>文章标题（必填）</td>
+<td>直接影响评论区的页面标识</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>文章创建时间（必填，格式：YYYY-MM-DD HH:MM:SS）</td>
+<td><strong>需保证唯一</strong>，部分评论系统以此作为文章ID</td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td>是否显示评论区（可选，默认值：true）</td>
+<td>设置为false时评论区完全隐藏</td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td>文章分类（可选，支持多级分类）</td>
+<td>辅助评论系统区分不同栏目内容</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>文章标签（可选，数组格式）</td>
+<td>便于评论区按标签聚合讨论</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>文章摘要（可选）</td>
+<td>会作为评论区页面的meta描述信息</td>
+</tr>
+</tbody>
+</table>
+<p>以 <code>date</code> 参数为例，若两篇文章使用相同的 <code>date</code> 值，部分评论系统（如Gitalk、Gitment）可能会出现评论区数据错乱，建议通过精确到分钟的时间戳（如 <code>2025-08-30 14:35:22</code>）确保唯一性。</p>
+<h3 id="三-自动配置技巧修改文章模板"><a class="markdownIt-Anchor" href="#三-自动配置技巧修改文章模板"></a> 三、自动配置技巧：修改文章模板</h3>
+<p>每次新建文章都手动添加 <code>comments: true</code> 太繁琐？通过修改Hexo的文章模板文件，可以让系统自动生成包含评论配置的Front-matter：</p>
+<ol>
+<li>找到博客根目录下的 <code>/scaffolds/post.md</code> 文件（这是新建文章的模板）</li>
+<li>将模板内容修改为：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> &#123;&#123; <span class="string">title</span> &#125;&#125;</span><br><span class="line"><span class="attr">date:</span> &#123;&#123; <span class="string">date</span> &#125;&#125;</span><br><span class="line"><span class="attr">categories:</span> </span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="attr">description:</span> </span><br><span class="line"><span class="attr">comments:</span> <span class="literal">true</span>  <span class="comment"># 自动开启评论功能</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>保存后，使用 <code>hexo new post &quot;文章标题&quot;</code> 命令创建的新文章，会自动带上 <code>comments: true</code> 配置，无需手动添加。</li>
+</ol>
+<p><strong>配置避坑指南</strong></p>
+<ol>
+<li><strong>格式错误</strong>：冒号后必须加空格（如 <code>title: 正确</code>，而非 <code>title:正确</code>），否则Hexo会解析失败</li>
+<li><strong>默认行为</strong>：若Front-matter中未显式设置 <code>comments</code>，主题通常会默认开启评论（部分主题需在 <code>_config.yml</code> 中全局配置）</li>
+<li><strong>特殊符号</strong>：标题或描述包含英文冒号时，建议用引号包裹（如 <code>title: &quot;Hexo: 从入门到精通&quot;</code>）</li>
+</ol>
+<p>通过以上配置，Waline评论系统就能准确识别每篇文章并正常加载评论区了。下一章我们将进入主题配置环节，完成评论系统的“最后一公里”部署。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>微雨扬 @ XYY滴小窝</p>
+    
+    <p><strong><span class="icon-pencil icon"></span>本文標題：</strong>「使用Vercel部署Waline评论系统到Hexo博客的完整教程」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文發佈時間：</strong>2025-09-01 14:18:42</p>
+    
+    <p><strong><span class="icon-copyright icon"></span>本文版權：</strong>本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 授權協議。轉載請註明出處！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">贊助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+    
+  
+  <div class="sponsor-tip">請作者喝杯咖啡吧</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/images/alipay-pay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/images/wechat-pay.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fxy-0735.github.io%2F2025%2F09%2F01%2F%25E4%25BD%25BF%25E7%2594%25A8Vercel%25E9%2583%25A8%25E7%25BD%25B2Waline%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%2588%25B0Hexo%25E5%258D%259A%25E5%25AE%25A2%25E7%259A%2584%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%2F" target="_blank" rel="noopener noreferrer" title="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fxy-0735.github.io%2F2025%2F09%2F01%2F%25E4%25BD%25BF%25E7%2594%25A8Vercel%25E9%2583%25A8%25E7%25BD%25B2Waline%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%2588%25B0Hexo%25E5%258D%259A%25E5%25AE%25A2%25E7%259A%2584%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%2F&amp;text=%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B&amp;via=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fxy-0735.github.io%2F2025%2F09%2F01%2F%25E4%25BD%25BF%25E7%2594%25A8Vercel%25E9%2583%25A8%25E7%25BD%25B2Waline%25E8%25AF%2584%25E8%25AE%25BA%25E7%25B3%25BB%25E7%25BB%259F%25E5%2588%25B0Hexo%25E5%258D%259A%25E5%25AE%25A2%25E7%259A%2584%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%2F&amp;appkey=&amp;title=%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B&amp;desc=%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B&amp;source=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="使用Vercel部署Waline评论系统到Hexo博客的完整教程">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+        <a data-aos="zoom-in" href="/zh-TW/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/#comments" class="article-comment-link">
+          <span class="post-comments-count waline-comment-count" data-path="/zh-TW/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
+          留言
+        </a>
+      
+      
+      
+      
+        <span data-aos="zoom-in" class="article-visitor-link">
+          <span class="waline-pageview-count" data-path="/zh-TW/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/">0</span>
+          <em class="post-meta-item-text">閲讀量</em>
+        </span>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/zh-TW/tags/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91/" rel="tag">编程开发</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/zh-TW/tags/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/" rel="tag">网页设计</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+  <nav id="article-nav" data-aos="fade-up">
+    
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        <img data-src="/images/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97.jpg" data-sizes="auto" alt="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度" class="lazyload">
+      
+      <a href="/zh-TW/2025/08/29/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/"></a>
+      <div class="article-nav-caption">後一篇</div>
+      <h3 class="article-nav-title">
+        
+          Hexo博客部署Netlify完全指南：从0到1优化国内访问速度
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">說些什麼吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="waline">
+              <span>waline</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment waline-comment" data-aos="fade-up"
+          id="waline-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2025
+      
+      <span class="footer-info-sep rotate"></span>
+      微雨扬
+    </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        20.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:16
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">總訪問量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">總訪客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#waline%E8%AE%A9%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%97%A2%E5%AE%89%E5%85%A8%E5%8F%88%E5%BC%BA%E5%A4%A7"><span class="toc-number">1.1.</span> <span class="toc-text"> Waline：让评论系统既安全又强大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9vercel%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.</span> <span class="toc-text"> 为什么选择Vercel部署？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text"> 准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E6%A0%B8%E5%BF%83%E8%B4%A6%E5%8F%B7%E5%87%86%E5%A4%87"><span class="toc-number">2.1.</span> <span class="toc-text"> 一、核心账号准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-vercel-%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 1. Vercel 账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-leancloud-%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 2. LeanCloud 账号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%9C%AC%E5%9C%B0%E5%B7%A5%E5%85%B7%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text"> 二、本地工具环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 1. 基础开发环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-vercel-cli%E5%8F%AF%E9%80%89%E4%BD%86%E6%8E%A8%E8%8D%90"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 2. Vercel CLI（可选但推荐）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-hexo-%E5%8D%9A%E5%AE%A2%E7%8E%AF%E5%A2%83%E6%A3%80%E6%9F%A5"><span class="toc-number">2.3.</span> <span class="toc-text"> 三、Hexo 博客环境检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E5%8F%AF%E9%80%89%E5%87%86%E5%A4%87%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8C%89%E9%9C%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text"> 四、可选准备：自定义域名（按需配置）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text"> 详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#leancloud%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text"> LeanCloud配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 1. 注册与登录账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E5%BC%80%E5%8F%91%E7%89%88%E5%BA%94%E7%94%A8"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 2. 创建开发版应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E5%87%AD%E8%AF%81"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 3. 获取应用凭证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E5%9F%9F%E5%90%8D%E5%8F%AF%E9%80%89"><span class="toc-number">3.1.4.</span> <span class="toc-text"> 4. 配置安全域名（可选）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%9B%BD%E5%86%85%E7%89%88%E7%89%B9%E6%AE%8A%E9%85%8D%E7%BD%AE%E4%BB%85%E5%9B%BD%E5%86%85%E7%94%A8%E6%88%B7"><span class="toc-number">3.1.5.</span> <span class="toc-text"> 5. 国内版特殊配置（仅国内用户）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vercel%E9%83%A8%E7%BD%B2waline%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">3.2.</span> <span class="toc-text"> Vercel部署Waline服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%83%A8%E7%BD%B2waline%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. 部署Waline服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. 配置环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. 重新部署项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9C%B0%E5%9D%80"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 4. 获取服务端地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo%E5%8D%9A%E5%AE%A2%E9%9B%86%E6%88%90waline"><span class="toc-number">3.3.</span> <span class="toc-text"> Hexo博客集成Waline</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%AE%89%E8%A3%85waline%E9%9B%86%E6%88%90%E6%8F%92%E4%BB%B6"><span class="toc-number">3.3.1.</span> <span class="toc-text"> 一、安装Waline集成插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">3.3.2.</span> <span class="toc-text"> 二、主题配置文件准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E4%B8%8E%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 三、核心配置参数与示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E4%B8%BB%E6%B5%81%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.4.</span> <span class="toc-text"> 四、主流主题配置代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-next%E4%B8%BB%E9%A2%98_confignextyml"><span class="toc-number">3.3.4.1.</span> <span class="toc-text"> 1. Next主题（_config.next.yml）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-butterfly%E4%B8%BB%E9%A2%98_configbutterflyyml"><span class="toc-number">3.3.4.2.</span> <span class="toc-text"> 2. Butterfly主题（_config.butterfly.yml）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-yunsea%E7%AD%89%E5%85%B6%E4%BB%96%E4%B8%BB%E9%A2%98"><span class="toc-number">3.3.4.3.</span> <span class="toc-text"> 3. Yun&#x2F;Sea等其他主题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94-%E9%85%8D%E7%BD%AE%E7%94%9F%E6%95%88%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">3.3.5.</span> <span class="toc-text"> 五、配置生效与验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text"> 自定义配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="toc-number">4.1.</span> <span class="toc-text"> 评论功能个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%9F%BA%E7%A1%80%E4%BA%A4%E4%BA%92%E9%85%8D%E7%BD%AE%E4%BB%8E%E6%8F%90%E7%A4%BA%E5%88%B0%E6%98%BE%E7%A4%BA%E5%AF%86%E5%BA%A6"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 一、基础交互配置：从提示到显示密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E5%A4%B4%E5%83%8F%E9%A3%8E%E6%A0%BC%E5%AE%9A%E5%88%B6%E4%BB%8E%E6%A0%B7%E5%BC%8F%E5%88%B0%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.1.2.</span> <span class="toc-text"> 二、头像风格定制：从样式到隐私保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E7%AD%89%E7%BA%A7%E6%A0%87%E7%AD%BE%E4%B8%8E%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F%E5%A2%9E%E5%BC%BA%E4%BA%92%E5%8A%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E5%B9%B3%E8%A1%A1"><span class="toc-number">4.1.3.</span> <span class="toc-text"> 三、等级标签与信息隐藏：增强互动与隐私平衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E6%A0%B7%E5%BC%8F%E6%B7%B1%E5%BA%A6%E5%AE%9A%E5%88%B6%E4%BB%8E%E9%A2%9C%E8%89%B2%E5%88%B0%E5%AD%97%E4%BD%93"><span class="toc-number">4.1.4.</span> <span class="toc-text"> 四、样式深度定制：从颜色到字体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.1.5.</span> <span class="toc-text"> 五、完整配置示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8E%E5%8F%8D%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BA"><span class="toc-number">4.2.</span> <span class="toc-text"> 安全与反垃圾评论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%8F%8D%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BA%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 一、反垃圾评论服务配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E8%AF%84%E8%AE%BA%E5%AE%A1%E6%A0%B8%E4%B8%8E%E5%86%85%E5%AE%B9%E7%AE%A1%E6%8E%A7"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 二、评论审核与内容管控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E5%AE%89%E5%85%A8%E5%9F%9F%E5%90%8D%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 三、安全域名与访问控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-%E6%A0%B8%E5%BF%83%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E6%80%BB%E8%A1%A8"><span class="toc-number">4.2.4.</span> <span class="toc-text"> 四、核心安全配置参数总表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.3.</span> <span class="toc-text"> 邮件通知设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.3.1.</span> <span class="toc-text"> 基础配置步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E9%82%AE%E7%AE%B1smtp%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-number">4.3.1.1.</span> <span class="toc-text"> 主流邮箱SMTP参数配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AEdocker%E9%83%A8%E7%BD%B2%E5%9C%BA%E6%99%AF"><span class="toc-number">4.3.1.2.</span> <span class="toc-text"> 环境变量配置（Docker部署场景）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E"><span class="toc-number">4.3.2.</span> <span class="toc-text"> 核心环境变量说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%A8%A1%E6%9D%BF"><span class="toc-number">4.3.3.</span> <span class="toc-text"> 自定义邮件模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-number">4.3.4.</span> <span class="toc-text"> 常见问题排查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">5.</span> <span class="toc-text"> 常见问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text"> 部署失败问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF"><span class="toc-number">5.1.1.</span> <span class="toc-text"> 环境变量配置错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#leancloud-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.2.</span> <span class="toc-text"> LeanCloud 应用配置问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%85%B3%E8%81%94%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.3.</span> <span class="toc-text"> 项目关联与部署方式问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%8E%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.4.</span> <span class="toc-text"> 缓存与依赖问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vercel-%E9%83%A8%E7%BD%B2%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.5.</span> <span class="toc-text"> Vercel 部署日志查看方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98"><span class="toc-number">5.2.</span> <span class="toc-text"> 评论不显示问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E6%A3%80%E6%9F%A5"><span class="toc-number">5.2.1.</span> <span class="toc-text"> 一、基础配置检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E4%B8%BB%E9%A2%98%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86"><span class="toc-number">5.2.2.</span> <span class="toc-text"> 二、主题兼容性处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E8%BF%9B%E9%98%B6%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%97%A0%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%8A%A5%E9%94%99%E6%97%B6"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 三、进阶问题排查（无控制台报错时）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98"><span class="toc-number">5.3.</span> <span class="toc-text"> 国内访问问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4%E7%BB%91%E5%AE%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">5.3.1.</span> <span class="toc-text"> 解决步骤：绑定自定义域名</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%9C%A8-vercel-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">5.3.1.1.</span> <span class="toc-text"> 1. 在 Vercel 中添加自定义域名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%9C%A8%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%95%86%E5%A4%84%E8%AE%BE%E7%BD%AE-cname-%E8%A7%A3%E6%9E%90"><span class="toc-number">5.3.1.2.</span> <span class="toc-text"> 2. 在域名服务商处设置 CNAME 解析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%9B%B4%E6%96%B0-hexo-%E9%85%8D%E7%BD%AE%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9C%B0%E5%9D%80"><span class="toc-number">5.3.1.3.</span> <span class="toc-text"> 3. 更新 Hexo 配置中的服务端地址</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo%E6%96%87%E7%AB%A0front-matter%E9%85%8D%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text"> Hexo文章Front-matter配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">6.1.</span> <span class="toc-text"> 一、完整配置示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">6.2.</span> <span class="toc-text"> 二、核心参数详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%8A%80%E5%B7%A7%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%A8%A1%E6%9D%BF"><span class="toc-number">6.3.</span> <span class="toc-text"> 三、自动配置技巧：修改文章模板</span></a></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
+  <div class="sidebar-author-name">微雨扬</div>
+  <div class="sidebar-description">欢迎光临</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">13</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">5</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+      <div id="aplayer" theme="var(--color-link)"></div>
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  <script>
+    function loadScripts(scripts, index) {
+      if (index < scripts.length) {
+        const script = scripts[index];
+        const src = script.getAttribute('src');
+
+        const loadScript = (scriptContent) => {
+          return new Promise((resolve, reject) => {
+            const scriptElement = document.createElement('script');
+            if (script.type) {
+              scriptElement.type = script.type;
+            }
+            if (script.src) {
+              scriptElement.src = script.src;
+              if (script.integrity) {
+                scriptElement.integrity = script.integrity;
+              }
+              if (script.crossOrigin) {
+                scriptElement.crossOrigin = script.crossOrigin;
+              }
+              scriptElement.onload = resolve;
+              scriptElement.onerror = reject;
+            }
+            if (scriptContent) {
+              scriptElement.text = scriptContent;
+            }
+            document.head.appendChild(scriptElement);
+            if (!script.src) {
+              resolve();
+            }
+          })
+          
+        }
+
+        ;(src ? loadScript() : loadScript(script.text))
+          .then(() => loadScripts(scripts, index + 1))
+          .catch(error => {
+            console.error(`Failed to load script: ${src || 'inline script'}`, error);
+            loadScripts(scripts, index + 1);
+          });
+      }
+    }
+    if (window.Pjax) {
+      Pjax.prototype.getElements = function() {
+        const i18nLanguages = window.REIMU_CONFIG.i18n_languages;
+        const baseUrl = window.REIMU_CONFIG.base;
+        let basePathname = new URL(baseUrl).pathname;
+        if (!basePathname.endsWith('/')) {
+          basePathname += '/';  
+        }
+        const currentUrl = window.location.href;
+        const currentPathname = new URL(currentUrl).pathname.replace(basePathname, '');
+        const aLinks = document.querySelectorAll('a[href]');
+        const pjaxLinks = [];
+        for(let i = 0; i < aLinks.length; i++) {
+          const aLink = aLinks[i];
+          const aLinkHref = aLink.getAttribute('href');
+          const isExternal = aLink.getAttribute('target') === '_blank' || aLink.getAttribute('rel')?.includes('noopener');
+          if (isExternal || aLinkHref.startsWith('mailto:') || aLinkHref.startsWith('tel:') || aLinkHref.startsWith('javascript:') || aLinkHref.startsWith("data:") || aLinkHref.startsWith("vbscript:")) {
+            continue;
+          }
+          if (!i18nLanguages) {
+            // 多语言功能未打开
+            pjaxLinks.push(aLink);
+            continue;
+          }
+
+          const absoluteUrl = new URL(aLinkHref, currentUrl).href;
+          const absolutePathname = new URL(absoluteUrl).pathname.replace(basePathname, '');
+
+          if (!absolutePathname || !currentPathname) {
+            pjaxLinks.push(aLink);
+            continue;
+          }
+
+          const currentLangIndex = i18nLanguages.findIndex(lang => currentPathname.startsWith(lang));
+          if (currentLangIndex > -1) {
+            // 当前属于多语言站点
+            const absoluteLangIndex = i18nLanguages.findIndex(lang => absolutePathname.startsWith(lang));
+            if (absoluteLangIndex === currentLangIndex) {
+              // 同一语言站点，可以使用 pjax
+              pjaxLinks.push(aLink);
+            }
+          } else {
+            // 当前属于默认语言站点
+            const absoluteLangIndex = i18nLanguages.findIndex(lang => absolutePathname.startsWith(lang));
+            if (absoluteLangIndex === -1) {
+              // 同一语言站点，可以使用 pjax
+              pjaxLinks.push(aLink);
+            }
+          }
+        }
+        return pjaxLinks;
+      }
+    }
+    window.Pjax && new window.Pjax({
+      selectors: [
+        "#header>img",
+        "#header>picture",
+        "head title",
+        "#header-title",
+        "#subtitle-wrap",
+        "#main",
+        "#content",
+        ".sidebar-widget",
+        ".sidebar-wrapper",
+        ".sidebar-wrapper-container",
+        '#mobile-nav',
+        '#lazy-script',
+        '#i18n-nav'
+      ],
+      switches: {
+        ".sidebar-wrapper-container": function(oldEl, newEl) {
+          oldEl.className = newEl.className;
+          this.onSwitch();
+        },
+        "#content": function(oldEl, newEl) {
+          // for sidebar change
+          oldEl.className = newEl.className;
+          this.onSwitch();
+        },
+        "#header-title": Pjax.switches.outerHTML,
+        "#subtitle-wrap": Pjax.switches.outerHTML,
+        "#main": function(oldEl, newEl) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.outerHTML = newEl.outerHTML
+          this.onSwitch()
+        },
+        "#mobile-nav": Pjax.switches.outerHTML,
+        '#lazy-script': function(oldEl, newEl) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.innerHTML = newEl.innerHTML
+          this.onSwitch()
+        },
+      },
+      cacheBust: false
+    })
+  </script>
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha384-aD7FsuQkS1ohgFKY41fJfeA+Wd&#x2F;QRNnrOd9Bs58K3FzKdJJv8yPnYU8Tnp5z1agS" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "微雨扬",
+          title: "使用Vercel部署Waline评论系统到Hexo博客的完整教程",
+          url: "https://xy-0735.github.io/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/",
+          excerpt: "",
+          description: "",
+          stripContent: " 简介 最近有很多朋友私信问到评论系统的问题，对于静态博客用户而言，评论系统的搭建常常陷入&amp;quot;便捷与安全不可兼得&amp;quot;的困境：无后端方案虽轻量却存在数据泄露风险，传统带后端系统又门槛过高。而Waline作为基于Valine开发的新一代评论系统，通过&amp;quot;带后端架构+轻量化部署&amp;quot;的创新模式，完美平衡了安全性与易用性，成为Hexo等静态博客的理想选择，本网站也采用此评论系统，所以参考了很多文献资料写了这篇文章。  Waline：让评论系统既安全又强大 Waline在继承",
+          date: "Mon Sep 01 2025 14:18:42 GMT+0800",
+          updated: "Mon Sep 01 2025 15:35:16 GMT+0800",
+          cover: "/images/%E8%BE%B9%E6%A1%86%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0%E7%A0%94%E7%A9%B6.jpg",
+        };
+      </script>
+       
+    
+      
+<script src="https://npm.webcache.cn/mermaid@11.6.0/dist/mermaid.min.js" integrity="sha384-zkWMJO4sgpPUzyuOgDx8HB&#x2F;K55glbAwajEpk1Go2NWRuPkPA&#x2F;wIhoEJTuSkmOYrV" crossorigin="anonymous" data-pjax></script>
+
+      
+<script src="https://npm.webcache.cn/dompurify@3.2.4/dist/purify.min.js" integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
+
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                let els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute('data-original-code'))
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/@zumer/snapdom@1.9.9/dist/snapdom.min.js" integrity="sha384-taz9Bq0wPqLsuiB4ix4blTozt&#x2F;y84cjbMX5ZWkfPPjpVBme8M&#x2F;jWopanNBcdH&#x2F;qp" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "",
+              appKey: "",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'www.xyyblogpl.online',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: '',
+              region: '',
+              urls: [
+                '/about/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', ''); 
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous"></script>
+
+  
+    <script>
+      var isMobile = window.matchMedia('(max-width: 959px)').matches;
+      if (isMobile) {
+      const aplayer = _$('#aplayer');
+        if (aplayer) {
+          const aside = aplayer.parentNode;
+          if (aside?.tagName === 'ASIDE') {
+            aplayer.removeAttribute('data-aos');
+            aside.removeChild(aplayer);
+            document.body.appendChild(aplayer);
+          }
+        }
+      }
+      const ap = new APlayer({
+        theme: "var(--color-link)",
+        container: document.getElementById('aplayer'),
+        audio: [{"name":"今天不是明天","artist":"feat. 兰音Reine","url":"/audio/今天不是明天.mp3","cover":"/images/今天不是明天.jpg","lrc":"/lrc/今天不是明天 (feat. 兰音Reine)-电音联盟&音波狂潮&兰音Reine&V-Festival&PIKASONIC-歌词.lrc"},{"name":"One step Ahead","artist":"AxR","url":"/audio/One step Ahead.mp3","cover":"/images/One step Ahead.jpg","lrc":"/lrc/One Step Ahead-AxR-歌词.lrc"},{"name":"弄舌","artist":"王子健","url":"/audio/弄舌.mp3","cover":"/images/弄舌.jpg","lrc":"/lrc/弄舌.lrc"},{"name":"晴天","artist":"周杰伦","url":"/audio/qingtian.mp3","cover":"/images/qingtian.jpg","lrc":"/lrc/晴天.lrc"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"},{"name":"counting stars","artist":"Onerepublic","url":"/audio/counting stars.mp3","cover":"/images/counting stars.jpg","lrc":"/lrc/Counting Stars-OneRepublic-歌词.lrc"},{"name":"introduction","artist":"phigros","url":"/audio/introduction.mp3","cover":"/images/introduction.jpg"},{"name":"壁上观","artist":"一棵小葱","url":"/audio/壁上观.mp3","cover":"/images/壁上观.jpg","lrc":"/lrc/壁上观.lrc"},{"name":"lemon","artist":"米津玄师","url":"/audio/lemon.mp3","cover":"/images/lemon.jpg","lrc":"/lrc/Lemon-米津玄師-歌词.lrc"},{"name":"Born Again","artist":"LISA&Doja Cat&RAYE","url":"/audio/Born Again.mp3","cover":"/images/Born Again.jpg","lrc":"/lrc/Born Again-LISA&Doja Cat&RAYE-歌词.lrc"},{"name":"Doar Cu Tine","artist":"ProdbyMend","url":"/audio/Doar Cu Tine.mp3","cover":"/images/Doar Cu Tine.jpg","lrc":"/lrc/Doar Cu Tine (雷军进行曲)-ProdbyMend-歌词.lrc"},{"name":"One Last Kiss","artist":"宇多田ヒカル","url":"/audio/One Last Kiss.mp3","cover":"/images/One Last Kiss.jpg","lrc":"/lrc/One Last Kiss-宇多田ヒカル-歌词.lrc"},{"name":"Wake way","artist":"DJ小布","url":"/audio/Wake way.mp3","cover":"/images/Wake way.jpg","lrc":"/lrc/Wake way-DJ小布-歌词.lrc"},{"name":"鸟之诗","artist":"Lia","url":"/audio/鸟之诗.mp3","cover":"/images/鸟之诗.jpg","lrc":"/lrc/鳥の詩 (鸟之诗) (Single Version)-Lia-歌词.lrc"}] || [],
+        fixed: isMobile ? true : (true || false),
+        autoplay: true || false,
+        loop: 'All' || 'all',
+        order: 'list' || 'list',
+        preload: 'auto' || 'auto',
+        volume: 0.7 || 0.7,
+        mutex: null || true,
+        listFolded: null || false,
+        lrcType: 3 || 0,
+      });
+    </script>
+  
+
+
+
+
+
+    
+  </body>
+  </html>
+
