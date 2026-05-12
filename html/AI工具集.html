@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI导航 · 发现全球智能应用与API平台</title>
+  <style>
+    :root {
+      /* 杂志风+自然系配色 */
+      --bg: #faf9f7;
+      --card-bg: #ffffff;
+      --card-hover: #f5f4f2;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-tertiary: #999999;
+      --border: #e8e6e3;
+      --border-light: #f0eeeb;
+      
+      /* 品牌色系 - 森林绿+琥珀金 */
+      --accent: #2d5a47;
+      --accent-light: #e8f0ed;
+      --accent-hover: #234539;
+      --gold: #d4a574;
+      --gold-light: #faf4ef;
+      --coral: #e07a5f;
+      --coral-light: #fef0ed;
+      
+      /* 标签色 */
+      --tag-bg: #f5f4f2;
+      --tag-text: #555555;
+      --free-bg: #e8f5e9;
+      --free-text: #2e7d32;
+      --paid-bg: #fff8e1;
+      --paid-text: #f57f17;
+      --partial-bg: #e3f2fd;
+      --partial-text: #1565c0;
+      
+      /* 区域标签 */
+      --domestic-bg: #fce4ec;
+      --domestic-text: #c2185b;
+      --overseas-bg: #e8eaf6;
+      --overseas-text: #3949ab;
+      --nomagic-bg: #e8f5e9;
+      --nomagic-text: #2e7d32;
+      --partial-region-bg: #fff3e0;
+      --partial-region-text: #e65100;
+      
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 头部 - 紧凑设计 */
+    .header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .logo-text h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .logo-text span {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 400;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-search {
+      position: relative;
+      min-width: 180px;
+      max-width: 260px;
+    }
+    .header-search .search-input {
+      width: 100%;
+      padding: 7px 14px 7px 34px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      outline: none;
+      background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .header-search .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(45,90,71,0.1);
+    }
+    .header-search .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+    .model-count {
+      background: var(--gold-light);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .filter-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .filter-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-toggle.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Tab切换栏 */
+    .tab-bar {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .tab-bar-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+    }
+    .tab-btn {
+      padding: 14px 28px;
+      border: none;
+      background: transparent;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px 3px 0 0;
+      transition: width 0.25s ease;
+    }
+    .tab-btn:hover {
+      color: var(--accent);
+    }
+    .tab-btn.active {
+      color: var(--accent);
+    }
+    .tab-btn.active::after {
+      width: 60%;
+    }
+    .tab-btn .tab-icon {
+      font-size: 1.1rem;
+    }
+
+    /* 浮动筛选栏 */
+    .filter-bar {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      position: sticky;
+      top: 73px;
+      z-index: 90;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .filter-bar.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .filter-bar-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .filter-btn {
+      padding: 5px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* 内容区域 */
+    .content-section {
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+    .content-section.active {
+      display: block;
+    }
+
+    /* 主容器 */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* 工具栏 */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .result-info {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .result-info strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .reset-link {
+      font-size: 0.8rem;
+      color: var(--coral);
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .reset-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 网格布局 */
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    /* 卡片设计 */
+    .model-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--border-light);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .model-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--accent));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .model-card:hover {
+      border-color: var(--border);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    .model-card:hover::before {
+      opacity: 1;
+    }
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .model-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .card-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .model-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .company {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+    }
+    .desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .tag {
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .tag-type { background: var(--tag-bg); color: var(--tag-text); }
+    .tag-free { background: var(--free-bg); color: var(--free-text); }
+    .tag-paid { background: var(--paid-bg); color: var(--paid-text); }
+    .tag-partial { background: var(--partial-bg); color: var(--partial-text); }
+    .tag-domestic { background: var(--domestic-bg); color: var(--domestic-text); }
+    .tag-overseas { background: var(--overseas-bg); color: var(--overseas-text); }
+    .tag-nomagic { background: var(--nomagic-bg); color: var(--nomagic-text); }
+    .tag-partial-region { background: var(--partial-region-bg); color: var(--partial-region-text); }
+    
+    .card-footer {
+      display: flex;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-light);
+      margin-top: auto;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      flex: 1;
+      justify-content: center;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent-light);
+    }
+
+    /* 空状态 */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-tertiary);
+      display: none;
+    }
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    /* 返回顶部按钮 */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 80;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* 底部 */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-light);
+      margin-top: 40px;
+    }
+    .footer-note {
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      .header {
+        padding: 12px 16px;
+      }
+      .header-meta {
+        gap: 8px;
+      }
+      .model-count {
+        display: none;
+      }
+      .tab-bar {
+        padding: 0 16px;
+        overflow-x: auto;
+      }
+      .tab-bar-inner {
+        gap: 0;
+      }
+      .tab-btn {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+      }
+      .filter-bar {
+        top: 61px;
+        padding: 12px 16px;
+      }
+      .filter-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .filter-group {
+        width: 100%;
+      }
+      .filter-buttons {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+      .filter-btn {
+        flex-shrink: 0;
+      }
+      .header-search {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+        order: 10;
+      }
+      .header-search .search-input {
+        width: 100%;
+      }
+      .container {
+        padding: 16px;
+      }
+      .model-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .model-card {
+        padding: 16px;
+      }
+      .back-to-top {
+        bottom: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    /* 动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .model-card {
+      animation: fadeIn 0.3s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">🧭</div>
+        <div class="logo-text">
+          <h1>AI导航</h1>
+          <span>发现全球智能应用</span>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-search">
+          <span class="search-icon">🔎</span>
+          <input type="text" class="search-input" id="searchInputHeader" placeholder="搜索名称、公司...">
+        </div>
+        <span class="model-count" id="totalBadge">收录 <strong>0</strong> 款</span>
+        <button class="filter-toggle active" id="filterToggle">
+          <span>🔍</span> 筛选器
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tab切换栏 -->
+  <div class="tab-bar">
+    <div class="tab-bar-inner">
+      <button class="tab-btn active" data-tab="tools">
+        <span class="tab-icon">🛠️</span> AI工具集
+      </button>
+      <button class="tab-btn" data-tab="api">
+        <span class="tab-icon">⚡</span> API平台
+      </button>
+    </div>
+  </div>
+
+  <!-- AI工具集筛选器 -->
+  <div class="filter-bar" id="toolsFilterBar">
+    <div class="filter-bar-inner">
+      <div class="filter-row">
+        <div class="filter-group">
+          <span class="filter-label">📂 类型</span>
+          <div class="filter-buttons" id="toolsTypeFilters">
+            <button class="filter-btn active" data-type="all">全部</button>
+            <button class="filter-btn" data-type="文本">📝 文本</button>
+            <button class="filter-btn" data-type="编程">💻 编程</button>
+            <button class="filter-btn" data-type="图像">🎨 图像</button>
+            <button class="filter-btn" data-type="视频">🎬 视频</button>
+            <button class="filter-btn" data-type="音频">🎵 音频</button>
+            <button class="filter-btn" data-type="搜索">🔍 搜索</button>
+            <button class="filter-btn" data-type="智能体">🤖 智能体</button>
+            <button class="filter-btn" data-type="3D">🎲 3D</button>
+            <button class="filter-btn" data-type="办公">📄 办公</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">💰 费用</span>
+          <div class="filter-buttons" id="toolsPriceFilters">
+            <button class="filter-btn active" data-price="all">全部</button>
+            <button class="filter-btn" data-price="免费">🆓 免费</button>
+            <button class="filter-btn" data-price="部分免费">🟡 部分免费</button>
+            <button class="filter-btn" data-price="付费">💎 付费</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">🌍 访问</span>
+          <div class="filter-buttons" id="toolsRegionFilters">
+            <button class="filter-btn active" data-region="all">全部</button>
+            <button class="filter-btn" data-region="国内无需魔法">🇨🇳 国内直连</button>
+            <button class="filter-btn" data-region="国外需要魔法">🌐 需魔法</button>
+            <button class="filter-btn" data-region="部分受限">⚠️ 部分受限</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API平台筛选器 -->
+  <div class="filter-bar" id="apiFilterBar" style="display:none;">
+    <div class="filter-bar-inner">
+      <div class="filter-row">
+        <div class="filter-group">
+          <span class="filter-label">📂 类型</span>
+          <div class="filter-buttons" id="apiTypeFilters">
+            <button class="filter-btn active" data-type="all">全部</button>
+            <button class="filter-btn" data-type="文本生成">📝 文本生成</button>
+            <button class="filter-btn" data-type="代码生成">💻 代码生成</button>
+            <button class="filter-btn" data-type="图像生成">🎨 图像生成</button>
+            <button class="filter-btn" data-type="视频生成">🎬 视频生成</button>
+            <button class="filter-btn" data-type="音频生成">🎵 音频生成</button>
+            <button class="filter-btn" data-type="嵌入/向量化">🔢 嵌入/向量化</button>
+            <button class="filter-btn" data-type="多模态">✨ 多模态</button>
+            <button class="filter-btn" data-type="聚合/路由">🔄 聚合/路由</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">💰 费用</span>
+          <div class="filter-buttons" id="apiPriceFilters">
+            <button class="filter-btn active" data-price="all">全部</button>
+            <button class="filter-btn" data-price="免费">🆓 免费</button>
+            <button class="filter-btn" data-price="部分免费">🟡 部分免费</button>
+            <button class="filter-btn" data-price="付费">💎 付费</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">🌍 访问</span>
+          <div class="filter-buttons" id="apiRegionFilters">
+            <button class="filter-btn active" data-region="all">全部</button>
+            <button class="filter-btn" data-region="国内无需魔法">🇨🇳 国内直连</button>
+            <button class="filter-btn" data-region="国外需要魔法">🌐 需魔法</button>
+            <button class="filter-btn" data-region="部分受限">⚠️ 部分受限</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI工具集内容 -->
+  <div class="content-section active" id="toolsSection">
+    <div class="container">
+      <div class="toolbar">
+        <span class="result-info" id="toolsResultCount">显示 <strong>0</strong> 个结果</span>
+        <a class="reset-link" id="toolsResetBtn">↺ 重置筛选</a>
+      </div>
+      <div class="model-grid" id="toolsModelGrid"></div>
+      <div class="empty-state" id="toolsEmptyState">
+        <div class="empty-state-icon">🔍</div>
+        <p>没有匹配的AI工具，试试其他条件</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- API平台内容 -->
+  <div class="content-section" id="apiSection">
+    <div class="container">
+      <div class="toolbar">
+        <span class="result-info" id="apiResultCount">显示 <strong>0</strong> 个结果</span>
+        <a class="reset-link" id="apiResetBtn">↺ 重置筛选</a>
+      </div>
+      <div class="model-grid" id="apiModelGrid"></div>
+      <div class="empty-state" id="apiEmptyState">
+        <div class="empty-state-icon">🔍</div>
+        <p>没有匹配的API平台，试试其他条件</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-note">
+      💡 数据基于公开信息整理，请以各平台官网为准。<br>
+      本页面仅提供导航服务，不提供任何代理访问方式。
+    </p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="返回顶部">↑</button>
+
+  <script>
+    (function() {
+      // ========== AI工具数据 ==========
+      const tools = [
+        // ========== 文本/对话类 ==========
+        { id:1,name:"ChatGPT",company:"OpenAI",url:"https://chatgpt.com",icon:"🧠",color:"#10a37f",desc:"通用对话AI标杆，多模态理解，插件生态丰富。",types:["文本","图像","编程"],price:"部分免费",region:"国外需要魔法",api:"https://platform.openai.com"},
+        { id:2,name:"Claude",company:"Anthropic",url:"https://claude.ai",icon:"🟠",color:"#d97706",desc:"安全长上下文，擅长代码与深度分析，Claude Code强大。",types:["文本","编程","图像"],price:"部分免费",region:"国外需要魔法",api:"https://console.anthropic.com"},
+        { id:3,name:"GPT-4o",company:"OpenAI",url:"https://chatgpt.com",icon:"⚡",color:"#10a37f",desc:"原生多模态，实时对话与视觉理解兼备。",types:["文本","图像","视频","音频","编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:4,name:"o1",company:"OpenAI",url:"https://openai.com/o1",icon:"🧩",color:"#1a1a1a",desc:"推理链专家，复杂数学与科学问题。",types:["文本","编程"],price:"付费",region:"国外需要魔法"},
+        { id:5,name:"o3",company:"OpenAI",url:"https://openai.com/o3",icon:"🔮",color:"#1a1a1a",desc:"最新推理模型，性能超越o1。",types:["文本","编程"],price:"付费",region:"国外需要魔法"},
+        { id:6,name:"Claude Opus",company:"Anthropic",url:"https://claude.ai",icon:"👑",color:"#d97706",desc:"最强推理能力，复杂任务首选。",types:["文本","编程"],price:"付费",region:"国外需要魔法"},
+        { id:7,name:"Claude Sonnet",company:"Anthropic",url:"https://claude.ai",icon:"✨",color:"#d97706",desc:"平衡性能与速度，日常工作流。",types:["文本","编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:8,name:"Gemini 2.0",company:"Google",url:"https://gemini.google.com",icon:"🔵",color:"#4285f4",desc:"谷歌最新多模态，整合搜索/地图。",types:["文本","图像","视频","音频","编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:9,name:"Gemini Ultra",company:"Google",url:"https://gemini.google.com",icon:"🌟",color:"#4285f4",desc:"旗舰级性能，复杂推理与编码。",types:["文本","编程","图像"],price:"付费",region:"国外需要魔法"},
+        { id:10,name:"Grok 2",company:"xAI",url:"https://x.ai",icon:"⚡",color:"#000",desc:"实时X数据，风格幽默犀利。",types:["文本","图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:11,name:"DeepSeek-V3",company:"深度求索",url:"https://chat.deepseek.com",icon:"🐋",color:"#4f46e5",desc:"国产开源旗舰，中英文能力出色。",types:["文本","编程"],price:"免费",region:"国内无需魔法",api:"https://platform.deepseek.com"},
+        { id:12,name:"DeepSeek-R1",company:"深度求索",url:"https://chat.deepseek.com",icon:"🔬",color:"#4f46e5",desc:"推理模型，数学代码能力顶级。",types:["文本","编程"],price:"免费",region:"国内无需魔法"},
+        { id:13,name:"Kimi",company:"月之暗面",url:"https://kimi.moonshot.cn",icon:"🌙",color:"#7c3aed",desc:"200万字超长上下文，论文精读利器。",types:["文本","编程","搜索"],price:"部分免费",region:"国内无需魔法",api:"https://platform.moonshot.cn"},
+        { id:14,name:"豆包",company:"字节跳动",url:"https://www.doubao.com",icon:"🫘",color:"#e84242",desc:"集成抖音生态，多模态内容创作。",types:["文本","图像","视频"],price:"部分免费",region:"国内无需魔法"},
+        { id:15,name:"通义千问",company:"阿里云",url:"https://tongyi.aliyun.com",icon:"☁️",color:"#ff6a00",desc:"开源模型下载破10亿次。",types:["文本","编程","图像","视频","音频"],price:"部分免费",region:"国内无需魔法",api:"https://dashscope.aliyun.com"},
+        { id:16,name:"文心一言",company:"百度",url:"https://yiyan.baidu.com",icon:"💬",color:"#2932e1",desc:"知识增强，中文写作与逻辑推理。",types:["文本","图像","编程"],price:"部分免费",region:"国内无需魔法"},
+        { id:17,name:"智谱清言",company:"智谱AI",url:"https://chatglm.cn",icon:"🎓",color:"#2563eb",desc:"清华系，GLM系列开源先锋。",types:["文本","编程","图像","视频","搜索"],price:"部分免费",region:"国内无需魔法",api:"https://open.bigmodel.cn"},
+        { id:18,name:"讯飞星火",company:"科大讯飞",url:"https://xinghuo.xfyun.cn",icon:"🔥",color:"#e86427",desc:"语音识别/合成领先，教育医疗深入。",types:["文本","音频","图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:19,name:"腾讯元宝",company:"腾讯",url:"https://yuanbao.tencent.com",icon:"🐧",color:"#09b864",desc:"腾讯全能力大模型，实时联网。",types:["文本","图像","视频"],price:"部分免费",region:"国内无需魔法"},
+        { id:20,name:"天工AI",company:"昆仑万维",url:"https://www.tiangong.cn",icon:"🛠️",color:"#e02626",desc:"搜索+创作，接入DeepSeek联网。",types:["文本","搜索","编程"],price:"部分免费",region:"国内无需魔法"},
+        { id:21,name:"百川智能",company:"百川智能",url:"https://www.baichuan-ai.com",icon:"🌊",color:"#0284c7",desc:"开源可私有化，法律金融垂直。",types:["文本","编程"],price:"部分免费",region:"国内无需魔法"},
+        { id:22,name:"Qwen3",company:"阿里云",url:"https://qwenlm.ai",icon:"❓",color:"#ff6a00",desc:"最新开源旗舰，中英文超强的推理。",types:["文本","编程"],price:"免费",region:"部分受限"},
+        { id:23,name:"GLM-4",company:"智谱AI",url:"https://chatglm.cn",icon:"🎓",color:"#2563eb",desc:"国产旗舰，多模态与Agent能力。",types:["文本","编程","图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:24,name:"海螺AI",company:"MiniMax",url:"https://hailuoai.video",icon:"🐚",color:"#6366f1",desc:"长文本对话与视频创作能力。",types:["文本","视频"],price:"部分免费",region:"国内无需魔法"},
+        { id:25,name:"零一万物Yi",company:"零一万物",url:"https://01.ai",icon:"1️⃣",color:"#f59e0b",desc:"超长上下文，开源中英双语。",types:["文本","编程"],price:"部分免费",region:"国内无需魔法"},
+        { id:26,name:"阶跃星辰Step",company:"阶跃星辰",url:"https://stepchat.cn",icon:"🪜",color:"#8b5cf6",desc:"多模态大模型，联网搜索。",types:["文本","图像","视频"],price:"部分免费",region:"国内无需魔法"},
+        { id:27,name:"360智脑",company:"360",url:"https://ai.360.com",icon:"🔮",color:"#0070f3",desc:"360安全大模型，搜索增强。",types:["文本","图像","搜索"],price:"部分免费",region:"国内无需魔法"},
+        { id:28,name:"百小应",company:"百川智能",url:"https://ying.ai",icon:"💎",color:"#0284c7",desc:"智能搜索与助手，专业问答。",types:["文本","搜索"],price:"部分免费",region:"国内无需魔法"},
+        { id:29,name:"万知",company:"零一万物",url:"https://www.wanzhi.com",icon:"📚",color:"#f59e0b",desc:"AI知识问答与文档理解。",types:["文本"],price:"部分免费",region:"国内无需魔法"},
+        { id:30,name:"跃问",company:"阶跃星辰",url:"https://yuewen.cn",icon:"❓",color:"#8b5cf6",desc:"多模态理解与创作助手。",types:["文本","图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:31,name:"Llama 3.1",company:"Meta",url:"https://llama.meta.com",icon:"🦙",color:"#0668e1",desc:"开源标杆，4050亿参数。",types:["文本","编程"],price:"免费",region:"部分受限"},
+        { id:32,name:"Mistral Large",company:"Mistral AI",url:"https://mistral.ai",icon:"🌪️",color:"#f97316",desc:"欧洲领先，多语言能力优秀。",types:["文本","编程"],price:"付费",region:"国外需要魔法"},
+        { id:33,name:"Command R+",company:"Cohere",url:"https://cohere.com/command",icon:"⚔️",color:"#39594d",desc:"企业级RAG专用，性能出色。",types:["文本","搜索"],price:"部分免费",region:"国外需要魔法"},
+        { id:34,name:"Jamba",company:"AI21",url:"https://ai21.com/jamba",icon:"🌴",color:"#2d5a47",desc:"混合SSM-Transformer架构。",types:["文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:35,name:"Phi-3",company:"Microsoft",url:"https://azure.microsoft.com/phi-3",icon:"Φ",color:"#0078d4",desc:"小而强，高性能推理。",types:["文本","编程"],price:"免费",region:"国外需要魔法"},
+        { id:36,name:"Gemma 2",company:"Google",url:"https://ai.google.dev/gemma",icon:"💎",color:"#4285f4",desc:"开源轻量级，学术友好。",types:["文本","编程"],price:"免费",region:"部分受限"},
+        { id:37,name:"Yi-Lightning",company:"零一万物",url:"https://01.ai",icon:"⚡",color:"#f59e0b",desc:"高速推理模型，响应极快。",types:["文本"],price:"部分免费",region:"国内无需魔法"},
+        { id:38,name:"InternLM",company:"上海AI Lab",url:"https://internlm.org",icon:"📚",color:"#1a1a1a",desc:"书生大模型，学术开源。",types:["文本","编程"],price:"免费",region:"部分受限"},
+        { id:39,name:"Cohere",company:"Cohere",url:"https://cohere.com",icon:"🔄",color:"#39594d",desc:"企业级嵌入与RAG。",types:["文本","搜索"],price:"部分免费",region:"国外需要魔法"},
+        { id:40,name:"Jina AI",company:"Jina AI",url:"https://jina.ai",icon:"🧩",color:"#0099ff",desc:"神经搜索与多模态嵌入。",types:["文本","搜索"],price:"部分免费",region:"部分受限"},
+
+        // ========== 编程类 ==========
+        { id:50,name:"Cursor",company:"Anysphere",url:"https://cursor.com",icon:"➡️",color:"#000",desc:"AI-first编辑器，多模型，100万Token上下文。",types:["编程"],price:"部分免费",region:"部分受限"},
+        { id:51,name:"GitHub Copilot",company:"GitHub/OpenAI",url:"https://github.com/features/copilot",icon:"🤖",color:"#181717",desc:"IDE深度集成，代码补全与生成。",types:["编程"],price:"付费",region:"部分受限"},
+        { id:52,name:"Trae",company:"Trae AI",url:"https://www.trae.ai",icon:"🚀",color:"#2d5a47",desc:"国产AI IDE，智能编程助手。",types:["编程"],price:"免费",region:"国内无需魔法"},
+        { id:53,name:"Augment Code",company:"Augment",url:"https://www.augmentcode.com",icon:"🔧",color:"#6366f1",desc:"企业级AI编程，安全代码生成。",types:["编程"],price:"付费",region:"国外需要魔法"},
+        { id:54,name:"Cody",company:"Sourcegraph",url:"https://sourcegraph.com/cody",icon:"🐕",color:"#00a4ef",desc:"代码智能，代码库理解。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:55,name:"Supermaven",company:"Supermaven",url:"https://supermaven.com",icon:"⚡",color:"#f97316",desc:"超快代码补全，低延迟。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:56,name:"Pieces",company:"Pieces",url:"https://pieces.app",icon:"🔌",color:"#6366f1",desc:"代码片段管理与AI辅助。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:57,name:"CodeWhisperer",company:"AWS",url:"https://aws.amazon.com/codewhisperer",icon:"🟧",color:"#ff9900",desc:"亚马逊AI编程，Q Developer前身。",types:["编程"],price:"免费",region:"国外需要魔法"},
+        { id:58,name:"Devin",company:"Cognition",url:"https://cognition.ai",icon:"🧑‍💻",color:"#1a1a1a",desc:"AI软件工程师，自主完成项目。",types:["编程"],price:"付费",region:"国外需要魔法"},
+        { id:59,name:"Sweep",company:"Sweep",url:"https://sweep.dev",icon:"🧹",color:"#6366f1",desc:"AI代码修复与功能开发。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:60,name:"Bito",company:"Bito",url:"https://bito.ai",icon:"💡",color:"#f97316",desc:"代码审查与测试生成。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:61,name:"CodeRabbit",company:"CodeRabbit",url:"https://coderabbit.ai",icon:"🐰",color:"#e07a5f",desc:"AI代码审查与重构。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:62,name:"Aider",company:"Aider",url:"https://aider.chat",icon:"🤝",color:"#2d5a47",desc:"终端AI编程，配对开发。",types:["编程"],price:"免费",region:"部分受限"},
+        { id:63,name:"Windsurf",company:"Codeium",url:"https://codeium.com/windsurf",icon:"🌊",color:"#14b8a6",desc:"代理式IDE，自动重构修复。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:64,name:"通义灵码",company:"阿里云",url:"https://tongyi.aliyun.com/lingma",icon:"🧬",color:"#ff6a00",desc:"阿里智能代码助手，免费使用。",types:["编程"],price:"免费",region:"国内无需魔法"},
+        { id:65,name:"CodeGeeX",company:"智谱AI",url:"https://codegeex.cn",icon:"🦎",color:"#2563eb",desc:"开源AI编程，国产IDE友好。",types:["编程"],price:"免费",region:"国内无需魔法"},
+        { id:66,name:"TabNine",company:"TabNine",url:"https://www.tabnine.com",icon:"9️⃣",color:"#4b90e2",desc:"本地+云端混合，隐私保护。",types:["编程"],price:"部分免费",region:"国外需要魔法"},
+        { id:67,name:"Amazon Q",company:"AWS",url:"https://aws.amazon.com/q",icon:"🟧",color:"#ff9900",desc:"企业级AI助手，代码转型。",types:["编程","文本"],price:"付费",region:"国外需要魔法"},
+
+        // ========== 图像类 ==========
+        { id:80,name:"Midjourney",company:"Midjourney",url:"https://www.midjourney.com",icon:"⛵",color:"#1a1a2e",desc:"艺术风格生成标杆，细腻画质。",types:["图像"],price:"付费",region:"国外需要魔法"},
+        { id:81,name:"DALL·E 3",company:"OpenAI",url:"https://openai.com/dall-e-3",icon:"🎨",color:"#10a37f",desc:"语义理解强，集成ChatGPT。",types:["图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:82,name:"Flux",company:"Black Forest Labs",url:"https://blackforestlabs.ai",icon:"⚡",color:"#000",desc:"最新开源图像模型，画质极致。",types:["图像"],price:"免费",region:"部分受限"},
+        { id:83,name:"Ideogram",company:"Ideogram",url:"https://ideogram.ai",icon:"✍️",color:"#6366f1",desc:"文字渲染出色，logo设计强。",types:["图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:84,name:"Stable Diffusion",company:"Stability AI",url:"https://stablediffusionweb.com",icon:"🌈",color:"#9333ea",desc:"开源标杆，支持LoRA微调。",types:["图像"],price:"免费",region:"部分受限"},
+        { id:85,name:"Playground AI",company:"Playground",url:"https://playgroundai.com",icon:"🎪",color:"#f97316",desc:"每日免费额度，社区活跃。",types:["图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:86,name:"Leonardo.AI",company:"Leonardo",url:"https://leonardo.ai",icon:"🦁",color:"#f59e0b",desc:"游戏素材，风格控制精细。",types:["图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:87,name:"Tensor.art",company:"Tensor.art",url:"https://tensor.art",icon:"🎨",color:"#8b5cf6",desc:"AI图像社区，模型丰富。",types:["图像"],price:"部分免费",region:"部分受限"},
+        { id:88,name:"Civitai",company:"Civitai",url:"https://civitai.com",icon:"🏛️",color:"#f97316",desc:"模型分享平台，LoRA天堂。",types:["图像"],price:"免费",region:"部分受限"},
+        { id:89,name:"LiblibAI",company:"哩布哩布",url:"https://www.liblibai.com",icon:"📚",color:"#10a37f",desc:"国内AI图像社区，模型丰富。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:90,name:"6pen",company:"6pen",url:"https://6pen.art",icon:"✏️",color:"#6366f1",desc:"国产AI绘画，支持多种模型。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:91,name:"无界AI",company:"无界版图",url:"https://www.wujieai.com",icon:"🌌",color:"#2d5a47",desc:"国产图像生成，咒语优化。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:92,name:"堆糖AI",company:"堆糖",url:"https://www.duitang.com",icon:"🍬",color:"#f472b6",desc:"二次元风格，画质细腻。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:93,name:"美图AI",company:"美图",url:"https://www.meitu.com",icon:"📷",color:"#ff6a9e",desc:"人像精修，海报设计。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:94,name:"酷熊AI",company:"酷熊科技",url:"https://kuxiongyin.com",icon:"🐻",color:"#f97316",desc:"国内图像生成工具。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:95,name:"Viggle AI",company:"Viggle",url:"https://viggle.ai",icon:"🎭",color:"#6366f1",desc:"角色动画，动作生成。",types:["图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:96,name:"Adobe Firefly",company:"Adobe",url:"https://www.adobe.com/products/firefly.html",icon:"🔥",color:"#ff0000",desc:"商用安全，深度集成PS。",types:["图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:97,name:"文心一格",company:"百度",url:"https://yige.baidu.com",icon:"🖼️",color:"#2932e1",desc:"百度AI绘画，海报插画。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:98,name:"通义万相",company:"阿里云",url:"https://tongyi.aliyun.com/wanxiang",icon:"🖌️",color:"#ff6a00",desc:"阿里图像生成，电商设计。",types:["图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:99,name:"即梦",company:"字节跳动",url:"https://jimeng.jianying.com",icon:"💫",color:"#e84242",desc:"抖音旗下，画风细腻二次元。",types:["图像","视频"],price:"部分免费",region:"国内无需魔法"},
+
+        // ========== 视频类 ==========
+        { id:110,name:"Sora",company:"OpenAI",url:"https://openai.com/sora",icon:"🎥",color:"#10a37f",desc:"文生视频前沿，语义理解出色。",types:["视频"],price:"付费",region:"国外需要魔法"},
+        { id:111,name:"Runway",company:"Runway",url:"https://runwayml.com",icon:"🏃",color:"#000",desc:"专业视频创作，Gen-3/4风格迁移。",types:["视频","图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:112,name:"可灵Kling 2.0",company:"快手",url:"https://klingai.com",icon:"⚡",color:"#ff4401",desc:"1080p最长2分钟，图生视频领先。",types:["视频","图像"],price:"部分免费",region:"国内无需魔法"},
+        { id:113,name:"Pika 2.0",company:"Pika",url:"https://pika.art",icon:"🥧",color:"#ec4899",desc:"动画风格，Discord创作社区。",types:["视频"],price:"部分免费",region:"国外需要魔法"},
+        { id:114,name:"Vidu",company:"生数科技",url:"https://www.vidu.studio",icon:"🎞️",color:"#6366f1",desc:"国产视频生成，支持中文。",types:["视频"],price:"部分免费",region:"国内无需魔法"},
+        { id:115,name:"PixVerse",company:"PixVerse",url:"https://pixverse.ai",icon:"✨",color:"#e07a5f",desc:"视频生成，风格多样。",types:["视频"],price:"部分免费",region:"部分受限"},
+        { id:116,name:"Luma Dream Machine",company:"Luma AI",url:"https://dreammachine.lumalabs.ai",icon:"💭",color:"#6366f1",desc:"3D场景与视频生成。",types:["视频","3D"],price:"部分免费",region:"国外需要魔法"},
+        { id:117,name:"Gen-4",company:"Runway",url:"https://runwayml.com",icon:"🌊",color:"#000",desc:"视频生成最新版本，画质提升。",types:["视频"],price:"付费",region:"国外需要魔法"},
+        { id:118,name:"MiniMax视频",company:"MiniMax",url:"https://hailuoai.video",icon:"🎬",color:"#6366f1",desc:"海螺AI视频生成能力。",types:["视频"],price:"部分免费",region:"国内无需魔法"},
+        { id:119,name:"CogVideoX",company:"智谱AI",url:"https://github.com/THUDM/CogVideoX",icon:"🧠",color:"#2563eb",desc:"国产开源视频生成模型。",types:["视频"],price:"免费",region:"部分受限"},
+        { id:120,name:"Haiper",company:"Haiper AI",url:"https://haiper.ai",icon:"🌊",color:"#f97316",desc:"视频生成与增强。",types:["视频"],price:"部分免费",region:"国外需要魔法"},
+        { id:121,name:"Stable Video",company:"Stability AI",url:"https://stablevideo.com",icon:"🎬",color:"#9333ea",desc:"开源视频生成。",types:["视频"],price:"部分免费",region:"国外需要魔法"},
+        { id:122,name:"剪映AI",company:"字节跳动",url:"https://www.capcut.cn",icon:"✂️",color:"#000",desc:"短视频智能剪辑、字幕、文案。",types:["视频","音频","文本"],price:"部分免费",region:"国内无需魔法"},
+        { id:123,name:"HeyGen",company:"HeyGen",url:"https://www.heygen.com",icon:"🎙️",color:"#2563eb",desc:"AI数字人，多语言口型同步。",types:["视频","音频"],price:"部分免费",region:"国外需要魔法"},
+
+        // ========== 音频类 ==========
+        { id:130,name:"Suno",company:"Suno",url:"https://suno.com",icon:"☀️",color:"#facc15",desc:"AI音乐生成，文本成歌。",types:["音频"],price:"部分免费",region:"国外需要魔法"},
+        { id:131,name:"Udio",company:"Udio",url:"https://www.udio.com",icon:"🎼",color:"#a855f7",desc:"器乐编排音质佳，音乐创作。",types:["音频"],price:"部分免费",region:"国外需要魔法"},
+        { id:132,name:"ElevenLabs",company:"ElevenLabs",url:"https://elevenlabs.io",icon:"🔊",color:"#10b981",desc:"语音合成与克隆标杆。",types:["音频"],price:"部分免费",region:"国外需要魔法"},
+        { id:133,name:"Stable Audio",company:"Stability AI",url:"https://stableaudio.com",icon:"🎵",color:"#9333ea",desc:"开源音乐生成模型。",types:["音频"],price:"部分免费",region:"国外需要魔法"},
+        { id:134,name:"MusicGen",company:"Meta",url:"https://ai.meta.com/musicgen",icon:"🎧",color:"#0668e1",desc:"开源音乐生成，学术友好。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:135,name:"AudioCraft",company:"Meta",url:"https://audiocraft.metademolab.com",icon:"🎚️",color:"#0668e1",desc:"音频生成工具集。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:136,name:"Bark",company:"Suno",url:"https://github.com/suno-ai/bark",icon:"🌳",color:"#facc15",desc:"文本转语音生成。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:137,name:"Coqui",company:"Coqui",url:"https://coqui.ai",icon:"🦜",color:"#6366f1",desc:"开源语音克隆与合成。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:138,name:"Fish Audio",company:"Fish Audio",url:"https://fish.audio",icon:"🐟",color:"#10a37f",desc:"国产声音克隆，支持中文。",types:["音频"],price:"部分免费",region:"国内无需魔法"},
+        { id:139,name:"GPT-SoVITS",company:"OpenVocal",url:"https://github.com/RVC-Boss/GPT-SoVITS",icon:"🎤",color:"#e07a5f",desc:"开源声音克隆，微调训练。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:140,name:"RVC",company:"RVC",url:"https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI",icon:"🔄",color:"#6366f1",desc:"声音转换开源工具。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:141,name:"SVC",company:"SVC",url:"https://github.com/svc-develop-team/so-vits-svc",icon:"🎵",color:"#f97316",desc:"歌声转换，开源社区活跃。",types:["音频"],price:"免费",region:"部分受限"},
+        { id:142,name:"讯飞语音",company:"科大讯飞",url:"https://www.xfyun.cn/services/online_tts",icon:"🎤",color:"#e86427",desc:"200+音色，34种方言。",types:["音频"],price:"部分免费",region:"国内无需魔法"},
+
+        // ========== 搜索类 ==========
+        { id:150,name:"Perplexity",company:"Perplexity AI",url:"https://www.perplexity.ai",icon:"🔎",color:"#1e293b",desc:"AI搜索引擎，附来源链接。",types:["搜索","文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:151,name:"秘塔AI搜索",company:"秘塔科技",url:"https://metaso.cn",icon:"🗼",color:"#dc2626",desc:"无广告结构化，法律公文严谨。",types:["搜索","文本"],price:"免费",region:"国内无需魔法"},
+        { id:152,name:"天工AI搜索",company:"昆仑万维",url:"https://www.tiangong.cn",icon:"🛠️",color:"#e02626",desc:"AI搜索+创作，DeepSeek驱动。",types:["搜索","文本"],price:"部分免费",region:"国内无需魔法"},
+        { id:153,name:"Devv.ai",company:"Devv",url:"https://devv.ai",icon:"💻",color:"#6366f1",desc:"程序员专属AI搜索。",types:["搜索","编程"],price:"部分免费",region:"部分受限"},
+        { id:154,name:"Felo搜索",company:"Felo",url:"https://felo.ai",icon:"🔍",color:"#2d5a47",desc:"多语言AI搜索，知识探索。",types:["搜索","文本"],price:"部分免费",region:"部分受限"},
+        { id:155,name:"Exa.ai",company:"Exa",url:"https://exa.ai",icon:"🌐",color:"#6366f1",desc:"神经网络搜索，语义理解。",types:["搜索"],price:"部分免费",region:"国外需要魔法"},
+        { id:156,name:"Globe Explorer",company:"Globe",url:"https://globeexplorer.ai",icon:"🌍",color:"#10a37f",desc:"知识图谱搜索，可视化。",types:["搜索"],price:"部分免费",region:"国外需要魔法"},
+        { id:157,name:"Consensus",company:"Consensus",url:"https://consensus.app",icon:"📊",color:"#2d5a47",desc:"学术论文AI搜索。",types:["搜索"],price:"部分免费",region:"国外需要魔法"},
+        { id:158,name:"Scite",company:"Scite",url:"https://scite.ai",icon:"📚",color:"#6366f1",desc:"智能论文引用分析。",types:["搜索"],price:"部分免费",region:"国外需要魔法"},
+
+        // ========== 智能体/平台类 ==========
+        { id:170,name:"Coze扣子",company:"字节跳动",url:"https://www.coze.cn",icon:"🧩",color:"#e84242",desc:"零代码AI Bot开发，插件丰富。",types:["智能体","文本"],price:"部分免费",region:"国内无需魔法"},
+        { id:171,name:"Dify",company:"LangGenius",url:"https://dify.ai",icon:"🚀",color:"#155eef",desc:"开源LLM应用开发，RAG管道。",types:["智能体","文本"],price:"免费",region:"国内无需魔法"},
+        { id:172,name:"Coze国际版",company:"字节跳动",url:"https://www.coze.com",icon:"🌐",color:"#6366f1",desc:"国际版Coze，接入GPT等海外模型。",types:["智能体","文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:173,name:"AgentGPT",company:"AgentGPT",url:"https://agentgpt.reworkd.ai",icon:"🤖",color:"#2d5a47",desc:"自主AI Agent，任务规划执行。",types:["智能体"],price:"部分免费",region:"国外需要魔法"},
+        { id:174,name:"AutoGPT",company:"Significant Gravitas",url:"https://autogpt.net",icon:"🔧",color:"#6366f1",desc:"自主任务执行Agent先驱。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:175,name:"MetaGPT",company:"Datawhale",url:"https://github.com/joe10833/MetaGPT",icon:"🦍",color:"#f97316",desc:"多Agent协作软件开发。",types:["智能体","编程"],price:"免费",region:"部分受限"},
+        { id:176,name:"CrewAI",company:"CrewAI",url:"https://crewai.com",icon:"👥",color:"#10a37f",desc:"多Agent团队协作框架。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:177,name:"LangChain",company:"LangChain",url:"https://langchain.com",icon:"⛓️",color:"#2d5a47",desc:"LLM应用开发框架。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:178,name:"Flowise",company:"Flowise",url:"https://flowiseai.com",icon:"🌊",color:"#6366f1",desc:"可视化LangChain构建。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:179,name:"n8n",company:"n8n",url:"https://n8n.io",icon:"🔗",color:"#ea4b71",desc:"工作流自动化，AI集成。",types:["智能体"],price:"部分免费",region:"部分受限"},
+        { id:180,name:"Zapier AI",company:"Zapier",url:"https://zapier.com/ai",icon:"⚡",color:"#ff4a00",desc:"自动化平台AI集成。",types:["智能体"],price:"部分免费",region:"国外需要魔法"},
+        { id:181,name:"Make AI",company:"Make",url:"https://www.make.com/ai",icon:"🔧",color:"#7b68ee",desc:"可视化自动化，AI模块。",types:["智能体"],price:"部分免费",region:"部分受限"},
+        { id:182,name:"FastGPT",company:"FastGPT",url:"https://fastgpt.cn",icon:"⚡",color:"#2d5a47",desc:"国产LLM知识库平台。",types:["智能体","文本"],price:"免费",region:"国内无需魔法"},
+        { id:183,name:"ChatGPT-Next-Web",company:"OpenAI",url:"https://github.com/Yidadaa/ChatGPT-Next-Web",icon:"🌐",color:"#10a37f",desc:"自建ChatGPT界面。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:184,name:"LobeChat",company:"LobeHub",url:"https://lobehub.com",icon:"💬",color:"#6366f1",desc:"开源AI聊天界面，插件丰富。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:185,name:"Open WebUI",company:"Open WebUI",url:"https://openwebui.com",icon:"🌐",color:"#2d5a47",desc:"Ollama网页界面。",types:["智能体"],price:"免费",region:"部分受限"},
+        { id:186,name:"Poe",company:"Quora",url:"https://poe.com",icon:"💬",color:"#5f5fff",desc:"聚合多模型对话平台。",types:["智能体","文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:187,name:"Monica",company:"Monica.im",url:"https://monica.im",icon:"🧑‍💼",color:"#8b5cf6",desc:"AI全能助手，浏览器插件。",types:["智能体","文本"],price:"部分免费",region:"部分受限"},
+        { id:188,name:"Character.AI",company:"Character Technologies",url:"https://character.ai",icon:"🎭",color:"#e040fb",desc:"角色扮演AI，虚拟人物对话。",types:["智能体","文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:189,name:"HuggingChat",company:"Hugging Face",url:"https://huggingface.co/chat",icon:"🤗",color:"#ff9d00",desc:"开源模型聊天界面。",types:["智能体","文本"],price:"免费",region:"部分受限"},
+
+        // ========== 3D/设计类 ==========
+        { id:200,name:"Spline AI",company:"Spline",url:"https://spline.design",icon:"🎲",color:"#ff6a00",desc:"3D设计协作，AI场景生成。",types:["3D"],price:"部分免费",region:"国外需要魔法"},
+        { id:201,name:"Meshy",company:"Meshy",url:"https://meshy.ai",icon:"🧊",color:"#6366f1",desc:"AI 3D建模，图片转模型。",types:["3D"],price:"部分免费",region:"国外需要魔法"},
+        { id:202,name:"Kaedim",company:"Kaedim",url:"https://kaedim3d.com",icon:"🎨",color:"#ec4899",desc:"AI游戏资产3D建模。",types:["3D"],price:"付费",region:"国外需要魔法"},
+        { id:203,name:"Luma AI",company:"Luma AI",url:"https://lumalabs.ai",icon:"💎",color:"#6366f1",desc:"神经渲染，3D扫描重建。",types:["3D","视频"],price:"部分免费",region:"国外需要魔法"},
+        { id:204,name:"CSM",company:"Common Sense Machines",url:"https://csm.ai",icon:"🧠",color:"#2d5a47",desc:"3D场景与物体生成。",types:["3D"],price:"部分免费",region:"国外需要魔法"},
+        { id:205,name:"Scenario",company:"Scenario",url:"https://scenario.com",icon:"🎭",color:"#f97316",desc:"游戏资产AI生成。",types:["3D","图像"],price:"部分免费",region:"国外需要魔法"},
+        { id:206,name:"Magician",company:"Figma",url:"https://magician.design",icon:"✨",color:"#f24e1e",desc:"Figma插件，AI设计助手。",types:["3D"],price:"部分免费",region:"国外需要魔法"},
+        { id:207,name:"Galileo AI",company:"Galileo",url:"https://galileo.ai",icon:"🌟",color:"#6366f1",desc:"UI设计AI生成。",types:["3D"],price:"部分免费",region:"国外需要魔法"},
+
+        // ========== 办公/写作类 ==========
+        { id:220,name:"Notion AI",company:"Notion",url:"https://notion.so",icon:"📝",color:"#1a1a1a",desc:"智能笔记，写总结写文案。",types:["办公","文本"],price:"部分免费",region:"部分受限"},
+        { id:221,name:"Gamma",company:"Gamma",url:"https://gamma.app",icon:"📊",color:"#6366f1",desc:"AI生成PPT与文档。",types:["办公"],price:"部分免费",region:"国外需要魔法"},
+        { id:222,name:"Beautiful.ai",company:"Beautiful.ai",url:"https://beautiful.ai",icon:"🎨",color:"#10a37f",desc:"智能PPT演示设计。",types:["办公"],price:"部分免费",region:"国外需要魔法"},
+        { id:223,name:"Tome",company:"Tome",url:"https://tome.app",icon:"📖",color:"#2d5a47",desc:"AI故事叙述与演示。",types:["办公"],price:"部分免费",region:"国外需要魔法"},
+        { id:224,name:"Jasper",company:"Jasper",url:"https://jasper.ai",icon:"✍️",color:"#ff4a00",desc:"企业营销文案AI。",types:["办公","文本"],price:"付费",region:"国外需要魔法"},
+        { id:225,name:"Copy.ai",company:"Copy.ai",url:"https://copy.ai",icon:"📋",color:"#6366f1",desc:"AI文案写作工具。",types:["办公","文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:226,name:"Writesonic",company:"Writesonic",url:"https://writesonic.com",icon:"✏️",color:"#10a37f",desc:"AI内容创作平台。",types:["办公","文本"],price:"部分免费",region:"国外需要魔法"},
+        { id:227,name:"秘塔写作猫",company:"秘塔科技",url:"https://xiezuocat.com",icon:"🐱",color:"#dc2626",desc:"中文写作润色纠错。",types:["办公","文本"],price:"部分免费",region:"国内无需魔法"}
+      ];
+
+      // ========== API平台数据 ==========
+      const apiPlatforms = [
+        // ========== 国内API平台 ==========
+        { id:1001,name:"阿里云百炼(通义千问)",company:"阿里云",url:"https://dashscope.aliyun.com",docs:"https://help.aliyun.com/zh/model-studio/",icon:"☁️",color:"#ff6a00",desc:"Qwen3-Max等全系列，100万tokens免费，国内最全",types:["文本生成","代码生成","图像生成","音频生成","嵌入/向量化","多模态"],price:"部分免费",region:"国内无需魔法"},
+        { id:1002,name:"百度千帆(文心)",company:"百度智能云",url:"https://qianfan.baidubce.com",docs:"https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html",icon:"💬",color:"#2932e1",desc:"ERNIE系列，国内首批大模型API",types:["文本生成","代码生成","图像生成","嵌入/向量化"],price:"部分免费",region:"国内无需魔法"},
+        { id:1003,name:"智谱AI(Z.ai)",company:"智谱AI",url:"https://open.bigmodel.cn",docs:"https://open.bigmodel.cn/dev/api",icon:"🎓",color:"#2563eb",desc:"GLM-5系列，超低价¥10/亿tokens",types:["文本生成","代码生成","图像生成","多模态","嵌入/向量化"],price:"部分免费",region:"国内无需魔法"},
+        { id:1004,name:"月之暗面(Kimi)",company:"Moonshot AI",url:"https://platform.moonshot.cn",docs:"https://platform.moonshot.cn/docs",icon:"🌙",color:"#7c3aed",desc:"K2 Thinking Agent，200万字上下文",types:["文本生成","代码生成"],price:"部分免费",region:"国内无需魔法"},
+        { id:1005,name:"DeepSeek",company:"深度求索",url:"https://platform.deepseek.com",docs:"https://platform.deepseek.com/api-docs",icon:"🐋",color:"#4f46e5",desc:"V4系列，全球最便宜LLM API之一",types:["文本生成","代码生成"],price:"免费",region:"国内无需魔法"},
+        { id:1006,name:"字节豆包",company:"火山引擎",url:"https://www.volcengine.com/product/doubao",docs:"https://www.volcengine.com/docs/82379",icon:"🫘",color:"#e84242",desc:"豆包系列模型，50万tokens/月免费",types:["文本生成","代码生成","图像生成","视频生成","音频生成","多模态"],price:"部分免费",region:"国内无需魔法"},
+        { id:1007,name:"腾讯混元",company:"腾讯云",url:"https://cloud.tencent.com/product/hunyuan",docs:"https://cloud.tencent.com/document/product/1729",icon:"🐧",color:"#09b864",desc:"MoE完全开源，100万tokens免费",types:["文本生成","代码生成","图像生成","多模态"],price:"部分免费",region:"国内无需魔法"},
+        { id:1008,name:"讯飞星火",company:"科大讯飞",url:"https://xinghuo.xfyun.cn",docs:"https://www.xfyun.cn/doc/spark",icon:"🔥",color:"#e86427",desc:"Lite永久免费，语音能力领先",types:["文本生成","代码生成","音频生成","图像生成"],price:"部分免费",region:"国内无需魔法"},
+        { id:1009,name:"MiniMax",company:"MiniMax",url:"https://platform.minimaxi.com",docs:"https://platform.minimaxi.com/document",icon:"🐚",color:"#6366f1",desc:"音视频生成专长，1亿tokens免费",types:["文本生成","视频生成","音频生成","多模态"],price:"部分免费",region:"国内无需魔法"},
+        { id:1010,name:"百川智能",company:"百川智能",url:"https://www.baichuan-ai.com",docs:"https://platform.baichuan-ai.com/docs",icon:"🌊",color:"#0284c7",desc:"开源可私有化，法律金融垂直",types:["文本生成","代码生成","嵌入/向量化"],price:"部分免费",region:"国内无需魔法"},
+        { id:1011,name:"阶跃星辰(Step)",company:"阶跃星辰",url:"https://platform.stepfun.com",docs:"https://platform.stepfun.com/docs",icon:"🪜",color:"#8b5cf6",desc:"Step系列，多模态能力强",types:["文本生成","图像生成","多模态"],price:"部分免费",region:"国内无需魔法"},
+        { id:1012,name:"零一万物(Yi)",company:"零一万物",url:"https://platform.lingyiwanwu.com",docs:"https://platform.lingyiwanwu.com/docs",icon:"1️⃣",color:"#f59e0b",desc:"Yi-Lightning超快推理",types:["文本生成","代码生成"],price:"部分免费",region:"国内无需魔法"},
+        { id:1013,name:"硅基流动(SiliconFlow)",company:"SiliconFlow",url:"https://siliconflow.cn",docs:"https://docs.siliconflow.cn",icon:"⚡",color:"#10a37f",desc:"开源模型推理加速，Qwen/DeepSeek免费",types:["文本生成","代码生成","图像生成","嵌入/向量化","聚合/路由"],price:"部分免费",region:"国内无需魔法"},
+
+        // ========== 国际API平台 ==========
+        { id:1014,name:"OpenAI",company:"OpenAI",url:"https://platform.openai.com",docs:"https://platform.openai.com/docs",icon:"🧠",color:"#10a37f",desc:"GPT-5系列旗舰，生态最全",types:["文本生成","代码生成","图像生成","音频生成","嵌入/向量化","多模态"],price:"部分免费",region:"国外需要魔法"},
+        { id:1015,name:"Anthropic",company:"Anthropic",url:"https://console.anthropic.com",docs:"https://docs.anthropic.com",icon:"🟠",color:"#d97706",desc:"Claude 4.5系列，安全长上下文",types:["文本生成","代码生成","图像生成","多模态"],price:"部分免费",region:"国外需要魔法"},
+        { id:1016,name:"Google AI(Gemini)",company:"Google",url:"https://ai.google.dev",docs:"https://ai.google.dev/gemini-api/docs",icon:"🔵",color:"#4285f4",desc:"Gemini 3.1，100万token上下文，多模态",types:["文本生成","代码生成","图像生成","音频生成","视频生成","嵌入/向量化","多模态"],price:"部分免费",region:"国外需要魔法"},
+        { id:1017,name:"Mistral AI",company:"Mistral",url:"https://mistral.ai",docs:"https://docs.mistral.ai",icon:"🌪️",color:"#f97316",desc:"欧洲开源代表，Codestral代码专精",types:["文本生成","代码生成","嵌入/向量化"],price:"部分免费",region:"国外需要魔法"},
+        { id:1018,name:"Cohere",company:"Cohere",url:"https://cohere.com",docs:"https://docs.cohere.com",icon:"🔄",color:"#39594d",desc:"企业级NLP与RAG，Command系列",types:["文本生成","嵌入/向量化"],price:"部分免费",region:"国外需要魔法"},
+        { id:1019,name:"xAI(Grok)",company:"xAI",url:"https://x.ai",docs:"https://docs.x.ai/docs",icon:"⚡",color:"#000",desc:"Grok 4系列，实时X数据",types:["文本生成","代码生成","图像生成"],price:"部分免费",region:"国外需要魔法"},
+        { id:1020,name:"AI21 Labs",company:"AI21",url:"https://ai21.com",docs:"https://docs.ai21.com",icon:"🌴",color:"#2d5a47",desc:"Jamba系列，任务型API",types:["文本生成"],price:"部分免费",region:"国外需要魔法"},
+
+        // ========== 推理/聚合平台 ==========
+        { id:1021,name:"OpenRouter",company:"OpenRouter",url:"https://openrouter.ai",docs:"https://openrouter.ai/docs",icon:"🌐",color:"#6366f1",desc:"300+模型聚合，免费模型路由",types:["文本生成","代码生成","图像生成","聚合/路由"],price:"部分免费",region:"国外需要魔法"},
+        { id:1022,name:"Groq",company:"Groq",url:"https://groq.com",docs:"https://console.groq.com/docs",icon:"⚡",color:"#e07a5f",desc:"LPU极速推理，625 tokens/秒",types:["文本生成","代码生成","聚合/路由"],price:"免费",region:"国外需要魔法"},
+        { id:1023,name:"Together AI",company:"Together",url:"https://together.ai",docs:"https://docs.together.ai",icon:"🤝",color:"#10a37f",desc:"开源模型首选，$25免费额度",types:["文本生成","代码生成","图像生成","嵌入/向量化","聚合/路由"],price:"部分免费",region:"国外需要魔法"},
+        { id:1024,name:"Fireworks AI",company:"Fireworks",url:"https://fireworks.ai",docs:"https://docs.fireworks.ai",icon:"🎆",color:"#f97316",desc:"高性能推理，$1免费额度",types:["文本生成","代码生成","图像生成","聚合/路由"],price:"部分免费",region:"国外需要魔法"},
+        { id:1025,name:"Replicate",company:"Replicate",url:"https://replicate.com",docs:"https://replicate.com/docs",icon:"🔁",color:"#6366f1",desc:"按秒计费，图像/视频生成",types:["图像生成","视频生成","音频生成","聚合/路由"],price:"部分免费",region:"国外需要魔法"},
+        { id:1026,name:"NVIDIA NIM",company:"NVIDIA",url:"https://build.nvidia.com",docs:"https://docs.nvidia.com/nim",icon:"🎮",color:"#76b900",desc:"129个模型，企业级稳定",types:["文本生成","代码生成","图像生成","嵌入/向量化","聚合/路由"],price:"部分免费",region:"国外需要魔法"},
+        { id:1027,name:"Hugging Face",company:"Hugging Face",url:"https://huggingface.co",docs:"https://huggingface.co/docs/api-inference",icon:"🤗",color:"#ff9d00",desc:"100万+开源模型，Serverless API",types:["文本生成","代码生成","图像生成","音频生成","嵌入/向量化","聚合/路由"],price:"部分免费",region:"部分受限"},
+        { id:1028,name:"Cloudflare Workers AI",company:"Cloudflare",url:"https://developers.cloudflare.com/workers-ai",docs:"https://developers.cloudflare.com/workers-ai/models",icon:"☁️",color:"#f38020",desc:"每天10000神经元免费，50+模型",types:["文本生成","代码生成","图像生成","嵌入/向量化","聚合/路由"],price:"免费",region:"部分受限"},
+        { id:1029,name:"Cerebras",company:"Cerebras",url:"https://cerebras.ai",docs:"https://cerebras.ai/product",icon:"💎",color:"#6366f1",desc:"WSE晶圆级推理，极速",types:["文本生成","聚合/路由"],price:"免费",region:"国外需要魔法"},
+        { id:1030,name:"GitHub Models",company:"GitHub",url:"https://github.com/marketplace/models",docs:"https://docs.github.com/en/github-models",icon:"🐙",color:"#181717",desc:"GPT-4.1等模型免费试用",types:["文本生成","代码生成","聚合/路由"],price:"部分免费",region:"部分受限"},
+        { id:1031,name:"Azure OpenAI",company:"Microsoft",url:"https://azure.microsoft.com/en-us/products/ai-services/openai-service",docs:"https://learn.microsoft.com/en-us/azure/ai-services/openai",icon:"🟪",color:"#0078d4",desc:"企业级GPT服务，500强首选",types:["文本生成","代码生成","图像生成","嵌入/向量化","多模态"],price:"付费",region:"国外需要魔法"},
+        { id:1032,name:"AWS Bedrock",company:"Amazon",url:"https://aws.amazon.com/bedrock",docs:"https://docs.aws.amazon.com/bedrock",icon:"🟧",color:"#ff9900",desc:"多模型统一接入，企业级",types:["文本生成","代码生成","图像生成","嵌入/向量化","聚合/路由","多模态"],price:"付费",region:"国外需要魔法"},
+        { id:1033,name:"Perplexity API",company:"Perplexity",url:"https://docs.perplexity.ai",docs:"https://docs.perplexity.ai",icon:"🔎",color:"#1e293b",desc:"联网实时搜索API",types:["文本生成","聚合/路由"],price:"部分免费",region:"国外需要魔法"},
+        { id:1034,name:"LLM7.io",company:"LLM7",url:"https://llm7.io",docs:"https://llm7.io",icon:"7️⃣",color:"#2d5a47",desc:"无需注册即可调用，零门槛",types:["文本生成","代码生成","聚合/路由"],price:"免费",region:"国外需要魔法"},
+
+        // ========== 图像/视频专用API ==========
+        { id:1035,name:"Stability AI",company:"Stability AI",url:"https://platform.stability.ai",docs:"https://platform.stability.ai/docs",icon:"🌈",color:"#9333ea",desc:"Stable Diffusion官方API，图像/视频",types:["图像生成","视频生成"],price:"部分免费",region:"国外需要魔法"},
+        { id:1036,name:"Black Forest Labs(Flux)",company:"BFL",url:"https://api.bfl.ml",docs:"https://api.bfl.ml/docs",icon:"⚡",color:"#000",desc:"Flux系列图像生成",types:["图像生成"],price:"部分免费",region:"国外需要魔法"},
+        { id:1037,name:"ElevenLabs",company:"ElevenLabs",url:"https://elevenlabs.io",docs:"https://elevenlabs.io/docs/api-reference",icon:"🔊",color:"#10b981",desc:"语音合成/克隆API",types:["音频生成"],price:"部分免费",region:"国外需要魔法"},
+        { id:1038,name:"Runway API",company:"Runway",url:"https://runwayml.com",docs:"https://docs.runwayml.com",icon:"🏃",color:"#000",desc:"Gen-4视频生成API",types:["视频生成","图像生成"],price:"付费",region:"国外需要魔法"}
+      ];
+
+      // ========== 状态 ==========
+      let activeTab = 'tools';
+      let toolsActiveType = 'all';
+      let toolsActivePrice = 'all';
+      let toolsActiveRegion = 'all';
+      let apiActiveType = 'all';
+      let apiActivePrice = 'all';
+      let apiActiveRegion = 'all';
+      let searchQuery = '';
+      let filterVisible = true;
+      let lastScrollY = 0;
+
+      // ========== 元素 ==========
+      const filterToggle = document.getElementById('filterToggle');
+      const backToTop = document.getElementById('backToTop');
+      const toolsFilterBar = document.getElementById('toolsFilterBar');
+      const apiFilterBar = document.getElementById('apiFilterBar');
+      const toolsSection = document.getElementById('toolsSection');
+      const apiSection = document.getElementById('apiSection');
+      const tabBtns = document.querySelectorAll('.tab-btn');
+
+      // ========== 更新徽章 ==========
+      function updateTotalBadge() {
+        const count = activeTab === 'tools' ? tools.length : apiPlatforms.length;
+        document.getElementById('totalBadge').innerHTML = '收录 <strong>' + count + '</strong> 款';
+      }
+
+      // ========== Tab切换 ==========
+      function switchTab(tab) {
+        activeTab = tab;
+        
+        // 更新Tab按钮状态
+        tabBtns.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
+        });
+        
+        // 切换内容区域
+        toolsSection.classList.toggle('active', tab === 'tools');
+        apiSection.classList.toggle('active', tab === 'api');
+        
+        // 切换筛选器
+        toolsFilterBar.style.display = tab === 'tools' ? 'block' : 'none';
+        apiFilterBar.style.display = tab === 'api' ? 'block' : 'none';
+        
+        // 更新徽章
+        updateTotalBadge();
+        
+        // 渲染对应内容
+        if (tab === 'tools') {
+          renderToolsGrid();
+        } else {
+          renderApiGrid();
+        }
+      }
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+      });
+
+      // ========== 筛选工具数据 ==========
+      function filterToolsData() {
+        return tools.filter(m => {
+          if (toolsActiveType !== 'all' && !m.types.includes(toolsActiveType)) return false;
+          if (toolsActivePrice !== 'all' && m.price !== toolsActivePrice) return false;
+          if (toolsActiveRegion !== 'all' && m.region !== toolsActiveRegion) return false;
+          if (searchQuery.trim()) {
+            const q = searchQuery.trim().toLowerCase();
+            const haystack = (m.name + ' ' + m.company + ' ' + m.desc + ' ' + m.types.join(' ')).toLowerCase();
+            if (!haystack.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+
+      // ========== 筛选API数据 ==========
+      function filterApiData() {
+        return apiPlatforms.filter(m => {
+          if (apiActiveType !== 'all' && !m.types.includes(apiActiveType)) return false;
+          if (apiActivePrice !== 'all' && m.price !== apiActivePrice) return false;
+          if (apiActiveRegion !== 'all' && m.region !== apiActiveRegion) return false;
+          if (searchQuery.trim()) {
+            const q = searchQuery.trim().toLowerCase();
+            const haystack = (m.name + ' ' + m.company + ' ' + m.desc + ' ' + m.types.join(' ')).toLowerCase();
+            if (!haystack.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+
+      // ========== 渲染工具网格 ==========
+      function renderToolsGrid() {
+        const filtered = filterToolsData();
+        const grid = document.getElementById('toolsModelGrid');
+        const empty = document.getElementById('toolsEmptyState');
+        const countSpan = document.getElementById('toolsResultCount');
+        countSpan.innerHTML = '显示 <strong>' + filtered.length + '</strong> 个结果 <span style="color:var(--text-tertiary)">（共 ' + tools.length + ' 个）</span>';
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '';
+          empty.style.display = 'block';
+        } else {
+          empty.style.display = 'none';
+          grid.innerHTML = filtered.map((m, i) => {
+            const iconColor = m.color || '#2d5a47';
+            const typeTags = m.types.map(t => `<span class="tag tag-type">${t}</span>`).join('');
+            let priceTag = '';
+            if (m.price === '免费') priceTag = '<span class="tag tag-free">🆓 免费</span>';
+            else if (m.price === '部分免费') priceTag = '<span class="tag tag-paid">🟡 部分免费</span>';
+            else priceTag = '<span class="tag tag-paid">💎 付费</span>';
+
+            let regionTag = '';
+            if (m.region === '国内无需魔法') regionTag = '<span class="tag tag-nomagic">🇨🇳 国内直连</span>';
+            else if (m.region === '国外需要魔法') regionTag = '<span class="tag tag-overseas">🌐 需魔法</span>';
+            else regionTag = '<span class="tag tag-partial-region">⚠️ 部分受限</span>';
+
+            const apiBtn = m.api ? `<a href="${m.api}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()">⚙️ API</a>` : '';
+            return `
+              <div class="model-card" style="--card-accent:${iconColor};animation-delay:${i * 0.03}s" onclick="window.open('${m.url}','_blank')" title="访问 ${m.name}">
+                <div class="card-top">
+                  <div class="model-icon" style="background:${iconColor}">${m.icon}</div>
+                  <div class="card-info">
+                    <div class="model-name">${m.name}</div>
+                    <div class="company">${m.company}</div>
+                  </div>
+                </div>
+                <div class="desc">${m.desc}</div>
+                <div class="tags">${typeTags}${priceTag}${regionTag}</div>
+                <div class="card-footer">
+                  <a href="${m.url}" target="_blank" class="btn btn-primary" onclick="event.stopPropagation()">🌐 官网</a>
+                  ${apiBtn}
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // ========== 渲染API网格 ==========
+      function renderApiGrid() {
+        const filtered = filterApiData();
+        const grid = document.getElementById('apiModelGrid');
+        const empty = document.getElementById('apiEmptyState');
+        const countSpan = document.getElementById('apiResultCount');
+        countSpan.innerHTML = '显示 <strong>' + filtered.length + '</strong> 个结果 <span style="color:var(--text-tertiary)">（共 ' + apiPlatforms.length + ' 个）</span>';
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '';
+          empty.style.display = 'block';
+        } else {
+          empty.style.display = 'none';
+          grid.innerHTML = filtered.map((m, i) => {
+            const iconColor = m.color || '#2d5a47';
+            const typeTags = m.types.map(t => `<span class="tag tag-type">${t}</span>`).join('');
+            let priceTag = '';
+            if (m.price === '免费') priceTag = '<span class="tag tag-free">🆓 免费</span>';
+            else if (m.price === '部分免费') priceTag = '<span class="tag tag-paid">🟡 部分免费</span>';
+            else priceTag = '<span class="tag tag-paid">💎 付费</span>';
+
+            let regionTag = '';
+            if (m.region === '国内无需魔法') regionTag = '<span class="tag tag-nomagic">🇨🇳 国内直连</span>';
+            else if (m.region === '国外需要魔法') regionTag = '<span class="tag tag-overseas">🌐 需魔法</span>';
+            else regionTag = '<span class="tag tag-partial-region">⚠️ 部分受限</span>';
+
+            return `
+              <div class="model-card" style="--card-accent:${iconColor};animation-delay:${i * 0.03}s" onclick="window.open('${m.url}','_blank')" title="访问 ${m.name}">
+                <div class="card-top">
+                  <div class="model-icon" style="background:${iconColor}">${m.icon}</div>
+                  <div class="card-info">
+                    <div class="model-name">${m.name}</div>
+                    <div class="company">${m.company}</div>
+                  </div>
+                </div>
+                <div class="desc">${m.desc}</div>
+                <div class="tags">${typeTags}${priceTag}${regionTag}</div>
+                <div class="card-footer">
+                  <a href="${m.url}" target="_blank" class="btn btn-primary" onclick="event.stopPropagation()">🌐 官网</a>
+                  <a href="${m.docs}" target="_blank" class="btn btn-outline" onclick="event.stopPropagation()">📖 文档</a>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // ========== 绑定工具筛选器 ==========
+      function bindToolsFilters() {
+        document.getElementById('toolsTypeFilters').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            toolsActiveType = e.target.getAttribute('data-type');
+            updateActiveButtons('toolsTypeFilters', 'data-type', toolsActiveType);
+            renderToolsGrid();
+          }
+        });
+        document.getElementById('toolsPriceFilters').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            toolsActivePrice = e.target.getAttribute('data-price');
+            updateActiveButtons('toolsPriceFilters', 'data-price', toolsActivePrice);
+            renderToolsGrid();
+          }
+        });
+        document.getElementById('toolsRegionFilters').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            toolsActiveRegion = e.target.getAttribute('data-region');
+            updateActiveButtons('toolsRegionFilters', 'data-region', toolsActiveRegion);
+            renderToolsGrid();
+          }
+        });
+      }
+
+      // ========== 绑定API筛选器 ==========
+      function bindApiFilters() {
+        document.getElementById('apiTypeFilters').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            apiActiveType = e.target.getAttribute('data-type');
+            updateActiveButtons('apiTypeFilters', 'data-type', apiActiveType);
+            renderApiGrid();
+          }
+        });
+        document.getElementById('apiPriceFilters').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            apiActivePrice = e.target.getAttribute('data-price');
+            updateActiveButtons('apiPriceFilters', 'data-price', apiActivePrice);
+            renderApiGrid();
+          }
+        });
+        document.getElementById('apiRegionFilters').addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            apiActiveRegion = e.target.getAttribute('data-region');
+            updateActiveButtons('apiRegionFilters', 'data-region', apiActiveRegion);
+            renderApiGrid();
+          }
+        });
+      }
+
+      function updateActiveButtons(containerId, attr, value) {
+        document.querySelectorAll(`#${containerId} .filter-btn`).forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute(attr) === value);
+        });
+      }
+
+      // ========== 搜索 ==========
+      const searchInputHeader = document.getElementById('searchInputHeader');
+      searchInputHeader.addEventListener('input', function(e) {
+        searchQuery = e.target.value;
+        if (activeTab === 'tools') {
+          renderToolsGrid();
+        } else {
+          renderApiGrid();
+        }
+      });
+
+      // ========== 重置工具 ==========
+      document.getElementById('toolsResetBtn').addEventListener('click', () => {
+        toolsActiveType = 'all';
+        toolsActivePrice = 'all';
+        toolsActiveRegion = 'all';
+        searchQuery = '';
+        searchInputHeader.value = '';
+        updateActiveButtons('toolsTypeFilters','data-type','all');
+        updateActiveButtons('toolsPriceFilters','data-price','all');
+        updateActiveButtons('toolsRegionFilters','data-region','all');
+        renderToolsGrid();
+      });
+
+      // ========== 重置API ==========
+      document.getElementById('apiResetBtn').addEventListener('click', () => {
+        apiActiveType = 'all';
+        apiActivePrice = 'all';
+        apiActiveRegion = 'all';
+        searchQuery = '';
+        searchInputHeader.value = '';
+        updateActiveButtons('apiTypeFilters','data-type','all');
+        updateActiveButtons('apiPriceFilters','data-price','all');
+        updateActiveButtons('apiRegionFilters','data-region','all');
+        renderApiGrid();
+      });
+
+      // ========== 筛选器显示/隐藏 ==========
+      filterToggle.addEventListener('click', () => {
+        filterVisible = !filterVisible;
+        if (activeTab === 'tools') {
+          toolsFilterBar.style.display = filterVisible ? 'block' : 'none';
+        } else {
+          apiFilterBar.style.display = filterVisible ? 'block' : 'none';
+        }
+        filterToggle.classList.toggle('active', filterVisible);
+      });
+
+      // ========== 返回顶部 ==========
+      function handleScroll() {
+        const scrollY = window.scrollY;
+        
+        if (scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+        
+        lastScrollY = scrollY;
+      }
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      // ========== 初始化 ==========
+      bindToolsFilters();
+      bindApiFilters();
+
+      updateTotalBadge();
+      renderToolsGrid();
+      renderApiGrid();
+    })();
+  </script>
+</body>
+</html>
