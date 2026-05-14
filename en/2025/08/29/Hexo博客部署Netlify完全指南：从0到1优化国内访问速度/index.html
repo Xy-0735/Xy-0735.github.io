@@ -17,9 +17,9 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":true,"count":20,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
   
   <title>
-    Hexo博客部署Netlify完全指南：从0到1优化国内访问速度 |
+    Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1 |
     
-    XYY滴小窝
+    XYY's Corner
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
@@ -37,16 +37,16 @@
 
   
   
-    <meta name="description" content="引言 对于许多国内开发者而言，使用 GitHub Pages 部署 Hexo 博客时，常常会遇到访问速度慢的问题——加载一篇文章可能需要数秒甚至更长时间，严重影响读者体验。而 Netlify 的出现，恰好为这个痛点提供了优雅的解决方案。作为被业内称为“静态网站托管天花板”的平台，它不仅完美适配 Hexo 等静态博客，更通过一系列核心特性重新定义了博客部署的效率与体验。 Netlify 核心优势速">
+    <meta name="description" content="Introduction For many developers in China, deploying a Hexo blog using GitHub Pages often means dealing with slow access speeds — loading a single article can take several seconds or even longer, ser">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+<meta property="og:title" content="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
 <meta property="og:url" content="https://xy-0735.github.io/en/2025/08/29/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/index.html">
-<meta property="og:site_name" content="XYY滴小窝">
-<meta property="og:description" content="引言 对于许多国内开发者而言，使用 GitHub Pages 部署 Hexo 博客时，常常会遇到访问速度慢的问题——加载一篇文章可能需要数秒甚至更长时间，严重影响读者体验。而 Netlify 的出现，恰好为这个痛点提供了优雅的解决方案。作为被业内称为“静态网站托管天花板”的平台，它不仅完美适配 Hexo 等静态博客，更通过一系列核心特性重新定义了博客部署的效率与体验。 Netlify 核心优势速">
+<meta property="og:site_name" content="XYY's Corner">
+<meta property="og:description" content="Introduction For many developers in China, deploying a Hexo blog using GitHub Pages often means dealing with slow access speeds — loading a single article can take several seconds or even longer, ser">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-08-29T06:18:42.000Z">
-<meta property="article:modified_time" content="2025-08-29T06:59:36.529Z">
-<meta property="article:author" content="微雨扬">
+<meta property="article:modified_time" content="2026-05-14T05:03:58.093Z">
+<meta property="article:author" content="Wei Yuyang">
 <meta property="article:tag" content="编程开发">
 <meta name="twitter:card" content="&lt;twitter:card&gt;">
 <meta name="twitter:image" content="https://xy-0735.github.io/en/2025/08/29/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/%3Ctwitter:image%3E">
@@ -56,7 +56,7 @@
 <meta property="fb:app_id" content="&lt;fb:app_id&gt;">
   
   
-    <link rel="alternate" href="/atom.xml" title="XYY滴小窝" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="XYY's Corner" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/images/favicon.ico">
@@ -264,7 +264,7 @@
 <header id="header">
   
     <picture></picture>
-    <img  fetchpriority="high" src="/images/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97.jpg" alt="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+    <img  fetchpriority="high" src="/images/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97.jpg" alt="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
   
   <div id="header-outer">
     <div id="header-title">
@@ -272,7 +272,7 @@
         
         
           <a href="/" id="logo">
-            <h1 data-aos="slide-up">Hexo博客部署Netlify完全指南：从0到1优化国内访问速度</h1>
+            <h1 data-aos="slide-up">Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1</h1>
           </a>
         
       
@@ -302,27 +302,27 @@
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text"> 部署准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%A3%80%E6%9F%A5"><span class="toc-number">2.1.</span> <span class="toc-text"> 环境检查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%B7%A5%E5%85%B7%E7%89%88%E6%9C%AC%E9%AA%8C%E8%AF%81"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 基础工具版本验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 本地预览与环境测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#github-%E4%BB%93%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.1.3.</span> <span class="toc-text"> GitHub 仓库完整性检查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netlify%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text"> Netlify部署步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text"> 仓库连接与构建配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%85%B3%E8%81%94-github-%E4%B8%8E-netlify"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 一、仓库连接：关联 GitHub 与 Netlify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE%E5%85%B3%E9%94%AE%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 二、构建配置：关键参数设置与原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BD%95%E9%9C%80%E8%A6%81-npm-install-hexo-generate"><span class="toc-number">3.1.2.1.</span> <span class="toc-text"> 1. 构建命令：为何需要 npm install + hexo generate？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%91%E5%B8%83%E7%9B%AE%E5%BD%95%E6%8C%87%E5%AE%9A%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-number">3.1.2.2.</span> <span class="toc-text"> 2. 发布目录：指定静态文件位置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E9%85%8D%E7%BD%AE%E5%85%A5%E5%8F%A3%E4%B8%8E%E4%BF%9D%E5%AD%98%E9%83%A8%E7%BD%B2"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 三、配置入口与保存部署</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E4%B8%8Ehttps%E5%90%AF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text"> 域名配置与HTTPS启用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%9C%A8netlify%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 一、在Netlify添加自定义域名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-dns%E8%A7%A3%E6%9E%90%E9%85%8D%E7%BD%AE%E4%BB%A5%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%BA%E4%BE%8B"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 二、DNS解析配置（以阿里云为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E9%AA%8C%E8%AF%81dns%E7%94%9F%E6%95%88%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 三、验证DNS生效状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-https%E8%87%AA%E5%8A%A8%E5%90%AF%E7%94%A8%E4%B8%8E%E5%AE%89%E5%85%A8%E4%BB%B7%E5%80%BC"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 四、HTTPS自动启用与安全价值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#build-command-failed%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text"> &quot;build command failed&quot;错误解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E4%B8%8E%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text"> 依赖安装与版本兼容问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E4%BB%8Ecommand-not-found%E5%88%B0%E5%AE%8C%E6%95%B4%E9%83%A8%E7%BD%B2"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 依赖安装：从“command not found”到完整部署</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text"> 结语</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text"> Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deployment-preparation"><span class="toc-number">2.</span> <span class="toc-text"> Deployment Preparation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#environment-check"><span class="toc-number">2.1.</span> <span class="toc-text"> Environment Check</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#basic-tool-version-verification"><span class="toc-number">2.1.1.</span> <span class="toc-text"> Basic Tool Version Verification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#local-preview-and-environment-testing"><span class="toc-number">2.1.2.</span> <span class="toc-text"> Local Preview and Environment Testing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#github-repository-completeness-check"><span class="toc-number">2.1.3.</span> <span class="toc-text"> GitHub Repository Completeness Check</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netlify-deployment-steps"><span class="toc-number">3.</span> <span class="toc-text"> Netlify Deployment Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#repository-connection-and-build-configuration"><span class="toc-number">3.1.</span> <span class="toc-text"> Repository Connection and Build Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-repository-connection-linking-github-with-netlify"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 1. Repository Connection: Linking GitHub with Netlify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-build-configuration-key-parameter-settings-and-principles"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 2. Build Configuration: Key Parameter Settings and Principles</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-build-command-why-do-you-need-npm-install-hexo-generate"><span class="toc-number">3.1.2.1.</span> <span class="toc-text"> 1. Build Command: Why do you need npm install + hexo generate?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-publish-directory-specifying-the-static-file-location"><span class="toc-number">3.1.2.2.</span> <span class="toc-text"> 2. Publish Directory: Specifying the Static File Location</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-configuration-entry-point-and-saving-deployment"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 3. Configuration Entry Point and Saving Deployment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#domain-configuration-and-https-activation"><span class="toc-number">3.2.</span> <span class="toc-text"> Domain Configuration and HTTPS Activation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-adding-a-custom-domain-on-netlify"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. Adding a Custom Domain on Netlify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-dns-resolution-configuration-using-alibaba-cloud-as-an-example"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. DNS Resolution Configuration (Using Alibaba Cloud as an Example)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-verifying-dns-propagation-status"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. Verifying DNS Propagation Status</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-automatic-https-activation-and-its-security-value"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 4. Automatic HTTPS Activation and Its Security Value</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#build-command-failed-error-solutions"><span class="toc-number">4.</span> <span class="toc-text"> “build command failed” Error Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dependency-installation-and-version-compatibility-issues"><span class="toc-number">4.1.</span> <span class="toc-text"> Dependency Installation and Version Compatibility Issues</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dependency-installation-from-command-not-found-to-complete-deployment"><span class="toc-number">4.1.1.</span> <span class="toc-text"> Dependency Installation: From “command not found” to Complete Deployment</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-number">5.</span> <span class="toc-text"> Conclusion</span></a></li></ol>
   
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
   <div class="sidebar-author-name">微雨扬</div>
-  <div class="sidebar-description">欢迎光临</div>
+  <div class="sidebar-description">Welcome</div>
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">64</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">22</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -403,13 +403,13 @@
   
 </aside>
 
-          <section id="main"><article id="post-Hexo博客部署Netlify完全指南：从0到1优化国内访问速度" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-Hexo博客部署Netlify完全指南：从0到1优化国内访问速度.en" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2025-08-29T06:18:42.000Z" itemprop="datePublished">2025-08-29</time>
-    <time style="display: none;" id="post-update-time">2025-08-29</time>
+    <time style="display: none;" id="post-update-time">2026-05-14</time>
   </span>
   
 </div>
@@ -427,174 +427,180 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
-<p>对于许多国内开发者而言，使用 GitHub Pages 部署 Hexo 博客时，常常会遇到访问速度慢的问题——加载一篇文章可能需要数秒甚至更长时间，严重影响读者体验。而 <strong>Netlify</strong> 的出现，恰好为这个痛点提供了优雅的解决方案。作为被业内称为“静态网站托管天花板”的平台，它不仅完美适配 Hexo 等静态博客，更通过一系列核心特性重新定义了博客部署的效率与体验。</p>
-<p><strong>Netlify 核心优势速览</strong></p>
+        <h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
+<p>For many developers in China, deploying a Hexo blog using GitHub Pages often means dealing with slow access speeds — loading a single article can take several seconds or even longer, seriously hurting the reader experience. <strong>Netlify</strong> offers an elegant solution to this exact pain point. Known in the industry as the “ceiling of static site hosting,” it not only integrates perfectly with static blogs like Hexo but also redefines deployment efficiency and experience through a set of core features.</p>
+<p><strong>Netlify Core Advantages at a Glance</strong></p>
 <ul>
-<li><strong>全球 CDN 加速</strong>：将静态资源分发至全球节点，显著改善国内访问延迟</li>
-<li><strong>全自动化部署</strong>：关联 GitHub 仓库后，本地提交代码即可触发自动构建，告别手动执行 <code>hexo deploy</code> 的繁琐流程</li>
-<li><strong>免费安全配置</strong>：自动提供 SSL 证书，确保博客通过 HTTPS 安全访问</li>
+<li><strong>Global CDN Acceleration</strong>: Distributes static assets to nodes worldwide, significantly improving access latency in China</li>
+<li><strong>Fully Automated Deployment</strong>: Once linked to a GitHub repository, pushing code locally triggers automatic builds — say goodbye to manually running <code>hexo deploy</code></li>
+<li><strong>Free Security Configuration</strong>: Automatically provisions SSL certificates, ensuring your blog is accessed securely over HTTPS</li>
 </ul>
-<p>Netlify 提供的不仅仅是托管服务，更是一套完整的静态网站解决方案：从自定义域名绑定、JS/CSS 资源压缩，到环境变量配置、构建日志监控，全方位覆盖个人博客的部署需求[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904122353713165">3</a>][<a target="_blank" rel="noopener" href="https://docs.pingcode.com/baike/2218740">4</a>]。接下来，我们将一步步带你完成从 GitHub 仓库关联到国内访问优化的全流程，让你的 Hexo 博客真正实现“极速加载、自动更新”。</p>
-<h2 id="部署准备"><a class="markdownIt-Anchor" href="#部署准备"></a> 部署准备</h2>
-<h3 id="环境检查"><a class="markdownIt-Anchor" href="#环境检查"></a> 环境检查</h3>
-<p>在开始 Hexo 博客部署前，本地环境的完整性验证是避免后续部署失败的关键步骤。这一环节需要从工具版本确认、本地预览测试和代码仓库完整性三个维度进行系统检查，确保每个环节符合 Netlify 构建要求。</p>
-<h4 id="基础工具版本验证"><a class="markdownIt-Anchor" href="#基础工具版本验证"></a> 基础工具版本验证</h4>
-<p>首先需确认核心开发工具已正确安装并配置。Node.js 作为 Hexo 的运行基础，推荐通过 <code>nvm</code>（Node Version Manager）管理版本以避免兼容性问题，可通过 <code>nvm list available</code> 查看可安装版本，使用 <code>nvm install &lt;version&gt;</code> 安装指定版本（如案例中的 Node.js 16.20.1），并通过 <code>nvm use &lt;version&gt;</code> 切换生效[<a target="_blank" rel="noopener" href="https://blog.csdn.net/heng991108/article/details/134946103">5</a>]。安装完成后，打开终端执行以下命令验证版本：</p>
+<p>Netlify provides more than just hosting — it is a complete static site solution: from custom domain binding and JS/CSS asset compression to environment variable configuration and build log monitoring, it comprehensively covers the deployment needs of personal blogs[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904122353713165">3</a>][<a target="_blank" rel="noopener" href="https://docs.pingcode.com/baike/2218740">4</a>]. Next, we will walk you step by step through the entire process, from linking your GitHub repository to optimizing access speed in China, so your Hexo blog can truly achieve “lightning-fast loading, automatic updates.”</p>
+<h2 id="deployment-preparation"><a class="markdownIt-Anchor" href="#deployment-preparation"></a> Deployment Preparation</h2>
+<h3 id="environment-check"><a class="markdownIt-Anchor" href="#environment-check"></a> Environment Check</h3>
+<p>Before starting Hexo blog deployment, verifying the integrity of your local environment is a critical step to avoid subsequent deployment failures. This phase requires systematically checking from three dimensions: tool version confirmation, local preview testing, and code repository completeness, ensuring each aspect meets Netlify’s build requirements.</p>
+<h4 id="basic-tool-version-verification"><a class="markdownIt-Anchor" href="#basic-tool-version-verification"></a> Basic Tool Version Verification</h4>
+<p>First, confirm that core development tools are properly installed and configured. As the runtime foundation of Hexo, Node.js is recommended to be managed through <code>nvm</code> (Node Version Manager) to avoid compatibility issues. Use <code>nvm list available</code> to view installable versions, <code>nvm install &lt;version&gt;</code> to install a specific version (such as Node.js 16.20.1 as shown in the example), and <code>nvm use &lt;version&gt;</code> to switch to it[<a target="_blank" rel="noopener" href="https://blog.csdn.net/heng991108/article/details/134946103">5</a>]. After installation, open the terminal and run the following commands to verify versions:</p>
 <ul>
-<li><strong>Node.js 版本</strong>：<code>node -v</code>（需返回具体版本号，如 <code>v16.20.1</code>）</li>
-<li><strong>Hexo 版本</strong>：<code>hexo -v</code>（需返回类似 <code>hexo-cli: 4.3.0</code> 的完整信息）</li>
-<li><strong>Git 版本</strong>：<code>git --version</code>（确保返回有效版本，如 <code>git version 2.40.0</code>）[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>][<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2171887?areaSource=106000.15">7</a>]</li>
+<li><strong>Node.js version</strong>: <code>node -v</code> (should return a specific version number, e.g. <code>v16.20.1</code>)</li>
+<li><strong>Hexo version</strong>: <code>hexo -v</code> (should return complete information like <code>hexo-cli: 4.3.0</code>)</li>
+<li><strong>Git version</strong>: <code>git --version</code> (ensure a valid version is returned, e.g. <code>git version 2.40.0</code>)[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>][<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2171887?areaSource=106000.15">7</a>]</li>
 </ul>
-<p>若命令执行失败或版本号缺失，需重新检查安装步骤：Node.js 需从官网下载稳定版并默认安装，Hexo 需通过 <code>npm install -g hexo-cli</code> 全局安装，Git 则需从官网下载并完成环境变量配置[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>]。</p>
-<h4 id="本地预览与环境测试"><a class="markdownIt-Anchor" href="#本地预览与环境测试"></a> 本地预览与环境测试</h4>
-<p>完成工具验证后，需通过本地预览确认博客功能正常。在 Hexo 项目根目录执行以下命令启动本地服务器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s  <span class="comment"># 或 hexo server</span></span><br></pre></td></tr></table></figure>
-<p>启动成功后，访问 <code>http://localhost:4000</code> 即可预览博客效果[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>]。此时需特别注意两类常见问题：</p>
+<p>If any command fails or the version number is missing, recheck the installation steps: Node.js should be downloaded from the official website as a stable version with default installation; Hexo requires global installation via <code>npm install -g hexo-cli</code>; Git needs to be downloaded from the official website with environment variables properly configured[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>].</p>
+<h4 id="local-preview-and-environment-testing"><a class="markdownIt-Anchor" href="#local-preview-and-environment-testing"></a> Local Preview and Environment Testing</h4>
+<p>After tool verification, confirm that your blog functions correctly through local preview. Run the following command in your Hexo project root directory to start the local server:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s  <span class="comment"># or hexo server</span></span><br></pre></td></tr></table></figure>
+<p>Once started, visit <code>http://localhost:4000</code> to preview your blog[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>]. Pay special attention to two common issues:</p>
 <ul>
-<li><strong>端口冲突</strong>：若提示 <code>Port 4000 has been used</code>，可通过 <code>hexo s -p 5000</code> 更换端口（如 5000）</li>
-<li><strong>浏览器代理问题</strong>：Microsoft Edge 可能因自动代理设置导致访问失败，需在浏览器设置中关闭代理服务器[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>]</li>
+<li><strong>Port conflict</strong>: If you see <code>Port 4000 has been used</code>, switch to a different port with <code>hexo s -p 5000</code> (e.g. 5000)</li>
+<li><strong>Browser proxy issues</strong>: Microsoft Edge may fail to connect due to automatic proxy settings; you’ll need to disable the proxy server in browser settings[<a target="_blank" rel="noopener" href="https://blog.csdn.net/zgcr654321/article/details/86738005">6</a>]</li>
 </ul>
-<p>若预览页面能正常加载文章列表、主题样式和导航功能，说明本地环境配置正确；若出现样式错乱或页面空白，需检查 <code>npm install</code> 是否完整安装依赖包，或主题文件是否存在缺失。</p>
-<h4 id="github-仓库完整性检查"><a class="markdownIt-Anchor" href="#github-仓库完整性检查"></a> GitHub 仓库完整性检查</h4>
-<p>Netlify 部署依赖 GitHub 仓库中的完整源码，缺失关键文件会直接导致构建失败。需确保仓库中包含以下核心内容：</p>
+<p>If the preview page loads article lists, theme styles, and navigation features correctly, your local environment is properly configured. If styles appear broken or pages are blank, check whether <code>npm install</code> fully installed all dependency packages, or whether theme files are missing.</p>
+<h4 id="github-repository-completeness-check"><a class="markdownIt-Anchor" href="#github-repository-completeness-check"></a> GitHub Repository Completeness Check</h4>
+<p>Netlify deployment depends on the complete source code in your GitHub repository — missing critical files will directly cause build failures. Make sure your repository includes the following core content:</p>
 <ul>
-<li><strong>主题文件</strong>：<code>themes/</code> 目录需完整保留（如 <code>themes/next</code>），包含主题配置文件 <code>_config.yml</code></li>
-<li><strong>依赖配置</strong>：根目录下的 <code>package.json</code> 和 <code>package-lock.json</code>（或 <code>yarn.lock</code>）必须存在，记录项目所需依赖版本</li>
-<li><strong>Hexo 配置</strong>：<code>_config.yml</code>（站点配置）和 <code>source/</code>（文章源文件）需完整提交</li>
+<li><strong>Theme files</strong>: The <code>themes/</code> directory must be preserved intact (e.g. <code>themes/next</code>), including the theme configuration file <code>_config.yml</code></li>
+<li><strong>Dependency configuration</strong>: <code>package.json</code> and <code>package-lock.json</code> (or <code>yarn.lock</code>) in the root directory must exist, recording the required dependency versions for the project</li>
+<li><strong>Hexo configuration</strong>: <code>_config.yml</code> (site configuration) and <code>source/</code> (article source files) must be fully committed</li>
 </ul>
-<p>可通过以下 Git 命令确保所有文件已提交：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .  <span class="comment"># 暂存所有变更文件</span></span><br><span class="line">git commit -m <span class="string">&quot;完善项目源码&quot;</span>  <span class="comment"># 提交到本地仓库</span></span><br><span class="line">git push -u origin master  <span class="comment"># 推送到 GitHub 远程仓库</span></span><br></pre></td></tr></table></figure>
+<p>You can use the following Git commands to ensure all files are committed:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .  <span class="comment"># Stage all changed files</span></span><br><span class="line">git commit -m <span class="string">&quot;Complete project source code&quot;</span>  <span class="comment"># Commit to local repository</span></span><br><span class="line">git push -u origin master  <span class="comment"># Push to GitHub remote repository</span></span><br></pre></td></tr></table></figure>
 <p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/calvin_zhou/article/details/109447074">1</a>][<a target="_blank" rel="noopener" href="https://www.netlify.com/blog/2015/10/26/a-step-by-step-guide-hexo-on-netlify/">8</a>]</p>
-<p><strong>关键提醒</strong>：若仓库缺失 <code>package.json</code> 或主题文件，Netlify 构建时会因无法解析依赖或找不到主题模板而失败。建议通过 <code>git status</code> 命令检查未跟踪文件，确保 <code>themes/</code> 和 <code>node_modules/</code> 外的核心文件均已纳入版本控制。</p>
-<p>通过以上三步验证，可有效规避因环境配置不全导致的部署问题，为后续 Netlify 自动化构建奠定稳定基础。</p>
-<h2 id="netlify部署步骤"><a class="markdownIt-Anchor" href="#netlify部署步骤"></a> Netlify部署步骤</h2>
-<h3 id="仓库连接与构建配置"><a class="markdownIt-Anchor" href="#仓库连接与构建配置"></a> 仓库连接与构建配置</h3>
-<p>完成 Hexo 博客的本地搭建和代码托管后，接下来需要将 GitHub 仓库与 Netlify 平台连接，并配置关键的构建参数，确保博客能顺利部署并生成可访问的静态页面。</p>
-<h4 id="一-仓库连接关联-github-与-netlify"><a class="markdownIt-Anchor" href="#一-仓库连接关联-github-与-netlify"></a> 一、仓库连接：关联 GitHub 与 Netlify</h4>
-<p>Netlify 支持通过 Git 仓库直接拉取代码并自动部署，推荐使用 GitHub 账号快速登录并完成仓库授权。具体步骤如下：</p>
+<p><strong>Key Reminder</strong>: If your repository is missing <code>package.json</code> or theme files, Netlify’s build will fail because it cannot resolve dependencies or find theme templates. It is recommended to use the <code>git status</code> command to check for untracked files, ensuring that core files beyond <code>themes/</code> and <code>node_modules/</code> are all under version control.</p>
+<p>By completing the above three verification steps, you can effectively avoid deployment issues caused by incomplete environment configuration, laying a stable foundation for the subsequent automated build on Netlify.</p>
+<h2 id="netlify-deployment-steps"><a class="markdownIt-Anchor" href="#netlify-deployment-steps"></a> Netlify Deployment Steps</h2>
+<h3 id="repository-connection-and-build-configuration"><a class="markdownIt-Anchor" href="#repository-connection-and-build-configuration"></a> Repository Connection and Build Configuration</h3>
+<p>After completing the local setup and code hosting for your Hexo blog, the next step is to connect your GitHub repository to the Netlify platform and configure the critical build parameters to ensure your blog can be deployed smoothly and generate accessible static pages.</p>
+<h4 id="1-repository-connection-linking-github-with-netlify"><a class="markdownIt-Anchor" href="#1-repository-connection-linking-github-with-netlify"></a> 1. Repository Connection: Linking GitHub with Netlify</h4>
+<p>Netlify supports pulling code directly from Git repositories for automatic deployment. It is recommended to use your GitHub account for quick login and repository authorization. The specific steps are as follows:</p>
 <ol>
-<li><strong>登录与新建站点</strong>：访问 Netlify 官网，使用 GitHub 账号授权登录后，点击 dashboard 中的 <strong>“New site from Git”</strong> 或 <strong>“Add a new project”</strong>，进入仓库选择页面。</li>
-<li><strong>授权与选择仓库</strong>：在仓库来源中选择 <strong>GitHub</strong>，Netlify 会请求访问你的 GitHub 仓库权限，确认授权后，从列表中选择存放 Hexo 博客源码的仓库（需确保代码已通过 <code>git push</code> 上传至 GitHub）。</li>
-<li><strong>分支选择</strong>：默认部署主分支（如 <code>master</code> 或 <code>main</code>），若博客源码存放在其他分支，需在“Branch to deploy”中手动指定。</li>
+<li><strong>Log in and create a new site</strong>: Visit the Netlify website, log in with your GitHub account for authorization, then click <strong>“New site from Git”</strong> or <strong>“Add a new project”</strong> in the dashboard to enter the repository selection page.</li>
+<li><strong>Authorize and select a repository</strong>: Choose <strong>GitHub</strong> as the repository source. Netlify will request access to your GitHub repositories; after confirming authorization, select the repository containing your Hexo blog source code from the list (make sure the code has been uploaded to GitHub via <code>git push</code>).</li>
+<li><strong>Branch selection</strong>: The default deployment branch is the main branch (such as <code>master</code> or <code>main</code>). If your blog source code is stored in another branch, manually specify it under “Branch to deploy”.</li>
 </ol>
-<p><strong>注意</strong>：若仓库中包含子目录结构（如配置文件 <code>package.json</code> 不在根目录），需在 Netlify 中设置 <strong>“Base directory”</strong> 指定实际路径，否则构建系统可能因找不到依赖配置而失败。</p>
-<h4 id="二-构建配置关键参数设置与原理"><a class="markdownIt-Anchor" href="#二-构建配置关键参数设置与原理"></a> 二、构建配置：关键参数设置与原理</h4>
-<p>进入构建设置页面后，需重点配置 <strong>构建命令</strong> 和 <strong>发布目录</strong>，这两个参数直接决定部署是否成功。</p>
-<h5 id="1-构建命令为何需要-npm-install-hexo-generate"><a class="markdownIt-Anchor" href="#1-构建命令为何需要-npm-install-hexo-generate"></a> 1. 构建命令：为何需要 <code>npm install</code> + <code>hexo generate</code>？</h5>
-<p>Hexo 博客的构建过程分为两步：</p>
+<p><strong>Note</strong>: If your repository contains a subdirectory structure (e.g. the configuration file <code>package.json</code> is not in the root directory), you need to set the <strong>“Base directory”</strong> in Netlify to specify the actual path, otherwise the build system may fail because it cannot find the dependency configuration.</p>
+<h4 id="2-build-configuration-key-parameter-settings-and-principles"><a class="markdownIt-Anchor" href="#2-build-configuration-key-parameter-settings-and-principles"></a> 2. Build Configuration: Key Parameter Settings and Principles</h4>
+<p>After entering the build settings page, you need to focus on configuring the <strong>build command</strong> and <strong>publish directory</strong> — these two parameters directly determine whether deployment succeeds.</p>
+<h5 id="1-build-command-why-do-you-need-npm-install-hexo-generate"><a class="markdownIt-Anchor" href="#1-build-command-why-do-you-need-npm-install-hexo-generate"></a> 1. Build Command: Why do you need <code>npm install</code> + <code>hexo generate</code>?</h5>
+<p>The Hexo blog build process is divided into two steps:</p>
 <ul>
-<li><strong>依赖安装</strong>：通过 <code>npm install</code> 下载 <code>package.json</code> 中声明的依赖包（如 Hexo 核心模块、主题插件等）。若跳过此步骤，Netlify 服务器将因缺少必要依赖（如 <code>hexo-cli</code>）而无法执行后续命令，常见报错为 <strong>“command failed with exit code 1”</strong>。</li>
-<li><strong>静态文件生成</strong>：通过 <code>hexo generate</code>（简写 <code>hexo g</code>）将 Markdown 文章、主题配置等编译为 HTML/CSS/JS 静态文件，默认输出到 <code>public</code> 目录。</li>
+<li><strong>Dependency installation</strong>: Download the dependency packages declared in <code>package.json</code> (such as Hexo core modules, theme plugins, etc.) via <code>npm install</code>. If this step is skipped, the Netlify server will be unable to execute subsequent commands due to missing required dependencies (such as <code>hexo-cli</code>), with a common error being <strong>“command failed with exit code 1”</strong>.</li>
+<li><strong>Static file generation</strong>: Compile Markdown articles, theme configurations, etc. into HTML/CSS/JS static files via <code>hexo generate</code> (shorthand <code>hexo g</code>), output by default to the <code>public</code> directory.</li>
 </ul>
-<p>实际配置时，可直接填写组合命令 <code>npm install &amp;&amp; hexo generate</code>，或在 <code>package.json</code> 中定义 <code>build</code> 脚本（如 <code>&quot;build&quot;: &quot;hexo generate&quot;</code>），然后在 Netlify 中填写 <code>npm run build</code>（需确保脚本包含依赖安装逻辑，或 Netlify 会自动执行 <code>npm install</code>）。</p>
-<h5 id="2-发布目录指定静态文件位置"><a class="markdownIt-Anchor" href="#2-发布目录指定静态文件位置"></a> 2. 发布目录：指定静态文件位置</h5>
-<p>Hexo 生成的静态文件默认存放在 <code>public</code> 目录，因此需将 Netlify 的 <strong>“Publish directory”</strong> 设置为 <code>public</code>。若错误设置为其他目录（如 <code>dist</code> 或 <code>build</code>），Netlify 将因找不到可部署文件而部署失败。</p>
-<h4 id="三-配置入口与保存部署"><a class="markdownIt-Anchor" href="#三-配置入口与保存部署"></a> 三、配置入口与保存部署</h4>
-<p>在 Netlify 界面中，构建设置入口位于仓库选择后的 <strong>“Build settings”</strong> 步骤，具体位置如下：</p>
+<p>When configuring, you can directly fill in the combined command <code>npm install &amp;&amp; hexo generate</code>, or define a <code>build</code> script in <code>package.json</code> (e.g. <code>&quot;build&quot;: &quot;hexo generate&quot;</code>) and then fill in <code>npm run build</code> in Netlify (make sure the script includes dependency installation logic, or Netlify will automatically run <code>npm install</code>).</p>
+<h5 id="2-publish-directory-specifying-the-static-file-location"><a class="markdownIt-Anchor" href="#2-publish-directory-specifying-the-static-file-location"></a> 2. Publish Directory: Specifying the Static File Location</h5>
+<p>Hexo generates static files in the <code>public</code> directory by default, so you need to set Netlify’s <strong>“Publish directory”</strong> to <code>public</code>. If you mistakenly set it to another directory (such as <code>dist</code> or <code>build</code>), Netlify will fail to deploy because it cannot find deployable files.</p>
+<h4 id="3-configuration-entry-point-and-saving-deployment"><a class="markdownIt-Anchor" href="#3-configuration-entry-point-and-saving-deployment"></a> 3. Configuration Entry Point and Saving Deployment</h4>
+<p>In the Netlify interface, the build settings entry is located in the <strong>“Build settings”</strong> step after selecting the repository, specifically as follows:</p>
 <ul>
-<li><strong>Build command</strong>：填写 <code>npm install &amp;&amp; hexo generate</code> 或 <code>npm run build</code>（根据项目配置选择）。</li>
-<li><strong>Publish directory</strong>：固定填写 <code>public</code>（Hexo 默认输出目录）。</li>
+<li><strong>Build command</strong>: Fill in <code>npm install &amp;&amp; hexo generate</code> or <code>npm run build</code> (choose based on your project configuration).</li>
+<li><strong>Publish directory</strong>: Always fill in <code>public</code> (the default output directory for Hexo).</li>
 </ul>
-<p>确认参数无误后，点击 <strong>“Deploy site”</strong>，Netlify 将自动克隆仓库代码、安装依赖、执行构建命令，并将 <code>public</code> 目录中的内容部署到全球 CDN。部署完成后，可通过 Netlify 生成的随机域名（格式为 <code>[随机字符串].netlify.app</code>）访问博客，验证页面是否正常加载。</p>
-<p><strong>高效配置技巧</strong>：若需固化构建参数（如团队协作或多环境部署），可在项目根目录创建 <code>netlify.toml</code> 文件，写入以下配置：</p>
+<p>After confirming the parameters are correct, click <strong>“Deploy site”</strong>. Netlify will automatically clone the repository code, install dependencies, execute the build command, and deploy the contents of the <code>public</code> directory to the global CDN. Once deployment is complete, you can access your blog through the random domain generated by Netlify (format: <code>[random-string].netlify.app</code>) to verify that pages load correctly.</p>
+<p><strong>Efficient Configuration Tip</strong>: If you need to persist build parameters (such as for team collaboration or multi-environment deployment), you can create a <code>netlify.toml</code> file in the project root directory and write the following configuration:</p>
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[build]</span></span><br><span class="line">  <span class="attr">command</span> = <span class="string">&quot;npm install &amp;&amp; hexo generate&quot;</span></span><br><span class="line">  <span class="attr">publish</span> = <span class="string">&quot;public&quot;</span></span><br></pre></td></tr></table></figure>
-<p>Netlify 会优先读取该文件中的配置，避免每次手动输入。</p>
-<p>通过以上步骤，即可完成仓库连接与构建配置，确保 Hexo 博客在 Netlify 上稳定部署。下一节将介绍如何优化国内访问速度，进一步提升博客的可用性。</p>
-<h3 id="域名配置与https启用"><a class="markdownIt-Anchor" href="#域名配置与https启用"></a> 域名配置与HTTPS启用</h3>
-<p>拥有自定义域名不仅能让博客显得更专业，还能提升用户记忆点。完成这一步后，Netlify会自动为你的博客配置HTTPS加密，让访问更安全。下面我们分步骤实现域名绑定与安全加固。</p>
-<h4 id="一-在netlify添加自定义域名"><a class="markdownIt-Anchor" href="#一-在netlify添加自定义域名"></a> 一、在Netlify添加自定义域名</h4>
-<p>首先登录Netlify账户，进入你的Hexo博客站点控制台，在「Domain management」→「Production domains」中点击「Add domain」，输入你的自有域名（如<code>example.com</code>）并验证确认。添加后，该域名将自动成为博客的主域名，替代默认的<code>xxx.netlify.app</code>子域名[<a target="_blank" rel="noopener" href="https://docs.netlify.com/manage/domains/configure-domains/bring-a-domain-to-netlify/">9</a>]。</p>
-<p><strong>注意</strong>：添加域名时需确保没有重复绑定，若提示冲突，可在Netlify的域名设置中移除旧的DNS zone记录[<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/support-guide-can-i-host-my-site-on-netlify-but-keep-my-dns-at-my-domain-registrar/110">10</a>]。</p>
-<h4 id="二-dns解析配置以阿里云为例"><a class="markdownIt-Anchor" href="#二-dns解析配置以阿里云为例"></a> 二、DNS解析配置（以阿里云为例）</h4>
-<p>这一步需要在你的域名提供商（如阿里云、腾讯云等）后台修改DNS记录，将域名指向Netlify服务器。根据域名类型（裸域/子域名）选择不同配置：</p>
+<p>Netlify will prioritize reading the configuration from this file, avoiding the need to manually enter it each time.</p>
+<p>By following the above steps, you can complete the repository connection and build configuration, ensuring your Hexo blog deploys stably on Netlify. The next section will cover how to optimize access speed in China, further enhancing your blog’s usability.</p>
+<h3 id="domain-configuration-and-https-activation"><a class="markdownIt-Anchor" href="#domain-configuration-and-https-activation"></a> Domain Configuration and HTTPS Activation</h3>
+<p>Having a custom domain not only makes your blog look more professional but also enhances memorability for users. After completing this step, Netlify will automatically configure HTTPS encryption for your blog, making access more secure. Let’s walk through domain binding and security hardening step by step.</p>
+<h4 id="1-adding-a-custom-domain-on-netlify"><a class="markdownIt-Anchor" href="#1-adding-a-custom-domain-on-netlify"></a> 1. Adding a Custom Domain on Netlify</h4>
+<p>First, log in to your Netlify account, navigate to your Hexo blog site dashboard, go to “Domain management” → “Production domains” and click “Add domain”. Enter your own domain name (e.g. <code>example.com</code>) and confirm. Once added, this domain will automatically become the primary domain for your blog, replacing the default <code>xxx.netlify.app</code> subdomain[<a target="_blank" rel="noopener" href="https://docs.netlify.com/manage/domains/configure-domains/bring-a-domain-to-netlify/">9</a>].</p>
+<p><strong>Note</strong>: When adding a domain, make sure there are no duplicate bindings. If a conflict is reported, you can remove the old DNS zone records in Netlify’s domain settings[<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/support-guide-can-i-host-my-site-on-netlify-but-keep-my-dns-at-my-domain-registrar/110">10</a>].</p>
+<h4 id="2-dns-resolution-configuration-using-alibaba-cloud-as-an-example"><a class="markdownIt-Anchor" href="#2-dns-resolution-configuration-using-alibaba-cloud-as-an-example"></a> 2. DNS Resolution Configuration (Using Alibaba Cloud as an Example)</h4>
+<p>This step requires modifying DNS records in your domain provider’s backend (such as Alibaba Cloud, Tencent Cloud, etc.) to point your domain to Netlify’s servers. Choose different configurations based on the domain type (apex domain / subdomain):</p>
 <table>
 <thead>
 <tr>
-<th>域名类型</th>
-<th>推荐记录类型</th>
-<th>主机名</th>
-<th>记录值</th>
-<th>说明</th>
+<th>Domain Type</th>
+<th>Recommended Record Type</th>
+<th>Host</th>
+<th>Record Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>www子域名</td>
+<td>www subdomain</td>
 <td>CNAME</td>
 <td>www</td>
-<td>your-site.netlify.app（如blog.netlify.app）</td>
-<td>将<code>www.example.com</code>指向Netlify分配的子域名</td>
+<td>your-site.netlify.app (e.g. blog.netlify.app)</td>
+<td>Points <code>www.example.com</code> to the subdomain assigned by Netlify</td>
 </tr>
 <tr>
-<td>裸域（<a target="_blank" rel="noopener" href="http://example.com">example.com</a>）</td>
-<td>CNAME（若支持）</td>
+<td>Apex domain (<a target="_blank" rel="noopener" href="http://example.com">example.com</a>)</td>
+<td>CNAME (if supported)</td>
 <td>@</td>
 <td><a target="_blank" rel="noopener" href="http://apex-loadbalancer.netlify.com">apex-loadbalancer.netlify.com</a></td>
-<td>若DNS提供商支持CNAME flattening（别名记录），优先使用此配置</td>
+<td>If your DNS provider supports CNAME flattening (ALIAS records), use this first</td>
 </tr>
 <tr>
-<td>裸域（<a target="_blank" rel="noopener" href="http://example.com">example.com</a>）</td>
-<td>A记录（若不支持CNAME）</td>
+<td>Apex domain (<a target="_blank" rel="noopener" href="http://example.com">example.com</a>)</td>
+<td>A record (if CNAME not supported)</td>
 <td>@</td>
 <td>75.2.60.5</td>
-<td>不支持CNAME时，添加A记录指向Netlify负载均衡器IP，避免硬编码IP变更风险</td>
+<td>If CNAME is not supported, add an A record pointing to Netlify’s load balancer IP, avoiding risks of hardcoded IP changes</td>
 </tr>
 </tbody>
 </table>
-<p><strong>配置要点</strong>：</p>
+<p><strong>Configuration Tips</strong>:</p>
 <ul>
-<li>阿里云用户可进入「域名解析」→「添加记录」，按上表填写参数；</li>
-<li>若之前有旧的A记录（如指向GitHub或其他服务器），需先删除再添加新记录；</li>
-<li>子域名和裸域可同时配置，实现<code>example.com</code>与<code>www.example.com</code>双域名访问[<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/support-guide-can-i-host-my-site-on-netlify-but-keep-my-dns-at-my-domain-registrar/110">10</a>][<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/sites-down-awaiting-netlify-dns/128555?page=3">11</a>]。</li>
+<li>Alibaba Cloud users can go to “Domain Resolution” → “Add Record” and fill in the parameters according to the table above;</li>
+<li>If there are old A records (e.g. pointing to GitHub or other servers), delete them first before adding new records;</li>
+<li>Subdomains and apex domains can be configured simultaneously, enabling dual access via both <code>example.com</code> and <code>www.example.com</code>[<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/support-guide-can-i-host-my-site-on-netlify-but-keep-my-dns-at-my-domain-registrar/110">10</a>][<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/sites-down-awaiting-netlify-dns/128555?page=3">11</a>].</li>
 </ul>
-<h4 id="三-验证dns生效状态"><a class="markdownIt-Anchor" href="#三-验证dns生效状态"></a> 三、验证DNS生效状态</h4>
-<p>DNS记录更新后并非立即生效，需等待全球DNS服务器同步（<strong>通常10-30分钟，最长不超过48小时</strong>）。你可以通过终端命令验证配置是否生效：</p>
+<h4 id="3-verifying-dns-propagation-status"><a class="markdownIt-Anchor" href="#3-verifying-dns-propagation-status"></a> 3. Verifying DNS Propagation Status</h4>
+<p>DNS record updates do not take effect immediately — you need to wait for global DNS servers to synchronize (<strong>usually 10-30 minutes, no longer than 48 hours at most</strong>). You can verify whether the configuration has taken effect using terminal commands:</p>
 <ul>
-<li><strong>验证裸域</strong>：执行<code>host example.com</code>，返回结果应包含<code>75.2.60.5</code>（A记录）或<code>apex-loadbalancer.netlify.com</code>（CNAME）；</li>
-<li><strong>验证www子域</strong>：执行<code>host www.example.com</code>，返回结果应包含你的Netlify子域名（如<code>blog.netlify.app</code>）[<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/support-guide-can-i-host-my-site-on-netlify-but-keep-my-dns-at-my-domain-registrar/110">10</a>]。</li>
+<li><strong>Verify apex domain</strong>: Run <code>host example.com</code>; the result should include <code>75.2.60.5</code> (A record) or <code>apex-loadbalancer.netlify.com</code> (CNAME);</li>
+<li><strong>Verify www subdomain</strong>: Run <code>host www.example.com</code>; the result should include your Netlify subdomain (e.g. <code>blog.netlify.app</code>)[<a target="_blank" rel="noopener" href="https://answers.netlify.com/t/support-guide-can-i-host-my-site-on-netlify-but-keep-my-dns-at-my-domain-registrar/110">10</a>].</li>
 </ul>
-<p><strong>小技巧</strong>：若想快速查询DNS传播进度，可使用在线工具（如DNS Checker）输入域名，查看全球各地的解析状态。</p>
-<h4 id="四-https自动启用与安全价值"><a class="markdownIt-Anchor" href="#四-https自动启用与安全价值"></a> 四、HTTPS自动启用与安全价值</h4>
-<p>当DNS正确指向Netlify后，系统会自动完成以下操作：</p>
+<p><strong>Tip</strong>: If you want to quickly check DNS propagation progress, you can use online tools (such as DNS Checker) to enter your domain and view the resolution status across various global locations.</p>
+<h4 id="4-automatic-https-activation-and-its-security-value"><a class="markdownIt-Anchor" href="#4-automatic-https-activation-and-its-security-value"></a> 4. Automatic HTTPS Activation and Its Security Value</h4>
+<p>When DNS correctly points to Netlify, the system will automatically perform the following:</p>
 <ol>
-<li><strong>证书生成</strong>：Netlify通过Let’s Encrypt自动签发免费SSL证书，无需手动上传；</li>
-<li><strong>HTTPS启用</strong>：默认开启HTTPS并强制跳转（HTTP请求会自动转向HTTPS）；</li>
-<li><strong>证书续期</strong>：证书有效期90天，Netlify会提前自动续期，无需人工干预[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904122353713165">3</a>][<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34104341/article/details/88704694">12</a>]。</li>
+<li><strong>Certificate generation</strong>: Netlify automatically issues a free SSL certificate via Let’s Encrypt — no manual upload required;</li>
+<li><strong>HTTPS activation</strong>: HTTPS is enabled by default with forced redirection (HTTP requests are automatically redirected to HTTPS);</li>
+<li><strong>Certificate renewal</strong>: Certificates are valid for 90 days; Netlify will automatically renew them in advance without any manual intervention[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904122353713165">3</a>][<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34104341/article/details/88704694">12</a>].</li>
 </ol>
-<p><strong>为什么必须启用HTTPS？</strong></p>
+<p><strong>Why must HTTPS be enabled?</strong></p>
 <ul>
-<li><strong>安全层面</strong>：加密用户数据传输，避免内容被篡改；</li>
-<li><strong>体验层面</strong>：现代浏览器（如Chrome、Firefox）会对HTTP站点标记“不安全”，影响访问意愿；</li>
-<li><strong>SEO层面</strong>：Google等搜索引擎优先收录HTTPS站点，提升排名权重[<a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">13</a>]。</li>
+<li><strong>Security perspective</strong>: Encrypts user data transmission, preventing content tampering;</li>
+<li><strong>User experience perspective</strong>: Modern browsers (such as Chrome, Firefox) label HTTP sites as “Not Secure,” affecting visitors’ willingness to browse;</li>
+<li><strong>SEO perspective</strong>: Search engines like Google prioritize HTTPS sites, boosting ranking weight[<a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">13</a>].</li>
 </ul>
-<p>如果遇到HTTPS未启用的情况，先检查DNS记录是否正确（错误的DNS指向会导致证书无法生成），然后在Netlify的「HTTPS」设置中点击「Renew certificate」手动触发证书更新[<a target="_blank" rel="noopener" href="https://blog.csdn.net/shaoyezhangliwei/article/details/146191022">14</a>]。</p>
-<p>完成以上步骤后，你的Hexo博客就拥有了专属域名和HTTPS加密，访问速度与安全性均得到显著提升。</p>
-<h2 id="build-command-failed错误解决方案"><a class="markdownIt-Anchor" href="#build-command-failed错误解决方案"></a> &quot;build command failed&quot;错误解决方案</h2>
-<h3 id="依赖安装与版本兼容问题"><a class="markdownIt-Anchor" href="#依赖安装与版本兼容问题"></a> 依赖安装与版本兼容问题</h3>
-<p>在 Hexo 博客部署 Netlify 的过程中，构建失败常常与依赖安装不完整或版本兼容问题相关。这两类问题的根源与 Netlify 构建环境的特性密切相关，需要针对性解决才能确保部署流程顺畅。</p>
-<h4 id="依赖安装从command-not-found到完整部署"><a class="markdownIt-Anchor" href="#依赖安装从command-not-found到完整部署"></a> 依赖安装：从“command not found”到完整部署</h4>
-<p>Netlify 构建环境默认以生产模式（<code>NODE_ENV=production</code>）运行，此时仅会安装 <code>package.json</code> 中 <code>dependencies</code> 字段声明的依赖，而 <code>devDependencies</code> 中的工具（如 <code>hexo-cli</code>）不会被自动安装。这直接导致构建日志中出现“command not found”（如“hexo: command not found”）或模块缺失错误。</p>
-<p>解决这一问题的核心是确保构建工具和依赖在环境中可用，有两种常用方案：</p>
+<p>If HTTPS isn’t enabled as expected, first check whether the DNS records are correct (incorrect DNS pointing will prevent certificate generation), then click “Renew certificate” in Netlify’s “HTTPS” settings to manually trigger certificate renewal[<a target="_blank" rel="noopener" href="https://blog.csdn.net/shaoyezhangliwei/article/details/146191022">14</a>].</p>
+<p>After completing the above steps, your Hexo blog will have a custom domain and HTTPS encryption, with significantly improved access speed and security.</p>
+<h2 id="build-command-failed-error-solutions"><a class="markdownIt-Anchor" href="#build-command-failed-error-solutions"></a> “build command failed” Error Solutions</h2>
+<h3 id="dependency-installation-and-version-compatibility-issues"><a class="markdownIt-Anchor" href="#dependency-installation-and-version-compatibility-issues"></a> Dependency Installation and Version Compatibility Issues</h3>
+<p>During the Netlify deployment of a Hexo blog, build failures are often related to incomplete dependency installation or version compatibility issues. The root causes of these two types of problems are closely tied to the characteristics of Netlify’s build environment and require targeted solutions to ensure a smooth deployment process.</p>
+<h4 id="dependency-installation-from-command-not-found-to-complete-deployment"><a class="markdownIt-Anchor" href="#dependency-installation-from-command-not-found-to-complete-deployment"></a> Dependency Installation: From “command not found” to Complete Deployment</h4>
+<p>Netlify’s build environment runs in production mode (<code>NODE_ENV=production</code>) by default, meaning only the dependencies declared in the <code>dependencies</code> field of <code>package.json</code> are installed, while tools in <code>devDependencies</code> (such as <code>hexo-cli</code>) are not automatically installed. This directly leads to “command not found” errors (e.g. “hexo: command not found”) or missing module errors in the build logs.</p>
+<p>The key to solving this problem is ensuring that build tools and dependencies are available in the environment. There are two common approaches:</p>
 <ul>
-<li><strong>方案一：调整构建命令</strong><br />
-在构建命令前显式添加依赖安装步骤，确保 <code>hexo</code> 等工具被正确加载：</li>
+<li><strong>Option 1: Adjust the Build Command</strong><br />
+Explicitly add a dependency installation step before the build command to ensure tools like <code>hexo</code> are properly loaded:</li>
 </ul>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm install &amp;&amp; hexo generate</span><br><span class="line"> ```  </span><br><span class="line"></span><br><span class="line"> 这种方式会在每次构建时完整安装 `package.json` 中的所有依赖（包括 `devDependencies`），适用于大多数场景。</span><br><span class="line"></span><br><span class="line">- **方案二：调整依赖声明**  </span><br><span class="line">  将构建必需的工具（如 `hexo-cli`）从 `devDependencies` 移至 `dependencies` 字段，或在安装时添加 `--production=<span class="literal">false</span>` 参数强制安装开发依赖：  </span><br><span class="line">  </span><br><span class="line">```bash</span><br><span class="line">npm install --production=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p><strong>常见陷阱提示</strong>：若部署时出现“ERROR Deployer not found: git”，需通过 <code>npm install hexo-deployer-git --save</code> 手动安装缺失的部署插件，此类工具通常不会随 Hexo 核心自动安装。</p>
-<h2 id="结语"><a class="markdownIt-Anchor" href="#结语"></a> 结语</h2>
-<p>通过Netlify部署Hexo博客，你可以告别繁琐的手动部署流程，实现从本地修改、GitHub提交到自动部署的全流程自动化，让博客发布效率大幅提升[<a target="_blank" rel="noopener" href="https://blog.csdn.net/calvin_zhou/article/details/109447074">1</a>][<a target="_blank" rel="noopener" href="https://www.netlify.com/blog/2015/10/26/a-step-by-step-guide-hexo-on-netlify/">8</a>]。同时，Netlify提供的免费HTTPS证书和灵活DNS配置，不仅能增强博客的安全性，还能有效提升站点的全球可用性，让国内访问体验更加流畅。</p>
-<p>当然，部署过程中也需要注意一些关键细节。<strong>核心注意事项</strong>：确保项目依赖管理清晰，避免因版本冲突导致构建失败；DNS配置时需仔细核对域名解析记录，确保解析指向正确；构建命令需提前在本地校验通过，避免因命令错误导致部署中断。这些细节的把控，是确保博客顺利上线的重要保障。</p>
-<p>如果你还在为博客部署的复杂性困扰，不妨按照本文的步骤动手尝试。部署完成后，记得定期关注Netlify的构建日志和域名解析状态，及时发现并解决潜在问题，让你的Hexo博客长期稳定运行，为读者提供更可靠的访问体验。技术的价值在于简化流程、提升效率，Netlify与Hexo的组合，正是这一理念的最佳实践。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &amp;&amp; hexo generate</span><br></pre></td></tr></table></figure>
+<p>This approach fully installs all dependencies in <code>package.json</code> (including <code>devDependencies</code>) on every build and is suitable for most scenarios.</p>
+<ul>
+<li><strong>Option 2: Adjust Dependency Declarations</strong><br />
+Move build-essential tools (like <code>hexo-cli</code>) from <code>devDependencies</code> to the <code>dependencies</code> field, or add the <code>--production=false</code> flag when installing to force the installation of dev dependencies:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --production=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p><strong>Common Pitfall Reminder</strong>: If you encounter “ERROR Deployer not found: git” during deployment, you need to manually install the missing deployment plugin with <code>npm install hexo-deployer-git --save</code>, as such tools are typically not automatically installed alongside the Hexo core.</p>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>By deploying your Hexo blog on Netlify, you can say goodbye to tedious manual deployment workflows and achieve full-process automation from local modifications and GitHub commits to automatic deployment, significantly boosting your blog publishing efficiency[<a target="_blank" rel="noopener" href="https://blog.csdn.net/calvin_zhou/article/details/109447074">1</a>][<a target="_blank" rel="noopener" href="https://www.netlify.com/blog/2015/10/26/a-step-by-step-guide-hexo-on-netlify/">8</a>]. At the same time, the free HTTPS certificates and flexible DNS configuration provided by Netlify not only enhance your blog’s security but also effectively improve the site’s global availability, making the access experience smoother for readers in China.</p>
+<p>Of course, there are certain key details to pay attention to during the deployment process. <strong>Core Considerations</strong>: Ensure clear project dependency management to avoid build failures caused by version conflicts; carefully verify DNS resolution records during DNS configuration to ensure correct resolution targets; validate build commands locally beforehand to avoid deployment interruptions due to command errors. Mastering these details is a crucial guarantee for a smooth blog launch.</p>
+<p>If you’re still troubled by the complexity of blog deployment, feel free to follow the steps in this article and give it a try. After deployment, remember to regularly monitor Netlify’s build logs and domain resolution status, promptly identify and resolve potential issues, so your Hexo blog can run stably over the long term and provide readers with a more reliable access experience. The value of technology lies in simplifying processes and improving efficiency — the combination of Netlify and Hexo is the perfect embodiment of this philosophy.</p>
 
       
     </div>
     <footer class="article-footer">
       
         <blockquote class="article-copyright">
-    <p><strong><span class="icon-user icon"></span>Author: </strong>微雨扬 @ XYY滴小窝</p>
+    <p><strong><span class="icon-user icon"></span>Author: </strong>微雨扬 @ XYY's Corner</p>
     
-    <p><strong><span class="icon-pencil icon"></span>Title: </strong>「Hexo博客部署Netlify完全指南：从0到1优化国内访问速度」</p>
+    <p><strong><span class="icon-pencil icon"></span>Title: </strong>「Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1」</p>
     <p><strong><span class="icon-calendar icon"></span>Published: </strong>2025-08-29 14:18:42</p>
     
     <p><strong><span class="icon-copyright icon"></span>License: </strong>All articles on this blog are licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> license agreement unless otherwise stated. Please indicate the source when reprinting!</p>
@@ -633,31 +639,31 @@
       
         <div class="share-wrapper">
   
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fxy-0735.github.io%2F2025%2F08%2F29%2FHexo%25E5%258D%259A%25E5%25AE%25A2%25E9%2583%25A8%25E7%25BD%25B2Netlify%25E5%25AE%258C%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BB%258E0%25E5%2588%25B01%25E4%25BC%2598%25E5%258C%2596%25E5%259B%25BD%25E5%2586%2585%25E8%25AE%25BF%25E9%2597%25AE%25E9%2580%259F%25E5%25BA%25A6%2F" target="_blank" rel="noopener noreferrer" title="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fxy-0735.github.io%2F2025%2F08%2F29%2FHexo%25E5%258D%259A%25E5%25AE%25A2%25E9%2583%25A8%25E7%25BD%25B2Netlify%25E5%25AE%258C%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BB%258E0%25E5%2588%25B01%25E4%25BC%2598%25E5%258C%2596%25E5%259B%25BD%25E5%2586%2585%25E8%25AE%25BF%25E9%2597%25AE%25E9%2580%259F%25E5%25BA%25A6%2F" target="_blank" rel="noopener noreferrer" title="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
       <div class="share-icon icon icon-facebook">
         
       </div>
     </a>
   
-    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fxy-0735.github.io%2F2025%2F08%2F29%2FHexo%25E5%258D%259A%25E5%25AE%25A2%25E9%2583%25A8%25E7%25BD%25B2Netlify%25E5%25AE%258C%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BB%258E0%25E5%2588%25B01%25E4%25BC%2598%25E5%258C%2596%25E5%259B%25BD%25E5%2586%2585%25E8%25AE%25BF%25E9%2597%25AE%25E9%2580%259F%25E5%25BA%25A6%2F&amp;text=Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6&amp;via=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fxy-0735.github.io%2F2025%2F08%2F29%2FHexo%25E5%258D%259A%25E5%25AE%25A2%25E9%2583%25A8%25E7%25BD%25B2Netlify%25E5%25AE%258C%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BB%258E0%25E5%2588%25B01%25E4%25BC%2598%25E5%258C%2596%25E5%259B%25BD%25E5%2586%2585%25E8%25AE%25BF%25E9%2597%25AE%25E9%2580%259F%25E5%25BA%25A6%2F&amp;text=Complete%20Guide%20to%20Deploying%20a%20Hexo%20Blog%20on%20Netlify%3A%20Optimizing%20Access%20Speed%20in%20China%20from%200%20to%201&amp;via=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
       <div class="share-icon icon icon-twitter">
         
       </div>
     </a>
   
-    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fxy-0735.github.io%2F2025%2F08%2F29%2FHexo%25E5%258D%259A%25E5%25AE%25A2%25E9%2583%25A8%25E7%25BD%25B2Netlify%25E5%25AE%258C%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BB%258E0%25E5%2588%25B01%25E4%25BC%2598%25E5%258C%2596%25E5%259B%25BD%25E5%2586%2585%25E8%25AE%25BF%25E9%2597%25AE%25E9%2580%259F%25E5%25BA%25A6%2F&amp;appkey=&amp;title=Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fxy-0735.github.io%2F2025%2F08%2F29%2FHexo%25E5%258D%259A%25E5%25AE%25A2%25E9%2583%25A8%25E7%25BD%25B2Netlify%25E5%25AE%258C%25E5%2585%25A8%25E6%258C%2587%25E5%258D%2597%25EF%25BC%259A%25E4%25BB%258E0%25E5%2588%25B01%25E4%25BC%2598%25E5%258C%2596%25E5%259B%25BD%25E5%2586%2585%25E8%25AE%25BF%25E9%2597%25AE%25E9%2580%259F%25E5%25BA%25A6%2F&amp;appkey=&amp;title=Complete%20Guide%20to%20Deploying%20a%20Hexo%20Blog%20on%20Netlify%3A%20Optimizing%20Access%20Speed%20in%20China%20from%200%20to%201&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
       <div class="share-icon icon icon-weibo">
         
       </div>
     </a>
   
-    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6&amp;desc=Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6&amp;source=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=Complete%20Guide%20to%20Deploying%20a%20Hexo%20Blog%20on%20Netlify%3A%20Optimizing%20Access%20Speed%20in%20China%20from%200%20to%201&amp;desc=Complete%20Guide%20to%20Deploying%20a%20Hexo%20Blog%20on%20Netlify%3A%20Optimizing%20Access%20Speed%20in%20China%20from%200%20to%201&amp;source=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
       <div class="share-icon icon icon-qq">
         
       </div>
     </a>
   
-    <a href="javascript:;"  title="Hexo博客部署Netlify完全指南：从0到1优化国内访问速度">
+    <a href="javascript:;"  title="Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1">
       <div class="share-icon icon icon-weixin">
         
           <div id="share-weixin">
@@ -705,39 +711,6 @@
     </footer>
   </div>
   
-  <nav id="article-nav" data-aos="fade-up">
-    
-      
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          <img data-src="/images/%E8%BE%B9%E6%A1%86%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0%E7%A0%94%E7%A9%B6.jpg" data-sizes="auto" alt="使用Vercel部署Waline评论系统到Hexo博客的完整教程" class="lazyload">
-        
-        <a href="/en/2025/09/01/%E4%BD%BF%E7%94%A8Vercel%E9%83%A8%E7%BD%B2Waline%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%88%B0Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B/"></a>
-        <div class="article-nav-caption">Prev</div>
-        <h3 class="article-nav-title">
-          
-            使用Vercel部署Waline评论系统到Hexo博客的完整教程
-          
-        </h3>
-      </div>
-    
-    
-    
-    <div class="article-nav-link-wrap article-nav-link-right">
-      
-        <img data-src="/images/%E6%8B%9B%E6%96%B0.jpg" data-sizes="auto" alt="CUC信通学院各部门招新" class="lazyload">
-      
-      <a href="/en/2025/08/28/CUC%E4%BF%A1%E9%80%9A%E5%AD%A6%E9%99%A2%E5%90%84%E9%83%A8%E9%97%A8%E6%8B%9B%E6%96%B0/"></a>
-      <div class="article-nav-caption">Next</div>
-      <h3 class="article-nav-title">
-        
-          CUC信通学院各部门招新
-        
-      </h3>
-    </div>
-    
-  </nav>
-
 
 </article>
 
@@ -798,10 +771,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        34.8k
+        120.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        02:16
+        09:01
       </div>
     
     
@@ -834,27 +807,27 @@
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text"> 部署准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%A3%80%E6%9F%A5"><span class="toc-number">2.1.</span> <span class="toc-text"> 环境检查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%B7%A5%E5%85%B7%E7%89%88%E6%9C%AC%E9%AA%8C%E8%AF%81"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 基础工具版本验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 本地预览与环境测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#github-%E4%BB%93%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.1.3.</span> <span class="toc-text"> GitHub 仓库完整性检查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netlify%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text"> Netlify部署步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">3.1.</span> <span class="toc-text"> 仓库连接与构建配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E4%BB%93%E5%BA%93%E8%BF%9E%E6%8E%A5%E5%85%B3%E8%81%94-github-%E4%B8%8E-netlify"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 一、仓库连接：关联 GitHub 与 Netlify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE%E5%85%B3%E9%94%AE%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 二、构建配置：关键参数设置与原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BD%95%E9%9C%80%E8%A6%81-npm-install-hexo-generate"><span class="toc-number">3.1.2.1.</span> <span class="toc-text"> 1. 构建命令：为何需要 npm install + hexo generate？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%91%E5%B8%83%E7%9B%AE%E5%BD%95%E6%8C%87%E5%AE%9A%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE"><span class="toc-number">3.1.2.2.</span> <span class="toc-text"> 2. 发布目录：指定静态文件位置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E9%85%8D%E7%BD%AE%E5%85%A5%E5%8F%A3%E4%B8%8E%E4%BF%9D%E5%AD%98%E9%83%A8%E7%BD%B2"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 三、配置入口与保存部署</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E4%B8%8Ehttps%E5%90%AF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text"> 域名配置与HTTPS启用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E5%9C%A8netlify%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 一、在Netlify添加自定义域名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-dns%E8%A7%A3%E6%9E%90%E9%85%8D%E7%BD%AE%E4%BB%A5%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%BA%E4%BE%8B"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 二、DNS解析配置（以阿里云为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89-%E9%AA%8C%E8%AF%81dns%E7%94%9F%E6%95%88%E7%8A%B6%E6%80%81"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 三、验证DNS生效状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B-https%E8%87%AA%E5%8A%A8%E5%90%AF%E7%94%A8%E4%B8%8E%E5%AE%89%E5%85%A8%E4%BB%B7%E5%80%BC"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 四、HTTPS自动启用与安全价值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#build-command-failed%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text"> &quot;build command failed&quot;错误解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E4%B8%8E%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text"> 依赖安装与版本兼容问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E4%BB%8Ecommand-not-found%E5%88%B0%E5%AE%8C%E6%95%B4%E9%83%A8%E7%BD%B2"><span class="toc-number">4.1.1.</span> <span class="toc-text"> 依赖安装：从“command not found”到完整部署</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text"> 结语</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text"> Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deployment-preparation"><span class="toc-number">2.</span> <span class="toc-text"> Deployment Preparation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#environment-check"><span class="toc-number">2.1.</span> <span class="toc-text"> Environment Check</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#basic-tool-version-verification"><span class="toc-number">2.1.1.</span> <span class="toc-text"> Basic Tool Version Verification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#local-preview-and-environment-testing"><span class="toc-number">2.1.2.</span> <span class="toc-text"> Local Preview and Environment Testing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#github-repository-completeness-check"><span class="toc-number">2.1.3.</span> <span class="toc-text"> GitHub Repository Completeness Check</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#netlify-deployment-steps"><span class="toc-number">3.</span> <span class="toc-text"> Netlify Deployment Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#repository-connection-and-build-configuration"><span class="toc-number">3.1.</span> <span class="toc-text"> Repository Connection and Build Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-repository-connection-linking-github-with-netlify"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 1. Repository Connection: Linking GitHub with Netlify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-build-configuration-key-parameter-settings-and-principles"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 2. Build Configuration: Key Parameter Settings and Principles</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-build-command-why-do-you-need-npm-install-hexo-generate"><span class="toc-number">3.1.2.1.</span> <span class="toc-text"> 1. Build Command: Why do you need npm install + hexo generate?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-publish-directory-specifying-the-static-file-location"><span class="toc-number">3.1.2.2.</span> <span class="toc-text"> 2. Publish Directory: Specifying the Static File Location</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-configuration-entry-point-and-saving-deployment"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 3. Configuration Entry Point and Saving Deployment</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#domain-configuration-and-https-activation"><span class="toc-number">3.2.</span> <span class="toc-text"> Domain Configuration and HTTPS Activation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-adding-a-custom-domain-on-netlify"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 1. Adding a Custom Domain on Netlify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-dns-resolution-configuration-using-alibaba-cloud-as-an-example"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 2. DNS Resolution Configuration (Using Alibaba Cloud as an Example)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-verifying-dns-propagation-status"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 3. Verifying DNS Propagation Status</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-automatic-https-activation-and-its-security-value"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 4. Automatic HTTPS Activation and Its Security Value</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#build-command-failed-error-solutions"><span class="toc-number">4.</span> <span class="toc-text"> “build command failed” Error Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dependency-installation-and-version-compatibility-issues"><span class="toc-number">4.1.</span> <span class="toc-text"> Dependency Installation and Version Compatibility Issues</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dependency-installation-from-command-not-found-to-complete-deployment"><span class="toc-number">4.1.1.</span> <span class="toc-text"> Dependency Installation: From “command not found” to Complete Deployment</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-number">5.</span> <span class="toc-text"> Conclusion</span></a></li></ol>
   
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
   <div class="sidebar-author-name">微雨扬</div>
-  <div class="sidebar-description">欢迎光临</div>
+  <div class="sidebar-description">Welcome</div>
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">64</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">8</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">22</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -1187,13 +1160,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "微雨扬",
-          title: "Hexo博客部署Netlify完全指南：从0到1优化国内访问速度",
+          title: "Complete Guide to Deploying a Hexo Blog on Netlify: Optimizing Access Speed in China from 0 to 1",
           url: "https://xy-0735.github.io/2025/08/29/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E0%E5%88%B01%E4%BC%98%E5%8C%96%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/",
           excerpt: "",
           description: "",
-          stripContent: " 引言 对于许多国内开发者而言，使用 GitHub Pages 部署 Hexo 博客时，常常会遇到访问速度慢的问题——加载一篇文章可能需要数秒甚至更长时间，严重影响读者体验。而 Netlify 的出现，恰好为这个痛点提供了优雅的解决方案。作为被业内称为“静态网站托管天花板”的平台，它不仅完美适配 Hexo 等静态博客，更通过一系列核心特性重新定义了博客部署的效率与体验。 Netlify 核心优势速览  全球 CDN 加速：将静态资源分发至全球节点，显著改善国内访问延迟 全自动化部署：关联 Git",
+          stripContent: " Introduction For many developers in China, deploying a Hexo blog using GitHub Pages often means dealing with slow access speeds — loading a single article can take several seconds or even longer, seriously hurting the reader experience. Netlify offe",
           date: "Fri Aug 29 2025 14:18:42 GMT+0800",
-          updated: "Fri Aug 29 2025 14:59:36 GMT+0800",
+          updated: "Thu May 14 2026 13:03:58 GMT+0800",
           cover: "/images/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2Netlify%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97.jpg",
         };
       </script>
@@ -1734,6 +1707,540 @@
 
 
     
-  </body>
+  <!-- AI Chat Widget -->
+<script>
+  window.AI_ASSISTANT_CONFIG = {
+    chatApiUrl: "https://api.deepseek.com/v1/chat/completions",
+    chatModel: "deepseek-chat",
+    chatApiKey: "",
+    proxyUrl: "https://1373700256-ivrk5jn3bq.ap-beijing.tencentscf.com",
+    kbUrl: "/hexo-ai-assistant/blog-knowledge-base.json",
+    blogName: "XYY's Corner",
+    backgroundImage: "",
+    themeColor: "#ff6b9d",
+    welcomeMessage: "你好！有什么关于博客的问题想问？"
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/hexo-ai-assistant/ai-core.js" data-pjax></script>
+
+<style>
+  .ai-chat-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 107, 157, 0.35);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 0;
+  }
+  .ai-chat-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.45);
+  }
+
+  .ai-chat-window {
+    position: fixed;
+    bottom: 88px;
+    right: 24px;
+    width: 370px;
+    height: 520px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    z-index: 9998;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .ai-chat-window.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dark mode */
+  [data-theme-mode="true"] .ai-chat-window,
+  .dark-mode .ai-chat-window {
+    background: #1e1e1e;
+    border-color: rgba(255,255,255,0.1);
+    color: #e0e0e0;
+  }
+  [data-theme-mode="true"] .ai-chat-msg-user .ai-chat-bubble,
+  .dark-mode .ai-chat-msg-user .ai-chat-bubble {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+  }
+  [data-theme-mode="true"] .ai-chat-msg-bot .ai-chat-bubble,
+  .dark-mode .ai-chat-msg-bot .ai-chat-bubble {
+    background: #2a2a2a;
+    color: #e0e0e0;
+  }
+  [data-theme-mode="true"] .ai-chat-input-area,
+  .dark-mode .ai-chat-input-area {
+    background: #1a1a1a;
+    border-top-color: rgba(255,255,255,0.08);
+  }
+  [data-theme-mode="true"] .ai-chat-input,
+  .dark-mode .ai-chat-input {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    border-color: rgba(255,255,255,0.1);
+  }
+  [data-theme-mode="true"] .ai-chat-header,
+  .dark-mode .ai-chat-header {
+    background: #1a1a1a;
+    border-bottom-color: rgba(255,255,255,0.08);
+    color: #e0e0e0;
+  }
+
+  .ai-chat-header {
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  .ai-chat-header-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .ai-chat-header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #888;
+    transition: color 0.15s, background 0.15s;
+  }
+  .ai-chat-header-btn:hover {
+    color: #333;
+    background: rgba(0,0,0,0.05);
+  }
+  [data-theme-mode="true"] .ai-chat-header-btn:hover,
+  .dark-mode .ai-chat-header-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-image: var(--chat-bg-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    background-color: rgba(255,255,255,0.92);
+  }
+  [data-theme-mode="true"] .ai-chat-messages,
+  .dark-mode .ai-chat-messages {
+    background-color: rgba(30,30,30,0.92);
+  }
+
+  .ai-chat-msg {
+    display: flex;
+    gap: 8px;
+    max-width: 88%;
+  }
+  .ai-chat-msg-bot { align-self: flex-start; }
+  .ai-chat-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+
+  .ai-chat-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .ai-chat-bubble {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    word-break: break-word;
+  }
+  .ai-chat-msg-user .ai-chat-bubble {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .ai-chat-msg-bot .ai-chat-bubble {
+    background: #f2f2f2;
+    color: #333;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* Markdown within bubbles */
+  .ai-chat-bubble p { margin: 0 0 4px; }
+  .ai-chat-bubble p:last-child { margin-bottom: 0; }
+  .ai-chat-bubble ul, .ai-chat-bubble ol { margin: 4px 0; padding-left: 18px; }
+  .ai-chat-bubble li { margin-bottom: 2px; }
+  .ai-chat-bubble a {
+    color: var(--chat-theme-color, #ff6b9d);
+    text-decoration: underline;
+  }
+  .ai-chat-bubble code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .ai-chat-bubble pre {
+    background: rgba(0,0,0,0.05);
+    padding: 8px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+  .ai-chat-msg-user .ai-chat-bubble a { color: #fff; text-decoration: underline; }
+  .ai-chat-msg-user .ai-chat-bubble code { background: rgba(255,255,255,0.2); }
+
+  .ai-chat-typing .ai-chat-bubble {
+    display: flex;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+  .ai-chat-typing .ai-chat-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #999;
+    animation: ai-chat-bounce 1.4s infinite ease-in-out both;
+  }
+  .ai-chat-typing .ai-chat-dot:nth-child(1) { animation-delay: -0.32s; }
+  .ai-chat-typing .ai-chat-dot:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes ai-chat-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+
+  .ai-chat-input-area {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid #eee;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .ai-chat-input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ai-chat-input:focus {
+    border-color: var(--chat-theme-color, #ff6b9d);
+  }
+  .ai-chat-send {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+  }
+  .ai-chat-send:hover { transform: scale(1.05); }
+
+  .ai-chat-toolbar {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+    gap: 8px;
+  }
+  .ai-chat-toolbar button {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .ai-chat-toolbar button:hover { color: #666; }
+
+  @media (max-width: 480px) {
+    .ai-chat-window {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+    .ai-chat-btn {
+      bottom: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+    }
+  }
+</style>
+
+<div id="ai-chat-btn" class="ai-chat-btn" title="AI 助手">💬</div>
+
+<div id="ai-chat-window" class="ai-chat-window">
+  <div class="ai-chat-header">
+    <span>🤖 AI 助手</span>
+    <div class="ai-chat-header-actions">
+      <button class="ai-chat-header-btn" id="ai-chat-theme-toggle" title="切换亮暗模式">🌓</button>
+      <button class="ai-chat-header-btn" id="ai-chat-reset" title="重置对话">↺</button>
+      <button class="ai-chat-header-btn" id="ai-chat-close" title="关闭">✕</button>
+    </div>
+  </div>
+  <div class="ai-chat-messages" id="ai-chat-messages">
+    <div class="ai-chat-msg ai-chat-msg-bot">
+      <div class="ai-chat-avatar">🤖</div>
+      <div class="ai-chat-bubble">你好！有什么关于博客的问题想问？</div>
+    </div>
+  </div>
+  <div class="ai-chat-input-area">
+    <input type="text" class="ai-chat-input" id="ai-chat-input" placeholder="输入你的问题..." maxlength="500">
+    <button class="ai-chat-send" id="ai-chat-send">➤</button>
+  </div>
+  <div class="ai-chat-toolbar">
+    <button id="ai-chat-reset2">重置对话</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var cfg = window.AI_ASSISTANT_CONFIG;
+  var chatBtn = document.getElementById('ai-chat-btn');
+  var chatWin = document.getElementById('ai-chat-window');
+  var chatMsgs = document.getElementById('ai-chat-messages');
+  var chatInput = document.getElementById('ai-chat-input');
+  var chatSend = document.getElementById('ai-chat-send');
+  var chatClose = document.getElementById('ai-chat-close');
+  var chatReset = document.getElementById('ai-chat-reset');
+  var chatReset2 = document.getElementById('ai-chat-reset2');
+  var themeToggle = document.getElementById('ai-chat-theme-toggle');
+  var isOpen = false;
+  var isStreaming = false;
+
+  // Apply theme color
+  document.documentElement.style.setProperty('--chat-theme-color', cfg.themeColor);
+  // Apply background image
+  if (cfg.backgroundImage) {
+    chatMsgs.style.setProperty('--chat-bg-image', 'url(' + cfg.backgroundImage + ')');
+  }
+
+  // History
+  var history = window.AIAssistant ? window.AIAssistant.loadHistory() : [];
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      chatWin.style.display = 'flex';
+      requestAnimationFrame(function() {
+        chatWin.classList.add('open');
+      });
+      chatInput.focus();
+      if (window.AIAssistant && !window.AIAssistant.isLoaded()) {
+        window.AIAssistant.loadKnowledgeBase();
+      }
+      updateDarkMode();
+    } else {
+      chatWin.classList.remove('open');
+      setTimeout(function() { chatWin.style.display = 'none'; }, 250);
+    }
+  }
+
+  function updateDarkMode() {
+    var isDark = localStorage.getItem('dark_mode') === 'true';
+    chatWin.classList.toggle('dark-mode', isDark);
+  }
+
+  themeToggle.onclick = function() {
+    var isDark = localStorage.getItem('dark_mode') === 'true';
+    localStorage.setItem('dark_mode', !isDark ? 'true' : 'false');
+    updateDarkMode();
+    var eventName = !isDark ? 'dark-theme-set' : 'light-theme-set';
+    document.body.dispatchEvent(new CustomEvent(eventName));
+  };
+
+  chatBtn.onclick = toggleChat;
+  chatClose.onclick = toggleChat;
+
+  function addMessage(role, content) {
+    var msg = document.createElement('div');
+    msg.className = 'ai-chat-msg ai-chat-msg-' + role;
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = role === 'user' ? '🙂' : '🤖';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-chat-bubble';
+    if (role === 'bot' && typeof marked !== 'undefined') {
+      bubble.innerHTML = marked.parse(content);
+    } else {
+      bubble.textContent = content;
+    }
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    return { msg: msg, bubble: bubble };
+  }
+
+  function addTypingIndicator() {
+    var msg = document.createElement('div');
+    msg.className = 'ai-chat-msg ai-chat-msg-bot ai-chat-typing';
+    msg.id = 'ai-chat-typing';
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = '🤖';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-chat-bubble';
+    bubble.innerHTML = '<div class="ai-chat-dot"></div><div class="ai-chat-dot"></div><div class="ai-chat-dot"></div>';
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    chatMsgs.appendChild(msg);
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    var el = document.getElementById('ai-chat-typing');
+    if (el) el.remove();
+  }
+
+  async function sendMessage() {
+    var query = chatInput.value.trim();
+    if (!query || isStreaming) return;
+
+    isStreaming = true;
+    chatInput.value = '';
+    chatSend.disabled = true;
+
+    var userEl = addMessage('user', query);
+    chatMsgs.appendChild(userEl.msg);
+
+    if (!window.AIAssistant) {
+      addMessage('bot', 'AI 助手脚本尚未加载完成，请刷新页面后重试。');
+      isStreaming = false;
+      chatSend.disabled = false;
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+      return;
+    }
+
+    addTypingIndicator();
+
+    var fullContent = '';
+    var botMsg = null;
+    var botBubble = null;
+
+    await window.AIAssistant.chat(query, history, function(chunk) {
+      if (!botMsg) {
+        removeTypingIndicator();
+        var m = addMessage('bot', '');
+        botMsg = m.msg;
+        botBubble = m.bubble;
+        chatMsgs.appendChild(botMsg);
+      }
+      fullContent += chunk;
+      if (typeof marked !== 'undefined') {
+        botBubble.innerHTML = marked.parse(fullContent);
+      } else {
+        botBubble.textContent = fullContent;
+      }
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    });
+
+    removeTypingIndicator();
+
+    if (!botMsg) {
+      var errEl = addMessage('bot', '抱歉，没有收到回复。请稍后重试。');
+      chatMsgs.appendChild(errEl.msg);
+    } else {
+      history.push({ role: 'user', content: query });
+      history.push({ role: 'assistant', content: fullContent });
+      window.AIAssistant.saveHistory(history);
+    }
+
+    isStreaming = false;
+    chatSend.disabled = false;
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    chatInput.focus();
+  }
+
+  function resetChat() {
+    chatMsgs.innerHTML = '';
+    history = [];
+    if (window.AIAssistant) {
+      window.AIAssistant.clearHistory();
+    }
+    var welcomeEl = addMessage('bot', cfg.welcomeMessage);
+    chatMsgs.appendChild(welcomeEl.msg);
+  }
+
+  chatSend.onclick = sendMessage;
+  chatInput.onkeydown = function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+  chatReset.onclick = resetChat;
+  chatReset2.onclick = resetChat;
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (isOpen && !chatWin.contains(e.target) && !chatBtn.contains(e.target)) {
+      toggleChat();
+    }
+  });
+
+  // Listen for dark mode changes from reimu theme
+  document.body.addEventListener('dark-theme-set', function() {
+    chatWin.classList.add('dark-mode');
+  });
+  document.body.addEventListener('light-theme-set', function() {
+    chatWin.classList.remove('dark-mode');
+  });
+
+  updateDarkMode();
+})();
+</script>
+
+</body>
   </html>
 
