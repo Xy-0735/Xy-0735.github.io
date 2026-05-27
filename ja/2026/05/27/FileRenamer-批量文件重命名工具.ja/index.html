@@ -1,0 +1,2118 @@
+
+  <!DOCTYPE html>
+  <html lang="ja"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":true,"count":20,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本ブログのすべての文書は、特に指定されていない限り、BY-NC-SA ライセンスに従っています。引用の際は出典を明記してください！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
+  
+  <title>
+    FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール |
+    
+    XYYの小窩
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール  プロジェクト概要 日常業務で大量のファイルを整理する必要に迫られたことがきっかけでした——写真、ドキュメント、素材など、整理されていないファイル名は頭痛の種です。市場にはいくつかのファイル名変更ツールがありますが、機能が限定的だったり、インターフェースが古く複雑だったりします。そこで、見た目と実力を兼ね備えたこの一括">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+<meta property="og:url" content="https://xy-0735.github.io/ja/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.ja/index.html">
+<meta property="og:site_name" content="XYYの小窩">
+<meta property="og:description" content="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール  プロジェクト概要 日常業務で大量のファイルを整理する必要に迫られたことがきっかけでした——写真、ドキュメント、素材など、整理されていないファイル名は頭痛の種です。市場にはいくつかのファイル名変更ツールがありますが、機能が限定的だったり、インターフェースが古く複雑だったりします。そこで、見た目と実力を兼ね備えたこの一括">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2026-05-27T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-27T13:28:04.793Z">
+<meta property="article:author" content="微雨揚">
+<meta property="article:tag" content="プログラミング開発">
+<meta name="twitter:card" content="&lt;twitter:card&gt;">
+<meta name="twitter:image" content="https://xy-0735.github.io/ja/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.ja/%3Ctwitter:image%3E">
+<meta name="twitter:creator" content="@&lt;twitter:creator&gt;">
+<meta name="twitter:site" content="<twitter:site>">
+<meta property="fb:admins" content="&lt;fb:admin_id&gt;">
+<meta property="fb:app_id" content="&lt;fb:app_id&gt;">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="XYYの小窩" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+    
+      
+<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy+Ub9QgnxUYJmwOhYCK" crossorigin="anonymous">
+
+    
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt+HsAtOaUsXwJGRb4&#x2F;SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU&#x2F;voDBY5XE2lVh" crossorigin="anonymous">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/ja/">ホーム</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/ja/archives">アーカイブ</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/ja/about">プロフィール</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/ja/friend">フレンド</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS フィード" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="検索"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">日本語</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" >English</li>
+          
+            <li data-value="zh-TW" >正體中文</li>
+          
+            <li data-value="ja" class="selected">日本語</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2026/05/27/FileRenamer-批量文件重命名工具.ja/';
+            
+              langMap['en'] = '/en/2026/05/27/FileRenamer-批量文件重命名工具.ja/';
+            
+              langMap['zh-TW'] = '/zh-TW/2026/05/27/FileRenamer-批量文件重命名工具.ja/';
+            
+              langMap['ja'] = '/ja/2026/05/27/FileRenamer-批量文件重命名工具.ja/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/%E6%89%B9%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.png" alt="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">見出し</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#filerenamer%E6%B4%97%E7%B7%B4%E3%81%95%E3%82%8C%E3%81%9F%E5%BC%B7%E5%8A%9B%E3%81%AA%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E4%B8%80%E6%8B%AC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4%E3%83%84%E3%83%BC%E3%83%AB"><span class="toc-number">1.</span> <span class="toc-text"> FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A6%82%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text"> プロジェクト概要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B1%BA%E3%81%99%E3%82%8B%E5%95%8F%E9%A1%8C"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 解決する問題</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B3%E3%82%A2%E3%83%90%E3%83%AA%E3%83%A5%E3%83%BC"><span class="toc-number">1.1.2.</span> <span class="toc-text"> コアバリュー</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A9%9F%E8%83%BD%E3%81%AE%E5%BA%83%E3%81%959%E7%A8%AE%E9%A1%9E%E3%81%AE%E5%91%BD%E5%90%8D%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E5%85%A8%E3%83%8B%E3%83%BC%E3%82%BA%E3%82%92%E3%82%AB%E3%83%90%E3%83%BC"><span class="toc-number">1.1.2.1.</span> <span class="toc-text"> 機能の広さ：9種類の命名ルールで全ニーズをカバー</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%93%E9%A8%93%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3wysiwyg%E3%81%AE%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><span class="toc-number">1.1.2.2.</span> <span class="toc-text"> 体験デザイン：WYSIWYGのデスクトップアプリケーション</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E3%83%8D%E3%83%83%E3%83%88%E5%85%83%E3%81%AB%E6%88%BB%E3%81%99-%E7%AB%B6%E5%90%88%E6%A4%9C%E5%87%BA%E3%81%AE%E4%BA%8C%E9%87%8D%E4%BF%9D%E8%AD%B7"><span class="toc-number">1.1.2.3.</span> <span class="toc-text"> 安全ネット：元に戻す + 競合検出の二重保護</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A9%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 機能特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E7%AE%A1%E7%90%86%E5%90%8D%E5%89%8D%E5%A4%89%E6%9B%B4%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"><span class="toc-number">1.2.1.</span> <span class="toc-text"> ファイル管理：名前変更だけではない</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E7%A8%AE%E9%A1%9E%E3%81%AE%E5%91%BD%E5%90%8D%E3%83%AB%E3%83%BC%E3%83%AB%E8%A9%B3%E7%B4%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 9種類の命名ルール詳細</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E3%83%A1%E3%82%AB%E3%83%8B%E3%82%BA%E3%83%A0%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%92%E3%83%AA%E3%83%90%E3%83%BC%E3%82%B7%E3%83%96%E3%83%AB%E3%81%AB"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 安全メカニズム：すべてのステップをリバーシブルに</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BB%BD%E9%87%8F%E6%80%A7%E3%81%A8%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 軽量性とパフォーマンス</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text"> GitHubオープンソースアドレス</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text"> インストールと使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%BE%E3%81%A8%E3%82%81"><span class="toc-number">1.3.2.</span> <span class="toc-text"> プロジェクトまとめ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%A5%A8%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 推奨利用シーン</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
+  <div class="sidebar-author-name">微雨扬</div>
+  <div class="sidebar-description">いらっしゃいませ</div>
+</div>
+
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>投稿</div>
+    <div class="sidebar-state-number">32</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>カテゴリー</div>
+    <div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>タグ</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/" aria-label="ホーム"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">ホーム</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/archives" aria-label="アーカイブ"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">アーカイブ</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/about" aria-label="プロフィール"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">プロフィール</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/friend" aria-label="フレンド"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">フレンド</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-FileRenamer-批量文件重命名工具.ja" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-27T04:00:00.000Z" itemprop="datePublished">2026-05-27</time>
+    <time style="display: none;" id="post-update-time">2026-05-27</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/ja/categories/%E5%80%8B%E4%BA%BA%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88/" data-aos="zoom-in">個人プロジェクト</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="filerenamer洗練された強力なデスクトップ一括ファイル名変更ツール"><a class="markdownIt-Anchor" href="#filerenamer洗練された強力なデスクトップ一括ファイル名変更ツール"></a> FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール</h1>
+<h2 id="プロジェクト概要"><a class="markdownIt-Anchor" href="#プロジェクト概要"></a> プロジェクト概要</h2>
+<p>日常業務で大量のファイルを整理する必要に迫られたことがきっかけでした——写真、ドキュメント、素材など、整理されていないファイル名は頭痛の種です。市場にはいくつかのファイル名変更ツールがありますが、機能が限定的だったり、インターフェースが古く複雑だったりします。そこで、見た目と実力を兼ね備えたこの一括ファイル名変更ツールを作りました。</p>
+<h3 id="解決する問題"><a class="markdownIt-Anchor" href="#解決する問題"></a> 解決する問題</h3>
+<p>日常のオフィスワークとファイル管理において、一括ファイル名変更は高頻度でありながら過小評価されがちな課題です。カメラマンはカメラからエクスポートした <code>DSC_0001.JPG</code> を日付やシーンに応じて名前変更する必要があります。開発者はプロジェクトのリソースファイルに統一されたプレフィックスやサフィックスを追加します。運用担当者はキャンペーン素材を整理する際に統一された番号付けが必要です。ドラマのエピソードファイル名が乱雑で管理しづらいという問題もあります……</p>
+<p>このようなニーズに対して、従来のソリューションの操作体験はしばしば不満足なものです。Windowsシステムでは、ユーザーはシステム組み込みの名前変更機能しか使えません——複数のファイルを選択して右クリックで名前変更しても、<code>ファイル名 (1).ext</code> のような柔軟性に欠けるフォーマットしか得られず、開始番号のカスタマイズやゼロ埋め桁数の制御はできません。より高度なニーズにはスクリプト（Python/Batch/PowerShell）の作成が必要で、プログラミングの基礎だけでなく、複雑な文字列処理構文や正規表現の記憶も求められます。macOSユーザーはFinderのネイティブ一括名前変更機能を持っていますが、ルールが限られており、操作性も今ひとつです。</p>
+<p>市場にはいくつかのサードパーティ製名前変更ツールも存在しますが、一般的に次のような問題があります：Windows XP時代のままのインターフェースデザイン；複雑なルール設定による急な学習曲線；プレビュー機能の欠如により、ユーザーが安心して実行できない；元に戻す操作がサポートされておらず、一手の誤操作が後悔につながります。</p>
+<p><strong>核心的矛盾</strong>：ユーザーの「柔軟な一括名前変更」への高頻度ニーズと、既存ソリューションの「高い操作障壁、貧弱な機能、時代遅れの体験」という現実が鋭く対立しています。</p>
+<p>この「需要と供給」の大きなギャップこそが、FileRenamerが埋めることに尽力しているものです——すべてのユーザーが最小のコストで、最も直感的な方法で一括ファイル名変更を完了できるようにします。</p>
+<h3 id="コアバリュー"><a class="markdownIt-Anchor" href="#コアバリュー"></a> コアバリュー</h3>
+<p>FileRenamerは車輪の再発明ではなく、「一括名前変更」という基本的なツールを再考したものです。そのコアバリューは<strong>機能性、体験、安全性</strong>の3つの次元から展開できます。</p>
+<h4 id="機能の広さ9種類の命名ルールで全ニーズをカバー"><a class="markdownIt-Anchor" href="#機能の広さ9種類の命名ルールで全ニーズをカバー"></a> 機能の広さ：9種類の命名ルールで全ニーズをカバー</h4>
+<p>FileRenamerには<strong>9種類の命名ルール</strong>が内蔵されており、一括名前変更の大多数のシナリオをカバーします：<strong>連番</strong>（開始値、ゼロ埋め桁数、ステップのカスタマイズ可能）、<strong>検索と置換</strong>（ファイル名のタイプミスや冗長な文字を一括修正）、<strong>プレフィックス/サフィックス</strong>（ファイル名に一括でタグを追加）、<strong>テキスト削除</strong>（ファイル名の固定部分を削除）、<strong>大文字小文字変換</strong>（ファイル名の書式統一）、<strong>正規表現置換</strong>（JavaScript正規表現を使用した高度なマッチングと置換、キャプチャグループ対応）、<strong>日付命名</strong>（現在時刻またはファイルの変更日で命名）、<strong>テキスト挿入</strong>（ファイル名の指定位置に文字を挿入）、<strong>拡張子変更</strong>（ファイル形式サフィックスを一括変更）。</p>
+<p>複数のルールを組み合わせることで、「旅行写真に日付プレフィックスを追加する」から「正規表現でプロジェクト素材を名前変更する」までの全シナリオ対応を実現します。</p>
+<h4 id="体験デザインwysiwygのデスクトップアプリケーション"><a class="markdownIt-Anchor" href="#体験デザインwysiwygのデスクトップアプリケーション"></a> 体験デザイン：WYSIWYGのデスクトップアプリケーション</h4>
+<p>FileRenamerは<strong>Electronデスクトップアプリケーション</strong>の形態を採用し、ネイティブウィンドウ体験を提供しながらWeb技術の柔軟性と美しさを維持します。ファイルマネージャーから<strong>ファイル/フォルダを直接ドラッグ＆ドロップ</strong>でウィンドウに取り込めるほか、ダイアログからの追加も可能です。ファイルリストは<strong>ファイル名、変更日、作成日、サイズ、種類でソート</strong>可能で、複数選択や全選択も便利です。右クリックメニューで単一ファイルの素早い名前変更や削除が可能です。実行前にすべての名前変更結果を<strong>リアルタイムプレビュー</strong>でき、ファイル名の競合を自動検出して赤色でハイライト表示します。</p>
+<h4 id="安全ネット元に戻す-競合検出の二重保護"><a class="markdownIt-Anchor" href="#安全ネット元に戻す-競合検出の二重保護"></a> 安全ネット：元に戻す + 競合検出の二重保護</h4>
+<p>一括名前変更はハイリスクな操作です——一度のミスでプロジェクト全体のファイル構造が破壊される可能性があります。FileRenamerは<strong>元に戻す機能</strong>を提供し、直近の一括名前変更を取り消せます。実行前にターゲットファイル名が既に存在するかを自動検出し、存在する場合はスキップして競合を通知します。さらに、名前変更の対応関係を<strong>CSVマッピングテーブルとしてエクスポート</strong>でき、追跡と監査が可能です。</p>
+<p><strong>コアバリュー概要</strong></p>
+<ul>
+<li><strong>9種類のルール</strong>：連番、検索置換、前後サフィックス、削除、大文字小文字、正規表現、日付、挿入、拡張子</li>
+<li><strong>ドラッグ＆ドロップ</strong>：ファイルマネージャーから直接ドラッグ、設定しながらプレビュー</li>
+<li><strong>安全保護</strong>：元に戻す + 競合検出 + CSVエクスポート、ファイルを一つも失わない</li>
+<li><strong>クロスプラットフォーム</strong>：ElectronベースでWindows/macOS/Linuxに対応</li>
+<li><strong>オープンソース＆無料</strong>：MITライセンス、コード公開、コミュニティ駆動</li>
+</ul>
+<p>写真を一括整理したいカメラマンでも、プロジェクトのリソースファイルを管理する開発者でも、FileRenamerは「包括的な機能 — 直感的な操作 — 安全で信頼性の高い」製品デザインを通じて、一括名前変更ツールの体験基準を再定義します。</p>
+<h2 id="機能特性"><a class="markdownIt-Anchor" href="#機能特性"></a> 機能特性</h2>
+<h3 id="ファイル管理名前変更だけではない"><a class="markdownIt-Anchor" href="#ファイル管理名前変更だけではない"></a> ファイル管理：名前変更だけではない</h3>
+<p>ユーザーとツールの最初のインタラクションはファイルのインポートです。FileRenamerはファイル管理レベルで細やかな磨きをかけています：<strong>ドラッグ＆ドロップインポート</strong>——ファイルマネージャーからファイルやフォルダを直接ウィンドウにドラッグして直感的にインポート；<strong>ファイル/フォルダインポート</strong>——ダイアログから単一ファイル、複数ファイル、またはフォルダ全体を追加し、フォルダ内の全ファイルを再帰的に読み取り；<strong>ソート機能</strong>——ファイル名、変更日、作成日、ファイルサイズ、ファイルタイプの5次元でソート可能、目的のファイルを素早く発見；<strong>複数選択＆全選択</strong>——チェックまたはワンクリック全選択、選択したファイルにのみ操作を実行；<strong>右クリックメニュー</strong>——ファイルを右クリックで素早く名前変更または削除；<strong>重複検出</strong>——既に追加されたファイルパスを自動フィルタリングし、重複インポートによる命名競合を防止。</p>
+<p>これらのインタラクションの細部は小さく見えますが、「使える」から「心地よい」への重要な飛躍を構成しています。</p>
+<h3 id="9種類の命名ルール詳細"><a class="markdownIt-Anchor" href="#9種類の命名ルール詳細"></a> 9種類の命名ルール詳細</h3>
+<p>FileRenamerのコアエンジンは柔軟な命名ルールシステムであり、各ルールは柔軟性、使いやすさ、パフォーマンスのバランスを考慮して慎重に設計されています：</p>
+<table>
+<thead>
+<tr>
+<th>ルール</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>連番</strong></td>
+<td>カスタムフォーマット <code>&#123;n&#125;</code> をサポートし、開始値、ゼロ埋め桁数（例：<code>001</code>〜<code>999</code>）、ステップ（間隔増分）を設定可能。写真の番号付け、ドキュメントの並べ替えなどに最適</td>
+</tr>
+<tr>
+<td><strong>検索と置換</strong></td>
+<td>ファイル名内のテキストを検索し指定内容に置換、大文字小文字の区別対応。タイプミスの一括修正や用語統一に最適</td>
+</tr>
+<tr>
+<td><strong>プレフィックス/サフィックス</strong></td>
+<td>ファイル名の先頭または末尾にテキストを追加、連番変数 <code>&#123;n&#125;</code> 対応。プロジェクトファイルへの統一ラベル追加に最適</td>
+</tr>
+<tr>
+<td><strong>テキスト削除</strong></td>
+<td>ファイル名から指定テキストを削除、全削除、先頭のみ削除、末尾のみ削除の3モード対応。ダウンロードファイルの広告プレフィックス除去に最適</td>
+</tr>
+<tr>
+<td><strong>大文字小文字変換</strong></td>
+<td>小文字、大文字、先頭大文字対応、範囲設定可能（ファイル名全体、拡張子のみ等）。ファイル命名規則の統一に最適</td>
+</tr>
+<tr>
+<td><strong>正規表現置換</strong></td>
+<td>JavaScript正規表現を使用したマッチングと置換、キャプチャグループ（<code>$1</code>、<code>$2</code>）対応。複雑パターンの一括置換に最適</td>
+</tr>
+<tr>
+<td><strong>日付命名</strong></td>
+<td>現在日時またはファイル自身の変更/作成日で命名、<code>YYYY-MM-DD</code>、<code>YYYYMMDD_HHmmss</code> などのカスタムフォーマット対応</td>
+</tr>
+<tr>
+<td><strong>テキスト挿入</strong></td>
+<td>ファイル名の指定位置（N文字目）にテキストを挿入。固定位置への識別子追加に最適</td>
+</tr>
+<tr>
+<td><strong>拡張子変更</strong></td>
+<td>ファイル拡張子を一括変更、例：すべての <code>.jpeg</code> を <code>.jpg</code> に統一</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安全メカニズムすべてのステップをリバーシブルに"><a class="markdownIt-Anchor" href="#安全メカニズムすべてのステップをリバーシブルに"></a> 安全メカニズム：すべてのステップをリバーシブルに</h3>
+<p>一括名前変更の最大の恐怖は「不可逆性」から来ます。FileRenamerは3層の安全メカニズムでユーザーの懸念を払拭します：</p>
+<ol>
+<li>
+<p><strong>リアルタイムプレビュー</strong>：ルール設定インターフェースで全ファイルの名前変更結果を確認でき、確認するまで実際の変更は行われません。ターゲットファイル名の既存を自動検出し、競合を赤色でハイライト表示するため、ユーザーはルールを調整するか競合項目を削除できます。</p>
+</li>
+<li>
+<p><strong>ワンクリックで元に戻す</strong>：名前変更実行後、<code>Ctrl+Z</code> またはインターフェースボタンで直近の一括操作を取り消し、名前変更されたすべてのファイルを元のファイル名に復元します。元に戻すメカニズムは操作履歴スタックに基づき、完全なロールバックをサポートします。</p>
+</li>
+<li>
+<p><strong>CSVマッピングエクスポート</strong>：名前変更前後のファイル名とファイルパスの対応関係をCSVファイルとしてエクスポートします。これは操作記録のバックアップ証憑としてだけでなく、必要に応じて手動復元や一括操作結果の監査にも便利です。</p>
+</li>
+</ol>
+<h3 id="軽量性とパフォーマンス"><a class="markdownIt-Anchor" href="#軽量性とパフォーマンス"></a> 軽量性とパフォーマンス</h3>
+<p>FileRenamerのコアコードベースは最小限です——メインプロセス（<code>main.js</code>）、プリロードスクリプト（<code>preload.js</code>）、レンダラープロセス（<code>app.js</code> / <code>styles.css</code> / <code>index.html</code>）で構成され、追加のフレームワーク依存がなく、すべてバニラJavaScriptで書かれています。アプリケーションの起動は速く、ファイルスキャンと名前変更操作はNode.jsの<code>fs</code>モジュールを直接呼び出し、高いI/O効率を実現します。パッケージ化されたWindowsポータブル版はコンパクトで、インストール不要でダブルクリックで実行できます。</p>
+<h2 id="githubオープンソースアドレス"><a class="markdownIt-Anchor" href="#githubオープンソースアドレス"></a> GitHubオープンソースアドレス</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/Xy-0735/FileRenamer">GitHub</a> にアクセス</p>
+<h3 id="インストールと使用方法"><a class="markdownIt-Anchor" href="#インストールと使用方法"></a> インストールと使用方法</h3>
+<p><strong>ビルド済みバージョンのダウンロード</strong>：<a target="_blank" rel="noopener" href="https://github.com/Xy-0735/FileRenamer/releases">Releases</a> ページからWindowsポータブル版（<code>.exe</code>）をダウンロード — インストール不要、ダブルクリックで実行。</p>
+<p><strong>ソースから実行</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Xy-0735/FileRenamer.git</span><br><span class="line"><span class="built_in">cd</span> FileRenamer</span><br><span class="line">npm install</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p><strong>自分でビルド</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build   <span class="comment"># dist/に出力</span></span><br></pre></td></tr></table></figure>
+<h3 id="プロジェクトまとめ"><a class="markdownIt-Anchor" href="#プロジェクトまとめ"></a> プロジェクトまとめ</h3>
+<p><strong>一言での位置づけ</strong>——FileRenamerはElectronベースで開発されたクロスプラットフォームのデスクトップ一括ファイル名変更ツールで、9種類の命名ルールを内蔵し、「見たままが得られる」プレビュー式インタラクションと完全な安全ネット機構により、一括名前変更をシンプルで安全、効率的にします。</p>
+<p><strong>技術面</strong>では、プロジェクトはElectron + バニラJavaScriptのミニマルな技術スタックを採用し、フレームワーク依存がなく、コード構造が明確です。メインプロセスはファイルI/Oとシステムダイアログを担当し、IPCを通じてレンダラープロセスと通信し、プリロードスクリプトはセキュリティを保証しつつ限定的なNode.js APIを公開します。このレイヤードアーキテクチャはデスクトップアプリケーションのパフォーマンス上の利点を保ちながら、Web技術の柔軟で美しいUI表現力を十分に活用しています。</p>
+<p><strong>体験デザイン面</strong>では、プロジェクトは「操作の直感性」と「安全な可逆性」という2つの核心的理念に焦点を当てています。ドラッグ＆ドロップのインポートからルール設定、プレビュー実行まで、各ステップが最低限の認知的負担を追求しています。9種類の命名ルールはシンプルなプレフィックス/サフィックス追加から複雑な正規表現置換までの全シナリオをカバーし、元に戻す機能と競合検出メカニズムが一括操作の万全を確保します。</p>
+<p><strong>エコシステム構築面</strong>では、プロジェクトはMITライセンスでオープンソース化され、コードは完全公開で監査可能です。Electronのクロスプラットフォーム特性を活かし、理論的にはmacOSおよびLinuxプラットフォームへの拡張が可能です。開発者は既存のアーキテクチャに基づいてカスタム命名ルールを容易に拡張したり、他のファイル管理機能を統合したりでき、コミュニティ共創の可能性は広大です。</p>
+<h3 id="推奨利用シーン"><a class="markdownIt-Anchor" href="#推奨利用シーン"></a> 推奨利用シーン</h3>
+<p>日常の仕事と生活において、一括ファイル名変更は多くの人が頻繁に遭遇するニーズです。以下は異なるユーザーグループ向けの利用シーン分析です：</p>
+<p><strong>カメラマンとデザイナー</strong>にとって、カメラ/素材ライブラリからエクスポートされたファイルは通常、無意味なシリアル番号です。FileRenamerの日付命名と連番ルールにより、<code>DSC_0001.JPG</code> を <code>2026-05-27_東京旅写真_001.jpg</code> のような意味のあるファイル名に素早く一括変換できます。</p>
+<p><strong>開発者</strong>がプロジェクトファイルを管理する際、リソースファイルへの一括プレフィックス追加、拡張子形式の統一、番号の並べ替えが頻繁に必要です。FileRenamerの正規表現置換と検索置換ルールは、ディレクトリ内の数百のファイルの名前変更を数秒で完了し、プロジェクト標準化の効率を大幅に向上させます。</p>
+<p><strong>運用担当者とコンテンツクリエイター</strong>はキャンペーン素材、動画素材、ドキュメント資料を頻繁に整理する必要があります。FileRenamerのドラッグ＆ドロップインポートと複数選択操作は、この「整理 — 命名 — アーカイブ」ワークフローに完璧に適合し、数分で混乱から秩序へと導きます。</p>
+<p><strong>一般ユーザー</strong>の日常使用では、ダウンロードしたドラマのエピソード、音楽ファイル、電子書籍などにウェブサイトのプレフィックスや乱雑な命名が付いていることがよくあります。検索置換とテキスト削除ルールを使用すれば、ワンクリックで冗長な文字をすべてクリーンアップし、さわやかなファイル管理を取り戻せます。</p>
+<p>プロフェッショナルな創作から日常の整理まで、FileRenamerは9種類のルールの柔軟な組み合わせと直感的なプレビュー操作を通じて、異なるユーザーグループのファイル管理における名前変更の課題を解決し、ファイル操作をよりエレガントで効率的にします。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>著者: </strong>微雨扬 @ XYYの小窩</p>
+    
+    <p><strong><span class="icon-pencil icon"></span>タイトル: </strong>「FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール」</p>
+    <p><strong><span class="icon-calendar icon"></span>公開日: </strong>2026-05-27 12:00:00</p>
+    
+    <p><strong><span class="icon-copyright icon"></span>ライセンス: </strong>本ブログのすべての文書は、特に指定されていない限り、<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> ライセンスに従っています。引用の際は出典を明記してください！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">スポンサー</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+    
+  
+  <div class="sponsor-tip">コーヒーを買ってください</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/images/alipay-pay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/images/wechat-pay.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fxy-0735.github.io%2F2026%2F05%2F27%2FFileRenamer-%25E6%2589%25B9%25E9%2587%258F%25E6%2596%2587%25E4%25BB%25B6%25E9%2587%258D%25E5%2591%25BD%25E5%2590%258D%25E5%25B7%25A5%25E5%2585%25B7.ja%2F" target="_blank" rel="noopener noreferrer" title="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fxy-0735.github.io%2F2026%2F05%2F27%2FFileRenamer-%25E6%2589%25B9%25E9%2587%258F%25E6%2596%2587%25E4%25BB%25B6%25E9%2587%258D%25E5%2591%25BD%25E5%2590%258D%25E5%25B7%25A5%25E5%2585%25B7.ja%2F&amp;text=FileRenamer%EF%BC%9A%E6%B4%97%E7%B7%B4%E3%81%95%E3%82%8C%E3%81%9F%E5%BC%B7%E5%8A%9B%E3%81%AA%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E4%B8%80%E6%8B%AC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4%E3%83%84%E3%83%BC%E3%83%AB&amp;via=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fxy-0735.github.io%2F2026%2F05%2F27%2FFileRenamer-%25E6%2589%25B9%25E9%2587%258F%25E6%2596%2587%25E4%25BB%25B6%25E9%2587%258D%25E5%2591%25BD%25E5%2590%258D%25E5%25B7%25A5%25E5%2585%25B7.ja%2F&amp;appkey=&amp;title=FileRenamer%EF%BC%9A%E6%B4%97%E7%B7%B4%E3%81%95%E3%82%8C%E3%81%9F%E5%BC%B7%E5%8A%9B%E3%81%AA%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E4%B8%80%E6%8B%AC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4%E3%83%84%E3%83%BC%E3%83%AB&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=FileRenamer%EF%BC%9A%E6%B4%97%E7%B7%B4%E3%81%95%E3%82%8C%E3%81%9F%E5%BC%B7%E5%8A%9B%E3%81%AA%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E4%B8%80%E6%8B%AC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4%E3%83%84%E3%83%BC%E3%83%AB&amp;desc=FileRenamer%EF%BC%9A%E6%B4%97%E7%B7%B4%E3%81%95%E3%82%8C%E3%81%9F%E5%BC%B7%E5%8A%9B%E3%81%AA%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E4%B8%80%E6%8B%AC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4%E3%83%84%E3%83%BC%E3%83%AB&amp;source=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+        <a data-aos="zoom-in" href="/ja/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.ja/#comments" class="article-comment-link">
+          <span class="post-comments-count waline-comment-count" data-path="/ja/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.ja/" itemprop="commentCount"></span>
+          コメント
+        </a>
+      
+      
+      
+      
+        <span data-aos="zoom-in" class="article-visitor-link">
+          <span class="waline-pageview-count" data-path="/ja/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.ja/">0</span>
+          <em class="post-meta-item-text">閲覧数</em>
+        </span>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/ja/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E9%96%8B%E7%99%BA/" rel="tag">プログラミング開発</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">コメントを残す</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="waline">
+              <span>waline</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment waline-comment" data-aos="fade-up"
+          id="waline-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2025-2026
+      
+      <span class="footer-info-sep rotate"></span>
+      微雨扬
+    </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        96.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        06:49
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">総閲覧数&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">総閲覧者数&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">見出し</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#filerenamer%E6%B4%97%E7%B7%B4%E3%81%95%E3%82%8C%E3%81%9F%E5%BC%B7%E5%8A%9B%E3%81%AA%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E4%B8%80%E6%8B%AC%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4%E3%83%84%E3%83%BC%E3%83%AB"><span class="toc-number">1.</span> <span class="toc-text"> FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A6%82%E8%A6%81"><span class="toc-number">1.1.</span> <span class="toc-text"> プロジェクト概要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B1%BA%E3%81%99%E3%82%8B%E5%95%8F%E9%A1%8C"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 解決する問題</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%B3%E3%82%A2%E3%83%90%E3%83%AA%E3%83%A5%E3%83%BC"><span class="toc-number">1.1.2.</span> <span class="toc-text"> コアバリュー</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A9%9F%E8%83%BD%E3%81%AE%E5%BA%83%E3%81%959%E7%A8%AE%E9%A1%9E%E3%81%AE%E5%91%BD%E5%90%8D%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%A7%E5%85%A8%E3%83%8B%E3%83%BC%E3%82%BA%E3%82%92%E3%82%AB%E3%83%90%E3%83%BC"><span class="toc-number">1.1.2.1.</span> <span class="toc-text"> 機能の広さ：9種類の命名ルールで全ニーズをカバー</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%93%E9%A8%93%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3wysiwyg%E3%81%AE%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3"><span class="toc-number">1.1.2.2.</span> <span class="toc-text"> 体験デザイン：WYSIWYGのデスクトップアプリケーション</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E3%83%8D%E3%83%83%E3%83%88%E5%85%83%E3%81%AB%E6%88%BB%E3%81%99-%E7%AB%B6%E5%90%88%E6%A4%9C%E5%87%BA%E3%81%AE%E4%BA%8C%E9%87%8D%E4%BF%9D%E8%AD%B7"><span class="toc-number">1.1.2.3.</span> <span class="toc-text"> 安全ネット：元に戻す + 競合検出の二重保護</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A9%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 機能特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E7%AE%A1%E7%90%86%E5%90%8D%E5%89%8D%E5%A4%89%E6%9B%B4%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"><span class="toc-number">1.2.1.</span> <span class="toc-text"> ファイル管理：名前変更だけではない</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E7%A8%AE%E9%A1%9E%E3%81%AE%E5%91%BD%E5%90%8D%E3%83%AB%E3%83%BC%E3%83%AB%E8%A9%B3%E7%B4%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 9種類の命名ルール詳細</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E3%83%A1%E3%82%AB%E3%83%8B%E3%82%BA%E3%83%A0%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%92%E3%83%AA%E3%83%90%E3%83%BC%E3%82%B7%E3%83%96%E3%83%AB%E3%81%AB"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 安全メカニズム：すべてのステップをリバーシブルに</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BB%BD%E9%87%8F%E6%80%A7%E3%81%A8%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 軽量性とパフォーマンス</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text"> GitHubオープンソースアドレス</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%A8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text"> インストールと使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%BE%E3%81%A8%E3%82%81"><span class="toc-number">1.3.2.</span> <span class="toc-text"> プロジェクトまとめ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E5%A5%A8%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 推奨利用シーン</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
+  <div class="sidebar-author-name">微雨扬</div>
+  <div class="sidebar-description">いらっしゃいませ</div>
+</div>
+
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>投稿</div>
+    <div class="sidebar-state-number">32</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>カテゴリー</div>
+    <div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>タグ</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/" aria-label="ホーム"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">ホーム</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/archives" aria-label="アーカイブ"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">アーカイブ</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/about" aria-label="プロフィール"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">プロフィール</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/ja/friend" aria-label="フレンド"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">フレンド</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+      <div id="aplayer" theme="var(--color-link)"></div>
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  <script>
+    function loadScripts(scripts, index) {
+      if (index < scripts.length) {
+        const script = scripts[index];
+        const src = script.getAttribute('src');
+
+        const loadScript = (scriptContent) => {
+          return new Promise((resolve, reject) => {
+            const scriptElement = document.createElement('script');
+            if (script.type) {
+              scriptElement.type = script.type;
+            }
+            if (script.src) {
+              scriptElement.src = script.src;
+              if (script.integrity) {
+                scriptElement.integrity = script.integrity;
+              }
+              if (script.crossOrigin) {
+                scriptElement.crossOrigin = script.crossOrigin;
+              }
+              scriptElement.onload = resolve;
+              scriptElement.onerror = reject;
+            }
+            if (scriptContent) {
+              scriptElement.text = scriptContent;
+            }
+            document.head.appendChild(scriptElement);
+            if (!script.src) {
+              resolve();
+            }
+          })
+          
+        }
+
+        ;(src ? loadScript() : loadScript(script.text))
+          .then(() => loadScripts(scripts, index + 1))
+          .catch(error => {
+            console.error(`Failed to load script: ${src || 'inline script'}`, error);
+            loadScripts(scripts, index + 1);
+          });
+      }
+    }
+    if (window.Pjax) {
+      Pjax.prototype.getElements = function() {
+        const i18nLanguages = window.REIMU_CONFIG.i18n_languages;
+        const baseUrl = window.REIMU_CONFIG.base;
+        let basePathname = new URL(baseUrl).pathname;
+        if (!basePathname.endsWith('/')) {
+          basePathname += '/';  
+        }
+        const currentUrl = window.location.href;
+        const currentPathname = new URL(currentUrl).pathname.replace(basePathname, '');
+        const aLinks = document.querySelectorAll('a[href]');
+        const pjaxLinks = [];
+        for(let i = 0; i < aLinks.length; i++) {
+          const aLink = aLinks[i];
+          const aLinkHref = aLink.getAttribute('href');
+          const isExternal = aLink.getAttribute('target') === '_blank' || aLink.getAttribute('rel')?.includes('noopener');
+          if (isExternal || aLinkHref.startsWith('mailto:') || aLinkHref.startsWith('tel:') || aLinkHref.startsWith('javascript:') || aLinkHref.startsWith("data:") || aLinkHref.startsWith("vbscript:")) {
+            continue;
+          }
+          if (!i18nLanguages) {
+            // 多语言功能未打开
+            pjaxLinks.push(aLink);
+            continue;
+          }
+
+          const absoluteUrl = new URL(aLinkHref, currentUrl).href;
+          const absolutePathname = new URL(absoluteUrl).pathname.replace(basePathname, '');
+
+          if (!absolutePathname || !currentPathname) {
+            pjaxLinks.push(aLink);
+            continue;
+          }
+
+          const currentLangIndex = i18nLanguages.findIndex(lang => currentPathname.startsWith(lang));
+          if (currentLangIndex > -1) {
+            // 当前属于多语言站点
+            const absoluteLangIndex = i18nLanguages.findIndex(lang => absolutePathname.startsWith(lang));
+            if (absoluteLangIndex === currentLangIndex) {
+              // 同一语言站点，可以使用 pjax
+              pjaxLinks.push(aLink);
+            }
+          } else {
+            // 当前属于默认语言站点
+            const absoluteLangIndex = i18nLanguages.findIndex(lang => absolutePathname.startsWith(lang));
+            if (absoluteLangIndex === -1) {
+              // 同一语言站点，可以使用 pjax
+              pjaxLinks.push(aLink);
+            }
+          }
+        }
+        return pjaxLinks;
+      }
+    }
+    window.Pjax && new window.Pjax({
+      selectors: [
+        "#header>img",
+        "#header>picture",
+        "head title",
+        "#header-title",
+        "#subtitle-wrap",
+        "#main",
+        "#content",
+        ".sidebar-widget",
+        ".sidebar-wrapper",
+        ".sidebar-wrapper-container",
+        '#mobile-nav',
+        '#lazy-script',
+        '#i18n-nav'
+      ],
+      switches: {
+        ".sidebar-wrapper-container": function(oldEl, newEl) {
+          oldEl.className = newEl.className;
+          this.onSwitch();
+        },
+        "#content": function(oldEl, newEl) {
+          // for sidebar change
+          oldEl.className = newEl.className;
+          this.onSwitch();
+        },
+        "#header-title": Pjax.switches.outerHTML,
+        "#subtitle-wrap": Pjax.switches.outerHTML,
+        "#main": function(oldEl, newEl) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.outerHTML = newEl.outerHTML
+          this.onSwitch()
+        },
+        "#mobile-nav": Pjax.switches.outerHTML,
+        '#lazy-script': function(oldEl, newEl) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.innerHTML = newEl.innerHTML
+          this.onSwitch()
+        },
+      },
+      cacheBust: false
+    })
+  </script>
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha384-aD7FsuQkS1ohgFKY41fJfeA+Wd&#x2F;QRNnrOd9Bs58K3FzKdJJv8yPnYU8Tnp5z1agS" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "微雨扬",
+          title: "FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール",
+          url: "https://xy-0735.github.io/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.ja/",
+          excerpt: "",
+          description: "",
+          stripContent: " FileRenamer：洗練された強力なデスクトップ一括ファイル名変更ツール  プロジェクト概要 日常業務で大量のファイルを整理する必要に迫られたことがきっかけでした——写真、ドキュメント、素材など、整理されていないファイル名は頭痛の種です。市場にはいくつかのファイル名変更ツールがありますが、機能が限定的だったり、インターフェースが古く複雑だったりします。そこで、見た目と実力を兼ね備えたこの一括ファイル名変更ツールを作りました。  解決する問題 日常のオフィスワークとファイル管理において、一括",
+          date: "Wed May 27 2026 12:00:00 GMT+0800",
+          updated: "Wed May 27 2026 21:28:04 GMT+0800",
+          cover: "/images/%E6%89%B9%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7.png",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/@zumer/snapdom@1.9.9/dist/snapdom.min.js" integrity="sha384-taz9Bq0wPqLsuiB4ix4blTozt&#x2F;y84cjbMX5ZWkfPPjpVBme8M&#x2F;jWopanNBcdH&#x2F;qp" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "",
+              appKey: "",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'www.xyyblogpl.online',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: '',
+              region: '',
+              urls: [
+                '/about/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', ''); 
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous"></script>
+
+  
+    <script>
+      var isMobile = window.matchMedia('(max-width: 959px)').matches;
+      if (isMobile) {
+      const aplayer = _$('#aplayer');
+        if (aplayer) {
+          const aside = aplayer.parentNode;
+          if (aside?.tagName === 'ASIDE') {
+            aplayer.removeAttribute('data-aos');
+            aside.removeChild(aplayer);
+            document.body.appendChild(aplayer);
+          }
+        }
+      }
+      const ap = new APlayer({
+        theme: "var(--color-link)",
+        container: document.getElementById('aplayer'),
+        audio: [{"name":"今天不是明天","artist":"feat. 兰音Reine","url":"/audio/今天不是明天.mp3","cover":"/images/今天不是明天.jpg","lrc":"/lrc/今天不是明天 (feat. 兰音Reine)-电音联盟&音波狂潮&兰音Reine&V-Festival&PIKASONIC-歌词.lrc"},{"name":"One step Ahead","artist":"AxR","url":"/audio/One step Ahead.mp3","cover":"/images/One step Ahead.jpg","lrc":"/lrc/One Step Ahead-AxR-歌词.lrc"},{"name":"弄舌","artist":"王子健","url":"/audio/弄舌.mp3","cover":"/images/弄舌.jpg","lrc":"/lrc/弄舌.lrc"},{"name":"晴天","artist":"周杰伦","url":"/audio/晴天.mp3","cover":"/images/qingtian.jpg","lrc":"/lrc/晴天.lrc"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"},{"name":"counting stars","artist":"Onerepublic","url":"/audio/counting stars.mp3","cover":"/images/counting stars.jpg","lrc":"/lrc/Counting Stars-OneRepublic-歌词.lrc"},{"name":"introduction","artist":"phigros","url":"/audio/introduction.mp3","cover":"/images/introduction.jpg"},{"name":"壁上观","artist":"一棵小葱","url":"/audio/壁上观.mp3","cover":"/images/壁上观.jpg","lrc":"/lrc/壁上观.lrc"},{"name":"lemon","artist":"米津玄师","url":"/audio/lemon.mp3","cover":"/images/lemon.jpg","lrc":"/lrc/Lemon-米津玄師-歌词.lrc"},{"name":"Born Again","artist":"LISA&Doja Cat&RAYE","url":"/audio/Born Again.mp3","cover":"/images/Born Again.jpg","lrc":"/lrc/Born Again-LISA&Doja Cat&RAYE-歌词.lrc"},{"name":"Doar Cu Tine","artist":"ProdbyMend","url":"/audio/Doar Cu Tine.mp3","cover":"/images/Doar Cu Tine.jpg","lrc":"/lrc/Doar Cu Tine (雷军进行曲)-ProdbyMend-歌词.lrc"},{"name":"One Last Kiss","artist":"宇多田ヒカル","url":"/audio/One Last Kiss.mp3","cover":"/images/One Last Kiss.jpg","lrc":"/lrc/One Last Kiss-宇多田ヒカル-歌词.lrc"},{"name":"Wake way","artist":"DJ小布","url":"/audio/Wake way.mp3","cover":"/images/Wake way.jpg","lrc":"/lrc/Wake way-DJ小布-歌词.lrc"},{"name":"鸟之诗","artist":"Lia","url":"/audio/鸟之诗.mp3","cover":"/images/鸟之诗.jpg","lrc":"/lrc/鳥の詩 (鸟之诗) (Single Version)-Lia-歌词.lrc"}] || [],
+        fixed: isMobile ? true : (true || false),
+        autoplay: true || false,
+        loop: 'All' || 'all',
+        order: 'list' || 'list',
+        preload: 'auto' || 'auto',
+        volume: 0.7 || 0.7,
+        mutex: null || true,
+        listFolded: null || false,
+        lrcType: 3 || 0,
+      });
+    </script>
+  
+
+
+
+
+
+    
+  <!-- AI Chat Widget -->
+<script>
+  window.AI_ASSISTANT_CONFIG = {
+    chatApiUrl: "https://api.deepseek.com/v1/chat/completions",
+    chatModel: "deepseek-chat",
+    chatApiKey: "",
+    proxyUrl: "https://1373700256-ivrk5jn3bq.ap-beijing.tencentscf.com",
+    kbUrl: "/hexo-ai-assistant/blog-knowledge-base.json",
+    blogName: "XYYの小窩",
+    backgroundImage: "",
+    themeColor: "#ff6b9d",
+    welcomeMessage: "你好！有什么关于博客的问题想问？"
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/hexo-ai-assistant/ai-core.js" data-pjax></script>
+
+<style>
+  .ai-chat-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 107, 157, 0.35);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 0;
+  }
+  .ai-chat-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.45);
+  }
+
+  .ai-chat-window {
+    position: fixed;
+    bottom: 88px;
+    right: 24px;
+    width: 370px;
+    height: 520px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    z-index: 9998;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .ai-chat-window.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dark mode */
+  [data-theme-mode="true"] .ai-chat-window,
+  .dark-mode .ai-chat-window {
+    background: #1e1e1e;
+    border-color: rgba(255,255,255,0.1);
+    color: #e0e0e0;
+  }
+  [data-theme-mode="true"] .ai-chat-msg-user .ai-chat-bubble,
+  .dark-mode .ai-chat-msg-user .ai-chat-bubble {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+  }
+  [data-theme-mode="true"] .ai-chat-msg-bot .ai-chat-bubble,
+  .dark-mode .ai-chat-msg-bot .ai-chat-bubble {
+    background: #2a2a2a;
+    color: #e0e0e0;
+  }
+  [data-theme-mode="true"] .ai-chat-input-area,
+  .dark-mode .ai-chat-input-area {
+    background: #1a1a1a;
+    border-top-color: rgba(255,255,255,0.08);
+  }
+  [data-theme-mode="true"] .ai-chat-input,
+  .dark-mode .ai-chat-input {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    border-color: rgba(255,255,255,0.1);
+  }
+  [data-theme-mode="true"] .ai-chat-header,
+  .dark-mode .ai-chat-header {
+    background: #1a1a1a;
+    border-bottom-color: rgba(255,255,255,0.08);
+    color: #e0e0e0;
+  }
+
+  .ai-chat-header {
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  .ai-chat-header-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .ai-chat-header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #888;
+    transition: color 0.15s, background 0.15s;
+  }
+  .ai-chat-header-btn:hover {
+    color: #333;
+    background: rgba(0,0,0,0.05);
+  }
+  [data-theme-mode="true"] .ai-chat-header-btn:hover,
+  .dark-mode .ai-chat-header-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-image: var(--chat-bg-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    background-color: rgba(255,255,255,0.92);
+  }
+  [data-theme-mode="true"] .ai-chat-messages,
+  .dark-mode .ai-chat-messages {
+    background-color: rgba(30,30,30,0.92);
+  }
+
+  .ai-chat-msg {
+    display: flex;
+    gap: 8px;
+    max-width: 88%;
+  }
+  .ai-chat-msg-bot { align-self: flex-start; }
+  .ai-chat-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+
+  .ai-chat-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .ai-chat-bubble {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    word-break: break-word;
+  }
+  .ai-chat-msg-user .ai-chat-bubble {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .ai-chat-msg-bot .ai-chat-bubble {
+    background: #f2f2f2;
+    color: #333;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* Markdown within bubbles */
+  .ai-chat-bubble p { margin: 0 0 4px; }
+  .ai-chat-bubble p:last-child { margin-bottom: 0; }
+  .ai-chat-bubble ul, .ai-chat-bubble ol { margin: 4px 0; padding-left: 18px; }
+  .ai-chat-bubble li { margin-bottom: 2px; }
+  .ai-chat-bubble a {
+    color: var(--chat-theme-color, #ff6b9d);
+    text-decoration: underline;
+  }
+  .ai-chat-bubble code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .ai-chat-bubble pre {
+    background: rgba(0,0,0,0.05);
+    padding: 8px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+  .ai-chat-msg-user .ai-chat-bubble a { color: #fff; text-decoration: underline; }
+  .ai-chat-msg-user .ai-chat-bubble code { background: rgba(255,255,255,0.2); }
+
+  .ai-chat-typing .ai-chat-bubble {
+    display: flex;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+  .ai-chat-typing .ai-chat-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #999;
+    animation: ai-chat-bounce 1.4s infinite ease-in-out both;
+  }
+  .ai-chat-typing .ai-chat-dot:nth-child(1) { animation-delay: -0.32s; }
+  .ai-chat-typing .ai-chat-dot:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes ai-chat-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+
+  .ai-chat-input-area {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid #eee;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .ai-chat-input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ai-chat-input:focus {
+    border-color: var(--chat-theme-color, #ff6b9d);
+  }
+  .ai-chat-send {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+  }
+  .ai-chat-send:hover { transform: scale(1.05); }
+
+  .ai-chat-toolbar {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+    gap: 8px;
+  }
+  .ai-chat-toolbar button {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .ai-chat-toolbar button:hover { color: #666; }
+
+  @media (max-width: 480px) {
+    .ai-chat-window {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+    .ai-chat-btn {
+      bottom: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+    }
+  }
+</style>
+
+<div id="ai-chat-btn" class="ai-chat-btn" title="AI 助手">💬</div>
+
+<div id="ai-chat-window" class="ai-chat-window">
+  <div class="ai-chat-header">
+    <span>🤖 AI 助手</span>
+    <div class="ai-chat-header-actions">
+      <button class="ai-chat-header-btn" id="ai-chat-theme-toggle" title="切换亮暗模式">🌓</button>
+      <button class="ai-chat-header-btn" id="ai-chat-reset" title="重置对话">↺</button>
+      <button class="ai-chat-header-btn" id="ai-chat-close" title="关闭">✕</button>
+    </div>
+  </div>
+  <div class="ai-chat-messages" id="ai-chat-messages">
+    <div class="ai-chat-msg ai-chat-msg-bot">
+      <div class="ai-chat-avatar">🤖</div>
+      <div class="ai-chat-bubble">你好！有什么关于博客的问题想问？</div>
+    </div>
+  </div>
+  <div class="ai-chat-input-area">
+    <input type="text" class="ai-chat-input" id="ai-chat-input" placeholder="输入你的问题..." maxlength="500">
+    <button class="ai-chat-send" id="ai-chat-send">➤</button>
+  </div>
+  <div class="ai-chat-toolbar">
+    <button id="ai-chat-reset2">重置对话</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var cfg = window.AI_ASSISTANT_CONFIG;
+  var chatBtn = document.getElementById('ai-chat-btn');
+  var chatWin = document.getElementById('ai-chat-window');
+  var chatMsgs = document.getElementById('ai-chat-messages');
+  var chatInput = document.getElementById('ai-chat-input');
+  var chatSend = document.getElementById('ai-chat-send');
+  var chatClose = document.getElementById('ai-chat-close');
+  var chatReset = document.getElementById('ai-chat-reset');
+  var chatReset2 = document.getElementById('ai-chat-reset2');
+  var themeToggle = document.getElementById('ai-chat-theme-toggle');
+  var isOpen = false;
+  var isStreaming = false;
+
+  // Apply theme color
+  document.documentElement.style.setProperty('--chat-theme-color', cfg.themeColor);
+  // Apply background image
+  if (cfg.backgroundImage) {
+    chatMsgs.style.setProperty('--chat-bg-image', 'url(' + cfg.backgroundImage + ')');
+  }
+
+  // History
+  var history = window.AIAssistant ? window.AIAssistant.loadHistory() : [];
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      chatWin.style.display = 'flex';
+      requestAnimationFrame(function() {
+        chatWin.classList.add('open');
+      });
+      chatInput.focus();
+      if (window.AIAssistant && !window.AIAssistant.isLoaded()) {
+        window.AIAssistant.loadKnowledgeBase();
+      }
+      updateDarkMode();
+    } else {
+      chatWin.classList.remove('open');
+      setTimeout(function() { chatWin.style.display = 'none'; }, 250);
+    }
+  }
+
+  function updateDarkMode() {
+    var isDark = localStorage.getItem('dark_mode') === 'true';
+    chatWin.classList.toggle('dark-mode', isDark);
+  }
+
+  themeToggle.onclick = function() {
+    var isDark = localStorage.getItem('dark_mode') === 'true';
+    localStorage.setItem('dark_mode', !isDark ? 'true' : 'false');
+    updateDarkMode();
+    var eventName = !isDark ? 'dark-theme-set' : 'light-theme-set';
+    document.body.dispatchEvent(new CustomEvent(eventName));
+  };
+
+  chatBtn.onclick = toggleChat;
+  chatClose.onclick = toggleChat;
+
+  function addMessage(role, content) {
+    var msg = document.createElement('div');
+    msg.className = 'ai-chat-msg ai-chat-msg-' + role;
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = role === 'user' ? '🙂' : '🤖';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-chat-bubble';
+    if (role === 'bot' && typeof marked !== 'undefined') {
+      bubble.innerHTML = marked.parse(content);
+    } else {
+      bubble.textContent = content;
+    }
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    return { msg: msg, bubble: bubble };
+  }
+
+  function addTypingIndicator() {
+    var msg = document.createElement('div');
+    msg.className = 'ai-chat-msg ai-chat-msg-bot ai-chat-typing';
+    msg.id = 'ai-chat-typing';
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = '🤖';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-chat-bubble';
+    bubble.innerHTML = '<div class="ai-chat-dot"></div><div class="ai-chat-dot"></div><div class="ai-chat-dot"></div>';
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    chatMsgs.appendChild(msg);
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    var el = document.getElementById('ai-chat-typing');
+    if (el) el.remove();
+  }
+
+  async function sendMessage() {
+    var query = chatInput.value.trim();
+    if (!query || isStreaming) return;
+
+    isStreaming = true;
+    chatInput.value = '';
+    chatSend.disabled = true;
+
+    var userEl = addMessage('user', query);
+    chatMsgs.appendChild(userEl.msg);
+
+    if (!window.AIAssistant) {
+      addMessage('bot', 'AI 助手脚本尚未加载完成，请刷新页面后重试。');
+      isStreaming = false;
+      chatSend.disabled = false;
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+      return;
+    }
+
+    addTypingIndicator();
+
+    var fullContent = '';
+    var botMsg = null;
+    var botBubble = null;
+
+    await window.AIAssistant.chat(query, history, function(chunk) {
+      if (!botMsg) {
+        removeTypingIndicator();
+        var m = addMessage('bot', '');
+        botMsg = m.msg;
+        botBubble = m.bubble;
+        chatMsgs.appendChild(botMsg);
+      }
+      fullContent += chunk;
+      if (typeof marked !== 'undefined') {
+        botBubble.innerHTML = marked.parse(fullContent);
+      } else {
+        botBubble.textContent = fullContent;
+      }
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    });
+
+    removeTypingIndicator();
+
+    if (!botMsg) {
+      var errEl = addMessage('bot', '抱歉，没有收到回复。请稍后重试。');
+      chatMsgs.appendChild(errEl.msg);
+    } else {
+      history.push({ role: 'user', content: query });
+      history.push({ role: 'assistant', content: fullContent });
+      window.AIAssistant.saveHistory(history);
+    }
+
+    isStreaming = false;
+    chatSend.disabled = false;
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    chatInput.focus();
+  }
+
+  function resetChat() {
+    chatMsgs.innerHTML = '';
+    history = [];
+    if (window.AIAssistant) {
+      window.AIAssistant.clearHistory();
+    }
+    var welcomeEl = addMessage('bot', cfg.welcomeMessage);
+    chatMsgs.appendChild(welcomeEl.msg);
+  }
+
+  chatSend.onclick = sendMessage;
+  chatInput.onkeydown = function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+  chatReset.onclick = resetChat;
+  chatReset2.onclick = resetChat;
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (isOpen && !chatWin.contains(e.target) && !chatBtn.contains(e.target)) {
+      toggleChat();
+    }
+  });
+
+  // Listen for dark mode changes from reimu theme
+  document.body.addEventListener('dark-theme-set', function() {
+    chatWin.classList.add('dark-mode');
+  });
+  document.body.addEventListener('light-theme-set', function() {
+    chatWin.classList.remove('dark-mode');
+  });
+
+  updateDarkMode();
+})();
+</script>
+
+</body>
+  </html>
+

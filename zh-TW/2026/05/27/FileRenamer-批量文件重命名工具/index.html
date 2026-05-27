@@ -1,0 +1,2135 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-TW"  
+    
+      data-theme-mode="auto"
+    
+  >
+  <head>
+  
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_0khxww3tj3q9';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":true,"count":20,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本部落格所有文章除特別聲明外，均採用 BY-NC-SA 授權協議。轉載請註明出處！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://Xy-0735.github.io';window.REIMU_CONFIG.i18n_languages = ["en","zh-TW","ja"];</script>
+  
+  <title>
+    FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具 |
+    
+    XYY滴小窩
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <link rel="preload" as="style" href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel&#x3D;&#39;stylesheet&#39;" crossorigin>
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
+  
+  
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
+  
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+  
+  
+    <meta name="description" content="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具  專案簡介 靈感來自於日常工作中頻繁需要整理大量檔案——照片、文件、素材等雜亂無章的檔名讓人頭疼，市面上雖有一些重新命名工具，但功能要麼單一，要麼介面老舊複雜。於是我動手打造了這款兼具顏值與實力的批次檔名更改工具。  解決的問題 在日常辦公與檔案管理中，批次檔案重新命名是一個高頻卻常被低估的需求痛點。攝影師從相機匯出的 DSC_0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+<meta property="og:url" content="https://xy-0735.github.io/zh-TW/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="XYY滴小窩">
+<meta property="og:description" content="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具  專案簡介 靈感來自於日常工作中頻繁需要整理大量檔案——照片、文件、素材等雜亂無章的檔名讓人頭疼，市面上雖有一些重新命名工具，但功能要麼單一，要麼介面老舊複雜。於是我動手打造了這款兼具顏值與實力的批次檔名更改工具。  解決的問題 在日常辦公與檔案管理中，批次檔案重新命名是一個高頻卻常被低估的需求痛點。攝影師從相機匯出的 DSC_0">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-05-27T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-27T13:04:42.191Z">
+<meta property="article:author" content="微雨揚">
+<meta property="article:tag" content="程式開發">
+<meta name="twitter:card" content="&lt;twitter:card&gt;">
+<meta name="twitter:image" content="https://xy-0735.github.io/zh-TW/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7/%3Ctwitter:image%3E">
+<meta name="twitter:creator" content="@&lt;twitter:creator&gt;">
+<meta name="twitter:site" content="<twitter:site>">
+<meta property="fb:admins" content="&lt;fb:admin_id&gt;">
+<meta property="fb:app_id" content="&lt;fb:app_id&gt;">
+  
+  
+    <link rel="alternate" href="/atom.xml" title="XYY滴小窩" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL&#x2F;toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx&#x2F;1oA&#x2F;0l8ysE" crossorigin="anonymous">
+  
+  
+    
+      
+<link rel="stylesheet" href="https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.css" integrity="sha384-vltfZtesCdl6NYVcFVcjEaIi5RpNvZe9t7fXvq8twVtcoy+Ub9QgnxUYJmwOhYCK" crossorigin="anonymous">
+
+    
+  
+  
+  
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt+HsAtOaUsXwJGRb4&#x2F;SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU&#x2F;voDBY5XE2lVh" crossorigin="anonymous">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+        
+      </div>
+      
+      
+        
+      
+      <div class="loading-word">少女祈禱中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/">首頁</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/archives">歸檔</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/about">關於</a>
+        </span>
+      
+        <span class="main-nav-link-wrap">
+          <div class="main-nav-icon icon rotate">
+             
+              &#xe62b;
+             
+          </div>
+          <a class="main-nav-link" href="/zh-TW/friend">友鏈</a>
+        </span>
+      
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 訂閱" target="_blank"></a>
+    
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜尋"></a>
+    
+  </nav>
+  
+    
+    <nav id="i18n-nav">
+      <div class="custom-dropdown">
+        <div class="select-selected" id="select-selected">
+          <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+          <span id="selected-lang">正體中文</span>
+        </div>
+        <ul class="select-items" id="select-items">
+          
+            <li data-value="zh-CN" >简体中文</li>
+          
+            <li data-value="en" >English</li>
+          
+            <li data-value="zh-TW" class="selected">正體中文</li>
+          
+            <li data-value="ja" >日本語</li>
+          
+        </ul>
+      </div>
+      <script>
+        var selectSelected = document.getElementById("select-selected");
+        var selectedLang = document.getElementById("selected-lang");
+        var selectItems = document.getElementById("select-items");
+        var selectOptions = selectItems.querySelectorAll("li");
+
+        selectSelected.addEventListener("click", () => {
+          selectItems.classList.toggle("show");
+        });
+
+        selectOptions.forEach((item) => {
+          item.addEventListener("click", () => {
+            const langMap = {};
+            
+              langMap['zh-CN'] = '/2026/05/27/FileRenamer-批量文件重命名工具/';
+            
+              langMap['en'] = '/en/2026/05/27/FileRenamer-批量文件重命名工具/';
+            
+              langMap['zh-TW'] = '/zh-TW/2026/05/27/FileRenamer-批量文件重命名工具/';
+            
+              langMap['ja'] = '/ja/2026/05/27/FileRenamer-批量文件重命名工具/';
+            
+            selectedLang.textContent = item.textContent;
+            selectItems.classList.remove("show");
+            selectOptions.forEach((option) => {
+              option.classList.remove("selected");
+            });
+            item.classList.add("selected");
+            window.location = langMap[item.dataset.value];
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-dropdown")) {
+            selectItems.classList.remove("show");
+          }
+        });
+      </script>
+    </nav>
+  
+</div>
+<header id="header">
+  
+    
+      
+        <picture>
+          
+            
+              <source media="(max-width: 479px)" srcset="/images/banner-600w.webp">
+            
+              <source media="(max-width: 799px)" srcset="/images/banner-800w.webp">
+            
+              <source media="(min-width: 800px)" srcset="/images/banner.webp">
+            
+            <img  fetchpriority="high" src="/images/banner.webp" alt="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+          
+        </picture>
+        
+          <img alt="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具" style="visibility: hidden;">
+        
+      
+    
+  
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具</h1>
+          </a>
+        
+      
+      
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content"  class="sidebar-right" >
+          <aside id="sidebar">
+  
+  <div class="sidebar-wrapper-container sticky">
+  
+    
+    
+  
+ 
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+      
+        
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#filerenamer%E4%B8%80%E6%AC%BE%E7%B2%BE%E7%B7%BB%E5%BC%B7%E5%A4%A7%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%AB%AF%E6%89%B9%E6%AC%A1%E6%AA%94%E6%A1%88%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text"> FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E7%B0%A1%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 專案簡介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B1%BA%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 解決的問題</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%83%B9%E5%80%BC"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 核心價值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%BB%A3%E5%BA%A69-%E7%A8%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E4%B8%80%E7%AB%99%E8%A6%86%E8%93%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text"> 功能廣度：9 種命名規則一站覆蓋</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%94%E9%A9%97%E8%A8%AD%E8%A8%88%E6%89%80%E8%A6%8B%E5%8D%B3%E6%89%80%E5%BE%97%E7%9A%84%E6%A1%8C%E9%9D%A2%E6%87%89%E7%94%A8"><span class="toc-number">1.1.2.2.</span> <span class="toc-text"> 體驗設計：所見即所得的桌面應用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%85%9C%E5%BA%95%E5%BE%A9%E5%8E%9F-%E8%A1%9D%E7%AA%81%E6%AA%A2%E6%B8%AC%E9%9B%99%E4%BF%9D%E9%9A%AA"><span class="toc-number">1.1.2.3.</span> <span class="toc-text"> 安全兜底：復原 + 衝突檢測雙保險</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 功能特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E7%AE%A1%E7%90%86%E4%B8%8D%E6%AD%A2%E6%96%BC%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 檔案管理：不止於重新命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E7%A8%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%A9%B3%E8%A7%A3"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 9 種命名規則詳解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%A9%9F%E5%88%B6%E8%AE%93%E6%AF%8F%E4%B8%80%E6%AD%A5%E9%83%BD%E5%8F%AF%E9%80%86"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 安全機制：讓每一步都可逆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%95%E9%87%8F%E7%B4%9A%E8%88%87%E6%95%88%E8%83%BD"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 輕量級與效能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github%E9%96%8B%E6%BA%90%E4%BD%8D%E5%9D%80"><span class="toc-number">1.3.</span> <span class="toc-text"> GitHub開源位址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 安裝與使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E7%B8%BD%E7%B5%90"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 專案總結</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%A9%E7%94%A8%E5%A0%B4%E6%99%AF%E6%8E%A8%E8%96%A6"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 適用場景推薦</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
+  <div class="sidebar-author-name">微雨扬</div>
+  <div class="sidebar-description">歡迎光臨</div>
+</div>
+
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">32</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">15</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+        
+      
+      
+        
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+        
+      
+    </div>
+  </div>
+  
+  <div class="sidebar-widget">
+  
+  </div>
+  
+  </div>
+  
+</aside>
+
+          <section id="main"><article id="post-FileRenamer-批量文件重命名工具.zh-TW" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-27T04:00:00.000Z" itemprop="datePublished">2026-05-27</time>
+    <time style="display: none;" id="post-update-time">2026-05-27</time>
+  </span>
+  
+</div>
+
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/zh-TW/categories/%E5%80%8B%E4%BA%BA%E5%B0%88%E6%A1%88/" data-aos="zoom-in">個人專案</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="filerenamer一款精緻強大的桌面端批次檔案重新命名工具"><a class="markdownIt-Anchor" href="#filerenamer一款精緻強大的桌面端批次檔案重新命名工具"></a> FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具</h1>
+<h2 id="專案簡介"><a class="markdownIt-Anchor" href="#專案簡介"></a> 專案簡介</h2>
+<p>靈感來自於日常工作中頻繁需要整理大量檔案——照片、文件、素材等雜亂無章的檔名讓人頭疼，市面上雖有一些重新命名工具，但功能要麼單一，要麼介面老舊複雜。於是我動手打造了這款兼具顏值與實力的批次檔名更改工具。</p>
+<h3 id="解決的問題"><a class="markdownIt-Anchor" href="#解決的問題"></a> 解決的問題</h3>
+<p>在日常辦公與檔案管理中，批次檔案重新命名是一個高頻卻常被低估的需求痛點。攝影師從相機匯出的 <code>DSC_0001.JPG</code> 需要按日期和場景重新命名；開發者為專案資源檔新增統一的前綴後綴；運營人員整理活動素材時需要統一編號；追劇黨下載的劇集檔名雜亂難以管理……</p>
+<p>面對這類需求，傳統方案的操作體驗往往令人沮喪。在 Windows 系統中，使用者只能使用系統內建的重新命名功能——選取多個檔案後右鍵重新命名，只能得到 <code>檔案名稱 (1).ext</code> 這樣呆板的格式，無法自訂起始序號、無法控制補零位數。更進階的需求則需要使用者編寫腳本（Python/Batch/PowerShell），不僅需要程式設計基礎，還要記憶複雜的字串處理語法和正規表達式。而 macOS 使用者雖然擁有 Finder 的原生批次重新命名功能，但規則有限且互動體驗一般。</p>
+<p>市面上也有一些第三方重新命名工具，但普遍存在以下問題：介面設計停留在 Windows XP 時代；規則設定複雜、學習曲線陡峭；缺乏預覽功能，使用者不敢放心執行；不支援復原操作，一步誤操作後悔莫及。</p>
+<p><strong>核心矛盾</strong>：使用者對「靈活批次重新命名」的高頻需求，與現有方案「操作門檻高、功能簡陋、體驗落後」的現實形成尖銳對立。</p>
+<p>這種「需求與供給」的巨大鴻溝，正是 FileRenamer 致力於填補的——讓每位使用者都能以最低的成本、最直觀的方式完成批次檔案重新命名。</p>
+<h3 id="核心價值"><a class="markdownIt-Anchor" href="#核心價值"></a> 核心價值</h3>
+<p>FileRenamer 不是在重複造輪子，而是對「批次重新命名」這一基礎工具進行了重新思考。其核心價值可從<strong>功能、體驗、安全</strong>三大維度展開。</p>
+<h4 id="功能廣度9-種命名規則一站覆蓋"><a class="markdownIt-Anchor" href="#功能廣度9-種命名規則一站覆蓋"></a> 功能廣度：9 種命名規則一站覆蓋</h4>
+<p>FileRenamer 內建了 9 種命名規則，覆蓋了批次重新命名中的絕大多數場景：<strong>序號命名</strong>（自訂起始值、補零位數、步長）、<strong>尋找與取代</strong>（快速批次修正檔名中的錯別字或多餘字元）、<strong>前綴/後綴</strong>（為檔名批次新增標籤）、<strong>刪除文字</strong>（移除檔名中的固定片段）、<strong>大小寫轉換</strong>（統一檔名格式）、<strong>正則取代</strong>（用 JavaScript 正規表達式實現進階配對和取代，支援擷取群組）、<strong>日期命名</strong>（以當前時間或檔案修改日期命名）、<strong>插入文字</strong>（在檔名指定位置插入字元）、<strong>副檔名修改</strong>（一鍵統一檔案格式後綴）。</p>
+<p>多種規則可組合使用，滿足從「給旅行照片加上日期前綴」到「按正規表達式重新命名專案素材」的全場景需求。</p>
+<h4 id="體驗設計所見即所得的桌面應用"><a class="markdownIt-Anchor" href="#體驗設計所見即所得的桌面應用"></a> 體驗設計：所見即所得的桌面應用</h4>
+<p>FileRenamer 採用 <strong>Electron 桌面應用</strong>形態，提供原生視窗體驗的同時保持 Web 技術的靈活美觀。支援從檔案管理員<strong>直接拖曳檔案/資料夾</strong>到視窗，也支援透過對話框新增。檔案列表支援<strong>按檔名、修改日期、建立日期、大小、類型排序</strong>，多選與全選操作便捷。右鍵選單可快速重新命名單個檔案或移除。執行前可<strong>即時預覽</strong>所有重新命名結果，自動檢測檔名衝突並以紅色高亮標記。</p>
+<h4 id="安全兜底復原-衝突檢測雙保險"><a class="markdownIt-Anchor" href="#安全兜底復原-衝突檢測雙保險"></a> 安全兜底：復原 + 衝突檢測雙保險</h4>
+<p>批次重新命名是高風險操作——一旦出錯，可能毀掉整個專案檔案結構。FileRenamer 提供了<strong>復原功能</strong>，可復原最近一次批次重新命名。執行前自動檢測目標檔案是否已存在，存在則跳過並提示衝突。此外支援將重新命名對應關係<strong>匯出為 CSV 對照表</strong>，便於追溯和審計。</p>
+<p><strong>核心價值速覽</strong></p>
+<ul>
+<li><strong>9 種規則</strong>：序號、尋找取代、前後綴、刪除、大小寫、正則、日期、插入、副檔名</li>
+<li><strong>拖曳操作</strong>：從檔案管理員直接拖入，預覽即所得</li>
+<li><strong>安全保護</strong>：復原 + 衝突檢測 + CSV 匯出，不丟一個檔案</li>
+<li><strong>跨平台</strong>：基於 Electron，Windows/macOS/Linux 均可執行</li>
+<li><strong>開源免費</strong>：MIT 協議，程式碼公開，社群共建</li>
+</ul>
+<p>無論是需要批次整理照片的攝影師，還是管理專案資源檔的開發者，FileRenamer 都以「功能全面-操作直觀-安全可靠」的產品設計，重新定義了批次重新命名工具的體驗標準。</p>
+<h2 id="功能特性"><a class="markdownIt-Anchor" href="#功能特性"></a> 功能特性</h2>
+<h3 id="檔案管理不止於重新命名"><a class="markdownIt-Anchor" href="#檔案管理不止於重新命名"></a> 檔案管理：不止於重新命名</h3>
+<p>使用者與工具的第一步互動是匯入檔案。FileRenamer 在檔案管理層面做了細緻的打磨：<strong>拖曳新增</strong>——從檔案管理員直接將檔案或資料夾拖入視窗即可完成匯入，操作直覺化；<strong>檔案/資料夾匯入</strong>——透過對話框可新增單個檔案、多個檔案或整個資料夾，自動遞迴讀取資料夾內所有檔案；<strong>排序能力</strong>——支援按檔名、修改日期、建立日期、檔案大小、檔案類型五種維度排序，快速找到目標檔案；<strong>多選與全選</strong>——勾選或一鍵全選，僅對選中的檔案執行操作；<strong>右鍵選單</strong>——右鍵檔案可快速執行重新命名或移除操作；<strong>重複檢測</strong>——自動過濾已新增的檔案路徑，避免重複匯入導致命名衝突。</p>
+<p>這些互動細節看似微小，卻構成了從「能用」到「好用」的關鍵躍遷。</p>
+<h3 id="9-種命名規則詳解"><a class="markdownIt-Anchor" href="#9-種命名規則詳解"></a> 9 種命名規則詳解</h3>
+<p>FileRenamer 的核心引擎是一套靈活的命名規則系統，每種規則都經過精心設計，平衡了靈活性、易用性和效能：</p>
+<table>
+<thead>
+<tr>
+<th>規則</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>序號</strong></td>
+<td>支援自訂格式 <code>&#123;n&#125;</code>，可設定起始值、補零位數（如 <code>001</code>~<code>999</code>）、步長（間隔遞增）。適合照片編號、文件排序等場景</td>
+</tr>
+<tr>
+<td><strong>尋找與取代</strong></td>
+<td>尋找檔名中的文字並取代為指定內容，支援區分大小寫。適合批次修正拼寫錯誤或統一名詞</td>
+</tr>
+<tr>
+<td><strong>前綴/後綴</strong></td>
+<td>在檔名首部或尾部新增文字，支援序號變數 <code>&#123;n&#125;</code>。適合為專案檔案新增統一標籤</td>
+</tr>
+<tr>
+<td><strong>刪除文字</strong></td>
+<td>刪除檔名中的指定文字，支援全部刪除、僅刪除開頭、僅刪除結尾三種模式。適合去除下載檔案中的廣告前綴</td>
+</tr>
+<tr>
+<td><strong>大小寫轉換</strong></td>
+<td>支援全小寫、全大寫、首字母大寫，可設定轉換範圍（整個檔名、僅副檔名等）。適合統一檔案命名規範</td>
+</tr>
+<tr>
+<td><strong>正則取代</strong></td>
+<td>使用 JavaScript 正規表達式進行配對取代，支援擷取群組 <code>$1</code> <code>$2</code>。適合複雜模式的批次替換</td>
+</tr>
+<tr>
+<td><strong>日期命名</strong></td>
+<td>以當前日期時間或檔案自身的修改/建立日期進行命名，支援 <code>YYYY-MM-DD</code>、<code>YYYYMMDD_HHmmss</code> 等自訂格式</td>
+</tr>
+<tr>
+<td><strong>插入文字</strong></td>
+<td>在檔名的指定位置（從第N個字元處）插入文字。適合在固定位置新增識別碼</td>
+</tr>
+<tr>
+<td><strong>副檔名修改</strong></td>
+<td>批次修改檔案副檔名，如將所有 <code>.jpeg</code> 統一改為 <code>.jpg</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="安全機制讓每一步都可逆"><a class="markdownIt-Anchor" href="#安全機制讓每一步都可逆"></a> 安全機制：讓每一步都可逆</h3>
+<p>批次重新命名最大的恐懼來自於「不可逆」。FileRenamer 透過三層安全機制消除使用者的顧慮：</p>
+<ol>
+<li>
+<p><strong>即時預覽</strong>：在規則設定介面即可看到所有檔案重新命名後的結果，未確認前不做任何實際修改。自動檢測目標檔名是否已存在，衝突檔案以紅色高亮標註，使用者可自行調整規則或移除衝突項。</p>
+</li>
+<li>
+<p><strong>一鍵復原</strong>：執行重新命名後，可透過 <code>Ctrl+Z</code> 或介面按鈕復原最近一次批次操作，所有重新命名的檔案會恢復到原來的檔名。復原機制基於操作歷史堆疊，支援完整還原。</p>
+</li>
+<li>
+<p><strong>CSV 對照匯出</strong>：將重新命名前後的檔名、檔案路徑等對應關係匯出為 CSV 檔案。這不僅作為操作記錄的備份憑證，也方便使用者在必要時手動恢復或稽核批次操作的結果。</p>
+</li>
+</ol>
+<h3 id="輕量級與效能"><a class="markdownIt-Anchor" href="#輕量級與效能"></a> 輕量級與效能</h3>
+<p>FileRenamer 的核心程式碼量極簡——主處理程序（<code>main.js</code>）、預載入腳本（<code>preload.js</code>）和渲染處理程序（<code>app.js</code> / <code>styles.css</code> / <code>index.html</code>）構成了整個應用，無額外框架依賴，全部使用原生 JavaScript 編寫。應用啟動迅速，檔案掃描和重新命名操作直接呼叫 Node.js 的 <code>fs</code> 模組，I/O 效率高。打包後的 Windows 可攜版體積小巧，無需安裝即可雙擊執行。</p>
+<h2 id="github開源位址"><a class="markdownIt-Anchor" href="#github開源位址"></a> GitHub開源位址</h2>
+<p>造訪 <a target="_blank" rel="noopener" href="https://github.com/Xy-0735/FileRenamer">GitHub</a></p>
+<h3 id="安裝與使用"><a class="markdownIt-Anchor" href="#安裝與使用"></a> 安裝與使用</h3>
+<p><strong>下載預建置版本</strong>：從 <a target="_blank" rel="noopener" href="https://github.com/Xy-0735/FileRenamer/releases">Releases</a> 頁面下載 Windows 可攜版（<code>.exe</code>），無需安裝，雙擊執行。</p>
+<p><strong>從原始碼執行</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Xy-0735/FileRenamer.git</span><br><span class="line"><span class="built_in">cd</span> FileRenamer</span><br><span class="line">npm install</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p><strong>自行建置</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build   <span class="comment"># 輸出到 dist/</span></span><br></pre></td></tr></table></figure>
+<h3 id="專案總結"><a class="markdownIt-Anchor" href="#專案總結"></a> 專案總結</h3>
+<p><strong>一句話定位</strong>——FileRenamer 是一款基於 Electron 開發的跨平台桌面端批次檔案重新命名工具，內建 9 種命名規則，以「所見即所得」的預覽式互動和完整的安全兜底機制，讓批次重新命名變得簡單、安全、高效。</p>
+<p><strong>技術層面</strong>，專案採用 Electron + 原生 JavaScript 的極簡技術堆疊，無框架依賴，程式碼結構清晰。主處理程序負責檔案 I/O 和系統對話框，透過 IPC 與渲染處理程序通訊，預載入腳本在保證安全性的前提下暴露有限的 Node.js API。這種分層架構既保證了桌面應用的效能優勢，又充分利用了 Web 技術靈活美觀的 UI 表現力。</p>
+<p><strong>體驗設計上</strong>，專案聚焦「操作直覺化」與「安全可逆」兩大核心理念。從拖曳匯入到規則設定再到預覽執行，每一步都追求最低的認知負擔。9 種命名規則覆蓋了從簡單的前後綴新增到複雜的正規表達式取代的全場景需求，同時透過復原和衝突檢測機制確保批次操作萬無一失。</p>
+<p><strong>生態建構方面</strong>，專案以 MIT 協議開源，程式碼全程公開可審計。基於 Electron 的跨平台特性，理論上可擴充至 macOS 和 Linux 平台。開發者可基於現有架構輕鬆擴充自訂命名規則或整合其他檔案管理功能，社群共建潛力廣闊。</p>
+<h3 id="適用場景推薦"><a class="markdownIt-Anchor" href="#適用場景推薦"></a> 適用場景推薦</h3>
+<p>在日常工作與生活中，批次檔案重新命名是許多人頻繁遇到的需求。以下針對不同使用者群體的適用場景分析：</p>
+<p>對於<strong>攝影師和設計師</strong>而言，從相機/素材庫匯出的檔案通常是毫無辨識度的編號，FileRenamer 的日期命名和序號規則可快速將 <code>DSC_0001.JPG</code> 批次轉換為 <code>2026-05-27_東京旅拍_001.jpg</code> 這樣有意義的檔名。</p>
+<p><strong>開發者</strong>在管理專案檔案時，常需要為資源檔批次新增前綴、統一擴充格式或按編號重排。FileRenamer 的正規取代和尋找取代規則可以在一秒內完成整個目錄下數百個檔案的重新命名，大幅提升專案標準化效率。</p>
+<p><strong>運營人員和內容創作者</strong>經常需要整理活動素材、影片素材、文件資料。FileRenamer 的拖曳匯入和多選操作非常契合這類「整理-命名-歸檔」的工作流程，從雜亂到有序只需幾分鐘。</p>
+<p><strong>普通使用者</strong>在日常使用中，下載的電視劇集、音樂檔案、電子書等常常帶有網站前綴或雜亂命名。透過尋找取代和刪除文字規則，一鍵即可清理所有多餘字元，讓檔案管理回歸清爽。</p>
+<p>從專業創作到日常整理，FileRenamer 透過 9 種規則的靈活組合與直觀的預覽操作，為不同使用者群體解決了檔案管理中的重新命名痛點，讓檔案操作更優雅、更高效。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <blockquote class="article-copyright">
+    <p><strong><span class="icon-user icon"></span>本文作者：</strong>微雨扬 @ XYY滴小窩</p>
+    
+    <p><strong><span class="icon-pencil icon"></span>本文標題：</strong>「FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具」</p>
+    <p><strong><span class="icon-calendar icon"></span>本文發佈時間：</strong>2026-05-27 12:00:00</p>
+    
+    <p><strong><span class="icon-copyright icon"></span>本文版權：</strong>本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"><span class="icon-creative-commons"></span>BY-NC-SA</a> 授權協議。轉載請註明出處！</p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  </blockquote>
+      
+      
+        <div class="sponsor-wrapper">
+  <div class="sponsor-button-wrapper">
+    <div class="sponsor-icon rotate"></div>
+    <div class="sponsor-title">贊助</div>
+    <div class="sponsor-icon rotate"></div>
+  </div>
+  
+  
+    
+  
+  <div class="sponsor-tip">請作者喝杯咖啡吧</div>
+  
+    <div class="sponsor-qr">
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/images/alipay-pay.jpg" alt=支付宝 width="200" />
+          <p class="sponsor-qr-name">支付宝</p>
+        </div>
+      
+        <div class="sponsor-qr-image-wrapper">
+          <img src="/images/wechat-pay.jpg" alt=微信 width="200" />
+          <p class="sponsor-qr-name">微信</p>
+        </div>
+      
+    </div>
+  
+</div>
+      
+      
+        <div class="share-wrapper">
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fxy-0735.github.io%2F2026%2F05%2F27%2FFileRenamer-%25E6%2589%25B9%25E9%2587%258F%25E6%2596%2587%25E4%25BB%25B6%25E9%2587%258D%25E5%2591%25BD%25E5%2590%258D%25E5%25B7%25A5%25E5%2585%25B7%2F" target="_blank" rel="noopener noreferrer" title="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+      <div class="share-icon icon icon-facebook">
+        
+      </div>
+    </a>
+  
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fxy-0735.github.io%2F2026%2F05%2F27%2FFileRenamer-%25E6%2589%25B9%25E9%2587%258F%25E6%2596%2587%25E4%25BB%25B6%25E9%2587%258D%25E5%2591%25BD%25E5%2590%258D%25E5%25B7%25A5%25E5%2585%25B7%2F&amp;text=FileRenamer%EF%BC%9A%E4%B8%80%E6%AC%BE%E7%B2%BE%E7%B7%BB%E5%BC%B7%E5%A4%A7%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%AB%AF%E6%89%B9%E6%AC%A1%E6%AA%94%E6%A1%88%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7&amp;via=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+      <div class="share-icon icon icon-twitter">
+        
+      </div>
+    </a>
+  
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fxy-0735.github.io%2F2026%2F05%2F27%2FFileRenamer-%25E6%2589%25B9%25E9%2587%258F%25E6%2596%2587%25E4%25BB%25B6%25E9%2587%258D%25E5%2591%25BD%25E5%2590%258D%25E5%25B7%25A5%25E5%2585%25B7%2F&amp;appkey=&amp;title=FileRenamer%EF%BC%9A%E4%B8%80%E6%AC%BE%E7%B2%BE%E7%B7%BB%E5%BC%B7%E5%A4%A7%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%AB%AF%E6%89%B9%E6%AC%A1%E6%AA%94%E6%A1%88%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+      <div class="share-icon icon icon-weibo">
+        
+      </div>
+    </a>
+  
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=www.baidu.com&amp;title=FileRenamer%EF%BC%9A%E4%B8%80%E6%AC%BE%E7%B2%BE%E7%B7%BB%E5%BC%B7%E5%A4%A7%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%AB%AF%E6%89%B9%E6%AC%A1%E6%AA%94%E6%A1%88%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7&amp;desc=FileRenamer%EF%BC%9A%E4%B8%80%E6%AC%BE%E7%B2%BE%E7%B7%BB%E5%BC%B7%E5%A4%A7%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%AB%AF%E6%89%B9%E6%AC%A1%E6%AA%94%E6%A1%88%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7&amp;source=https%3A%2F%2FXy-0735.github.io" target="_blank" rel="noopener noreferrer" title="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+    <a href="javascript:;"  title="FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具">
+      <div class="share-icon icon icon-weixin">
+        
+          <div id="share-weixin">
+            <div class="share-weixin-dom">
+              <div class="share-weixin-content">
+                <img id="share-weixin-banner"> 
+                <div id="share-weixin-title"></div>
+                <div id="share-weixin-desc"></div>
+              </div>
+              <div class="share-weixin-qrcode">
+                <div class="share-weixin-info">
+                  <div id="share-weixin-author"></div>
+                  <div id="share-weixin-theme">Powered By hexo-theme-reimu</div>
+                </div>
+                <img id="share-weixin-qr" >
+              </div>
+            </div>
+            <div class="share-weixin-canvas"></div>
+          </div>
+        
+      </div>
+    </a>
+  
+</div>
+      
+      
+      
+        <a data-aos="zoom-in" href="/zh-TW/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7/#comments" class="article-comment-link">
+          <span class="post-comments-count waline-comment-count" data-path="/zh-TW/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+          留言
+        </a>
+      
+      
+      
+      
+        <span data-aos="zoom-in" class="article-visitor-link">
+          <span class="waline-pageview-count" data-path="/zh-TW/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7/">0</span>
+          <em class="post-meta-item-text">閲讀量</em>
+        </span>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/zh-TW/tags/%E7%A8%8B%E5%BC%8F%E9%96%8B%E7%99%BC/" rel="tag">程式開發</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+
+</article>
+
+
+
+
+
+
+
+
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+      
+      
+        
+      
+      <h2 class="comment-title">說些什麼吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            
+            <div class="selector-item" data-selector="waline">
+              <span>waline</span>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+      
+        <div class="comment waline-comment" data-aos="fade-up"
+          id="waline-comment">
+        </div>
+      
+    </div>
+  </section>
+
+
+</section>
+        </div>
+        <footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    
+    <div>
+      <span class="icon-copyright"></span>
+      
+      
+      
+        2025-2026
+      
+      <span class="footer-info-sep rotate"></span>
+      微雨扬
+    </div>
+    
+    
+      <div>
+        <span class="icon-brush"></span>
+        96.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        06:49
+      </div>
+    
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">總訪問量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">總訪客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目錄</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+  
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#filerenamer%E4%B8%80%E6%AC%BE%E7%B2%BE%E7%B7%BB%E5%BC%B7%E5%A4%A7%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%AB%AF%E6%89%B9%E6%AC%A1%E6%AA%94%E6%A1%88%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text"> FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E7%B0%A1%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 專案簡介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B1%BA%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 解決的問題</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%83%B9%E5%80%BC"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 核心價值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%BB%A3%E5%BA%A69-%E7%A8%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E4%B8%80%E7%AB%99%E8%A6%86%E8%93%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text"> 功能廣度：9 種命名規則一站覆蓋</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%94%E9%A9%97%E8%A8%AD%E8%A8%88%E6%89%80%E8%A6%8B%E5%8D%B3%E6%89%80%E5%BE%97%E7%9A%84%E6%A1%8C%E9%9D%A2%E6%87%89%E7%94%A8"><span class="toc-number">1.1.2.2.</span> <span class="toc-text"> 體驗設計：所見即所得的桌面應用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%85%9C%E5%BA%95%E5%BE%A9%E5%8E%9F-%E8%A1%9D%E7%AA%81%E6%AA%A2%E6%B8%AC%E9%9B%99%E4%BF%9D%E9%9A%AA"><span class="toc-number">1.1.2.3.</span> <span class="toc-text"> 安全兜底：復原 + 衝突檢測雙保險</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 功能特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AA%94%E6%A1%88%E7%AE%A1%E7%90%86%E4%B8%8D%E6%AD%A2%E6%96%BC%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 檔案管理：不止於重新命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E7%A8%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E8%A9%B3%E8%A7%A3"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 9 種命名規則詳解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%A9%9F%E5%88%B6%E8%AE%93%E6%AF%8F%E4%B8%80%E6%AD%A5%E9%83%BD%E5%8F%AF%E9%80%86"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 安全機制：讓每一步都可逆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%95%E9%87%8F%E7%B4%9A%E8%88%87%E6%95%88%E8%83%BD"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 輕量級與效能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github%E9%96%8B%E6%BA%90%E4%BD%8D%E5%9D%80"><span class="toc-number">1.3.</span> <span class="toc-text"> GitHub開源位址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 安裝與使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%88%E6%A1%88%E7%B8%BD%E7%B5%90"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 專案總結</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%A9%E7%94%A8%E5%A0%B4%E6%99%AF%E6%8E%A8%E8%96%A6"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 適用場景推薦</span></a></li></ol></li></ol></li></ol>
+  
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="微雨扬" class="lazyload">
+  <div class="sidebar-author-name">微雨扬</div>
+  <div class="sidebar-description">歡迎光臨</div>
+</div>
+
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">32</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分類</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>標籤</div>
+    <div class="sidebar-state-number">15</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/Xy-0735/Xy-0735.github.io itemprop="url" target="_blank" aria-label="github" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1040461645?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener external nofollow noreferrer"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/" aria-label="首頁"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">首頁</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/archives" aria-label="歸檔"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">歸檔</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/about" aria-label="關於"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">關於</div>
+      </div>
+    
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/zh-TW/friend" aria-label="友鏈"></a>
+        <div class="sidebar-menu-icon icon rotate">
+          
+            &#xe62b;
+          
+        </div>
+        <div class="sidebar-menu-link">友鏈</div>
+      </div>
+    
+  
+</div>
+</div>
+      
+    
+  </div>
+  
+    
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  
+</nav>
+
+    </div>
+    
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+    
+      <div id="aplayer" theme="var(--color-link)"></div>
+    
+    
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js" integrity="sha384-8LyaidD9GPxQQgLJO&#x2F;WRw&#x2F;O2h3BoNq&#x2F;ApI&#x2F;ecpvM6RsrCz2qP2ppBXUKihP4V&#x2F;2d" crossorigin="anonymous"></script>
+
+  <script>
+    window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  <script>
+    function loadScripts(scripts, index) {
+      if (index < scripts.length) {
+        const script = scripts[index];
+        const src = script.getAttribute('src');
+
+        const loadScript = (scriptContent) => {
+          return new Promise((resolve, reject) => {
+            const scriptElement = document.createElement('script');
+            if (script.type) {
+              scriptElement.type = script.type;
+            }
+            if (script.src) {
+              scriptElement.src = script.src;
+              if (script.integrity) {
+                scriptElement.integrity = script.integrity;
+              }
+              if (script.crossOrigin) {
+                scriptElement.crossOrigin = script.crossOrigin;
+              }
+              scriptElement.onload = resolve;
+              scriptElement.onerror = reject;
+            }
+            if (scriptContent) {
+              scriptElement.text = scriptContent;
+            }
+            document.head.appendChild(scriptElement);
+            if (!script.src) {
+              resolve();
+            }
+          })
+          
+        }
+
+        ;(src ? loadScript() : loadScript(script.text))
+          .then(() => loadScripts(scripts, index + 1))
+          .catch(error => {
+            console.error(`Failed to load script: ${src || 'inline script'}`, error);
+            loadScripts(scripts, index + 1);
+          });
+      }
+    }
+    if (window.Pjax) {
+      Pjax.prototype.getElements = function() {
+        const i18nLanguages = window.REIMU_CONFIG.i18n_languages;
+        const baseUrl = window.REIMU_CONFIG.base;
+        let basePathname = new URL(baseUrl).pathname;
+        if (!basePathname.endsWith('/')) {
+          basePathname += '/';  
+        }
+        const currentUrl = window.location.href;
+        const currentPathname = new URL(currentUrl).pathname.replace(basePathname, '');
+        const aLinks = document.querySelectorAll('a[href]');
+        const pjaxLinks = [];
+        for(let i = 0; i < aLinks.length; i++) {
+          const aLink = aLinks[i];
+          const aLinkHref = aLink.getAttribute('href');
+          const isExternal = aLink.getAttribute('target') === '_blank' || aLink.getAttribute('rel')?.includes('noopener');
+          if (isExternal || aLinkHref.startsWith('mailto:') || aLinkHref.startsWith('tel:') || aLinkHref.startsWith('javascript:') || aLinkHref.startsWith("data:") || aLinkHref.startsWith("vbscript:")) {
+            continue;
+          }
+          if (!i18nLanguages) {
+            // 多语言功能未打开
+            pjaxLinks.push(aLink);
+            continue;
+          }
+
+          const absoluteUrl = new URL(aLinkHref, currentUrl).href;
+          const absolutePathname = new URL(absoluteUrl).pathname.replace(basePathname, '');
+
+          if (!absolutePathname || !currentPathname) {
+            pjaxLinks.push(aLink);
+            continue;
+          }
+
+          const currentLangIndex = i18nLanguages.findIndex(lang => currentPathname.startsWith(lang));
+          if (currentLangIndex > -1) {
+            // 当前属于多语言站点
+            const absoluteLangIndex = i18nLanguages.findIndex(lang => absolutePathname.startsWith(lang));
+            if (absoluteLangIndex === currentLangIndex) {
+              // 同一语言站点，可以使用 pjax
+              pjaxLinks.push(aLink);
+            }
+          } else {
+            // 当前属于默认语言站点
+            const absoluteLangIndex = i18nLanguages.findIndex(lang => absolutePathname.startsWith(lang));
+            if (absoluteLangIndex === -1) {
+              // 同一语言站点，可以使用 pjax
+              pjaxLinks.push(aLink);
+            }
+          }
+        }
+        return pjaxLinks;
+      }
+    }
+    window.Pjax && new window.Pjax({
+      selectors: [
+        "#header>img",
+        "#header>picture",
+        "head title",
+        "#header-title",
+        "#subtitle-wrap",
+        "#main",
+        "#content",
+        ".sidebar-widget",
+        ".sidebar-wrapper",
+        ".sidebar-wrapper-container",
+        '#mobile-nav',
+        '#lazy-script',
+        '#i18n-nav'
+      ],
+      switches: {
+        ".sidebar-wrapper-container": function(oldEl, newEl) {
+          oldEl.className = newEl.className;
+          this.onSwitch();
+        },
+        "#content": function(oldEl, newEl) {
+          // for sidebar change
+          oldEl.className = newEl.className;
+          this.onSwitch();
+        },
+        "#header-title": Pjax.switches.outerHTML,
+        "#subtitle-wrap": Pjax.switches.outerHTML,
+        "#main": function(oldEl, newEl) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.outerHTML = newEl.outerHTML
+          this.onSwitch()
+        },
+        "#mobile-nav": Pjax.switches.outerHTML,
+        '#lazy-script': function(oldEl, newEl) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.innerHTML = newEl.innerHTML
+          this.onSwitch()
+        },
+      },
+      cacheBust: false
+    })
+  </script>
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@2.3.0/dist/quicklink.umd.js" integrity="sha384-aD7FsuQkS1ohgFKY41fJfeA+Wd&#x2F;QRNnrOd9Bs58K3FzKdJJv8yPnYU8Tnp5z1agS" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+
+<div id="lazy-script">
+  <div>
+    
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "微雨扬",
+          title: "FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具",
+          url: "https://xy-0735.github.io/2026/05/27/FileRenamer-%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D%E5%B7%A5%E5%85%B7/",
+          excerpt: "",
+          description: "",
+          stripContent: " FileRenamer：一款精緻強大的桌面端批次檔案重新命名工具  專案簡介 靈感來自於日常工作中頻繁需要整理大量檔案——照片、文件、素材等雜亂無章的檔名讓人頭疼，市面上雖有一些重新命名工具，但功能要麼單一，要麼介面老舊複雜。於是我動手打造了這款兼具顏值與實力的批次檔名更改工具。  解決的問題 在日常辦公與檔案管理中，批次檔案重新命名是一個高頻卻常被低估的需求痛點。攝影師從相機匯出的 DSC_0001.JPG 需要按日期和場景重新命名；開發者為專案資源檔新增統一的前綴後綴；運營人員整理活動素材",
+          date: "Wed May 27 2026 12:00:00 GMT+0800",
+          updated: "Wed May 27 2026 21:04:42 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+       
+    
+    
+      
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+        
+          
+<script src="https://npm.webcache.cn/@zumer/snapdom@1.9.9/dist/snapdom.min.js" integrity="sha384-taz9Bq0wPqLsuiB4ix4blTozt&#x2F;y84cjbMX5ZWkfPPjpVBme8M&#x2F;jWopanNBcdH&#x2F;qp" crossorigin="anonymous" defer data-pjax></script>
+
+          
+<script src="https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js" integrity="sha384-0RsG1yo&#x2F;crf&#x2F;1Qc14sho26SXXOTngNCjgJw7fuvXBt9W&#x2F;OChF&#x2F;Ijx+aUuBDqQwEk" crossorigin="anonymous" defer data-pjax></script>
+
+        
+      
+    
+    
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+        
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+        
+
+
+
+
+
+
+
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ['valine', 'waline', 'twikoo', 'gitalk', 'giscus'];
+  var commentConfig = {
+    valine: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.valine-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/valine@1.5.1/dist/Valine.min.js',
+          'sha384-3ma91AExDeMAZ1rjTjaP8V2A2obQE+s5ltKRwYlwdpArz9xVbp0tF3b0VV2ACNPn'
+        );
+        script.onload = () => {
+          var GUEST_INFO = ['nick', 'mail', 'link'];
+          var guest_info = 'nick,mail,link'.split(',').filter((item) => {
+            return GUEST_INFO.indexOf(item) > -1
+          });
+          var recordIP = JSON.parse('true');
+          var highlight = JSON.parse('true');
+          var visitor = JSON.parse('false');
+          var serverURLs = undefined;
+
+          if (window.Valine) {
+            new Valine({
+              el: '.valine-comment',
+              appId: "",
+              appKey: "",
+              placeholder: "Just go go",
+              pageSize: '10',
+              avatar: 'mp',
+              lang: document.documentElement.lang || 'en',
+              recordIP: recordIP,
+              highlight: highlight,
+              visitor: visitor,
+              requiredFields: guest_info,
+              path: window.location.pathname,
+              serverURLs
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    },
+    waline: {
+      enable: true,
+      load: async () => {
+        const container = document.querySelector('.waline-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        let walineInit;
+        const walineCdn = 'https://npm.webcache.cn/@waline/client@2.15.8/dist/waline.mjs';
+        const walineIntegrity = 'sha384-9sbqJjrfGjbkI6/PI4nU/MvBfEmkkPC4YK9I4zBeMIf1CVCZdCMH/KinBEAZII/5';
+
+        const module = await safeImport(walineCdn, walineIntegrity);
+        walineInit = module.init;
+
+        window.walineInstance = walineInit({
+          el: '.waline-comment',
+          serverURL: 'www.xyyblogpl.online',
+          lang: document.documentElement.lang || 'en',
+          locale: {},
+          emoji: ["https://unpkg.com/@waline/emojis@1.2.0/weibo","https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji"],
+          meta: ["nick","mail","link"],
+          requiredMeta: ["nick","mail"],
+          wordLimit: JSON.parse('0'),
+          comment: true,
+          pageSize: JSON.parse('10'),
+          dark: 'html[data-theme="dark"]',
+          pageview: JSON.parse('true'),
+        });
+      }
+    },
+    twikoo: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: '',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: '',
+              region: '',
+              urls: [
+                '/about/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+    gitalk: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.gitalk-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/gitalk@1.8.0/dist/gitalk.min.js',
+          'sha384-kspnZUWBoSWwoJHa0hBCXYbHGbhvU/lcEH5O8eVbSDhbPwsiVUTp/aGX/z/5EuMA'
+        );
+
+        script.onload = () => {
+          if (false) {
+            const md5Script = loadScript(
+              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
+              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
+            );
+            md5Script.onload = initGitalk;
+            document.head.appendChild(md5Script);
+          } else {
+            initGitalk();
+          }
+        }
+        document.head.appendChild(script);
+
+        function initGitalk() {
+          var gitalkId = location.pathname;
+          var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: null,
+            id: gitalkId,
+            distractionFreeMode: false,
+            language: document.documentElement.lang || 'en',
+          })
+          gitalk.render('gitalk-comment');
+        }
+      }
+    },
+    giscus: {
+      enable: false,
+      load: () => {
+        const container = document.querySelector('.giscus-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        // 删除可能已存在的 giscus 脚本和 iframe
+        const existingScript = container.querySelector('script[src*="giscus.app/client.js"]');
+        if (existingScript) existingScript.remove();
+        const existingFrame = document.querySelector('iframe.giscus-frame');
+        if (existingFrame) existingFrame.remove();
+
+        const giscusScript = document.createElement('script');
+        const domMode = document.documentElement.getAttribute("data-theme");
+
+        const docLang = document.documentElement.lang || 'en';
+        const langBase = docLang.split('-')[0];
+        const supportedLangs = ['ar', 'be', 'bg', 'ca', 'cs', 'da', 'de', 'en', 
+        'eo', 'es', 'eu', 'fa', 'fr', 'gr', 'hbs', 'he', 'hu', 'id', 'it', 'ja', 
+        'kh', 'ko', 'nl', 'pl', 'pt', 'ro', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh-CN', 'zh-HK', 'zh-TW'];
+        const giscusLang = supportedLangs.includes(docLang) ? docLang : supportedLangs.includes(langBase) ? langBase : 'en';
+
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', '');
+        giscusScript.setAttribute('data-repo-id', '');
+        giscusScript.setAttribute('data-category', ''); 
+        giscusScript.setAttribute('data-category-id', '');
+        giscusScript.setAttribute('data-mapping', '0');
+        giscusScript.setAttribute('data-strict', '0');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+        giscusScript.setAttribute('data-lang', giscusLang);
+        giscusScript.setAttribute('crossorigin', 'anonymous');
+        giscusScript.async = true;
+        container.appendChild(giscusScript);
+        document.body.addEventListener('light-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+        });
+        document.body.addEventListener('dark-theme-set', () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+        });
+      }
+    }
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    // 评论组件加载状态跟踪
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+      
+    
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.9.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous"></script>
+
+  
+    <script>
+      var isMobile = window.matchMedia('(max-width: 959px)').matches;
+      if (isMobile) {
+      const aplayer = _$('#aplayer');
+        if (aplayer) {
+          const aside = aplayer.parentNode;
+          if (aside?.tagName === 'ASIDE') {
+            aplayer.removeAttribute('data-aos');
+            aside.removeChild(aplayer);
+            document.body.appendChild(aplayer);
+          }
+        }
+      }
+      const ap = new APlayer({
+        theme: "var(--color-link)",
+        container: document.getElementById('aplayer'),
+        audio: [{"name":"今天不是明天","artist":"feat. 兰音Reine","url":"/audio/今天不是明天.mp3","cover":"/images/今天不是明天.jpg","lrc":"/lrc/今天不是明天 (feat. 兰音Reine)-电音联盟&音波狂潮&兰音Reine&V-Festival&PIKASONIC-歌词.lrc"},{"name":"One step Ahead","artist":"AxR","url":"/audio/One step Ahead.mp3","cover":"/images/One step Ahead.jpg","lrc":"/lrc/One Step Ahead-AxR-歌词.lrc"},{"name":"弄舌","artist":"王子健","url":"/audio/弄舌.mp3","cover":"/images/弄舌.jpg","lrc":"/lrc/弄舌.lrc"},{"name":"晴天","artist":"周杰伦","url":"/audio/晴天.mp3","cover":"/images/qingtian.jpg","lrc":"/lrc/晴天.lrc"},{"name":"body","artist":"Loud luxury","url":"/audio/body.mp3","cover":"/images/body.jpg"},{"name":"counting stars","artist":"Onerepublic","url":"/audio/counting stars.mp3","cover":"/images/counting stars.jpg","lrc":"/lrc/Counting Stars-OneRepublic-歌词.lrc"},{"name":"introduction","artist":"phigros","url":"/audio/introduction.mp3","cover":"/images/introduction.jpg"},{"name":"壁上观","artist":"一棵小葱","url":"/audio/壁上观.mp3","cover":"/images/壁上观.jpg","lrc":"/lrc/壁上观.lrc"},{"name":"lemon","artist":"米津玄师","url":"/audio/lemon.mp3","cover":"/images/lemon.jpg","lrc":"/lrc/Lemon-米津玄師-歌词.lrc"},{"name":"Born Again","artist":"LISA&Doja Cat&RAYE","url":"/audio/Born Again.mp3","cover":"/images/Born Again.jpg","lrc":"/lrc/Born Again-LISA&Doja Cat&RAYE-歌词.lrc"},{"name":"Doar Cu Tine","artist":"ProdbyMend","url":"/audio/Doar Cu Tine.mp3","cover":"/images/Doar Cu Tine.jpg","lrc":"/lrc/Doar Cu Tine (雷军进行曲)-ProdbyMend-歌词.lrc"},{"name":"One Last Kiss","artist":"宇多田ヒカル","url":"/audio/One Last Kiss.mp3","cover":"/images/One Last Kiss.jpg","lrc":"/lrc/One Last Kiss-宇多田ヒカル-歌词.lrc"},{"name":"Wake way","artist":"DJ小布","url":"/audio/Wake way.mp3","cover":"/images/Wake way.jpg","lrc":"/lrc/Wake way-DJ小布-歌词.lrc"},{"name":"鸟之诗","artist":"Lia","url":"/audio/鸟之诗.mp3","cover":"/images/鸟之诗.jpg","lrc":"/lrc/鳥の詩 (鸟之诗) (Single Version)-Lia-歌词.lrc"}] || [],
+        fixed: isMobile ? true : (true || false),
+        autoplay: true || false,
+        loop: 'All' || 'all',
+        order: 'list' || 'list',
+        preload: 'auto' || 'auto',
+        volume: 0.7 || 0.7,
+        mutex: null || true,
+        listFolded: null || false,
+        lrcType: 3 || 0,
+      });
+    </script>
+  
+
+
+
+
+
+    
+  <!-- AI Chat Widget -->
+<script>
+  window.AI_ASSISTANT_CONFIG = {
+    chatApiUrl: "https://api.deepseek.com/v1/chat/completions",
+    chatModel: "deepseek-chat",
+    chatApiKey: "",
+    proxyUrl: "https://1373700256-ivrk5jn3bq.ap-beijing.tencentscf.com",
+    kbUrl: "/hexo-ai-assistant/blog-knowledge-base.json",
+    blogName: "XYY滴小窩",
+    backgroundImage: "",
+    themeColor: "#ff6b9d",
+    welcomeMessage: "你好！有什么关于博客的问题想问？"
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/hexo-ai-assistant/ai-core.js" data-pjax></script>
+
+<style>
+  .ai-chat-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 107, 157, 0.35);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 0;
+  }
+  .ai-chat-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.45);
+  }
+
+  .ai-chat-window {
+    position: fixed;
+    bottom: 88px;
+    right: 24px;
+    width: 370px;
+    height: 520px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    z-index: 9998;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .ai-chat-window.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dark mode */
+  [data-theme-mode="true"] .ai-chat-window,
+  .dark-mode .ai-chat-window {
+    background: #1e1e1e;
+    border-color: rgba(255,255,255,0.1);
+    color: #e0e0e0;
+  }
+  [data-theme-mode="true"] .ai-chat-msg-user .ai-chat-bubble,
+  .dark-mode .ai-chat-msg-user .ai-chat-bubble {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+  }
+  [data-theme-mode="true"] .ai-chat-msg-bot .ai-chat-bubble,
+  .dark-mode .ai-chat-msg-bot .ai-chat-bubble {
+    background: #2a2a2a;
+    color: #e0e0e0;
+  }
+  [data-theme-mode="true"] .ai-chat-input-area,
+  .dark-mode .ai-chat-input-area {
+    background: #1a1a1a;
+    border-top-color: rgba(255,255,255,0.08);
+  }
+  [data-theme-mode="true"] .ai-chat-input,
+  .dark-mode .ai-chat-input {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    border-color: rgba(255,255,255,0.1);
+  }
+  [data-theme-mode="true"] .ai-chat-header,
+  .dark-mode .ai-chat-header {
+    background: #1a1a1a;
+    border-bottom-color: rgba(255,255,255,0.08);
+    color: #e0e0e0;
+  }
+
+  .ai-chat-header {
+    padding: 14px 16px;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  .ai-chat-header-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .ai-chat-header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #888;
+    transition: color 0.15s, background 0.15s;
+  }
+  .ai-chat-header-btn:hover {
+    color: #333;
+    background: rgba(0,0,0,0.05);
+  }
+  [data-theme-mode="true"] .ai-chat-header-btn:hover,
+  .dark-mode .ai-chat-header-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-image: var(--chat-bg-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    background-color: rgba(255,255,255,0.92);
+  }
+  [data-theme-mode="true"] .ai-chat-messages,
+  .dark-mode .ai-chat-messages {
+    background-color: rgba(30,30,30,0.92);
+  }
+
+  .ai-chat-msg {
+    display: flex;
+    gap: 8px;
+    max-width: 88%;
+  }
+  .ai-chat-msg-bot { align-self: flex-start; }
+  .ai-chat-msg-user { align-self: flex-end; flex-direction: row-reverse; }
+
+  .ai-chat-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .ai-chat-bubble {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    word-break: break-word;
+  }
+  .ai-chat-msg-user .ai-chat-bubble {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .ai-chat-msg-bot .ai-chat-bubble {
+    background: #f2f2f2;
+    color: #333;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* Markdown within bubbles */
+  .ai-chat-bubble p { margin: 0 0 4px; }
+  .ai-chat-bubble p:last-child { margin-bottom: 0; }
+  .ai-chat-bubble ul, .ai-chat-bubble ol { margin: 4px 0; padding-left: 18px; }
+  .ai-chat-bubble li { margin-bottom: 2px; }
+  .ai-chat-bubble a {
+    color: var(--chat-theme-color, #ff6b9d);
+    text-decoration: underline;
+  }
+  .ai-chat-bubble code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .ai-chat-bubble pre {
+    background: rgba(0,0,0,0.05);
+    padding: 8px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+  .ai-chat-msg-user .ai-chat-bubble a { color: #fff; text-decoration: underline; }
+  .ai-chat-msg-user .ai-chat-bubble code { background: rgba(255,255,255,0.2); }
+
+  .ai-chat-typing .ai-chat-bubble {
+    display: flex;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+  .ai-chat-typing .ai-chat-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #999;
+    animation: ai-chat-bounce 1.4s infinite ease-in-out both;
+  }
+  .ai-chat-typing .ai-chat-dot:nth-child(1) { animation-delay: -0.32s; }
+  .ai-chat-typing .ai-chat-dot:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes ai-chat-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+
+  .ai-chat-input-area {
+    display: flex;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid #eee;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .ai-chat-input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ai-chat-input:focus {
+    border-color: var(--chat-theme-color, #ff6b9d);
+  }
+  .ai-chat-send {
+    background: var(--chat-theme-color, #ff6b9d);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s;
+  }
+  .ai-chat-send:hover { transform: scale(1.05); }
+
+  .ai-chat-toolbar {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+    gap: 8px;
+  }
+  .ai-chat-toolbar button {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .ai-chat-toolbar button:hover { color: #666; }
+
+  @media (max-width: 480px) {
+    .ai-chat-window {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+    .ai-chat-btn {
+      bottom: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+    }
+  }
+</style>
+
+<div id="ai-chat-btn" class="ai-chat-btn" title="AI 助手">💬</div>
+
+<div id="ai-chat-window" class="ai-chat-window">
+  <div class="ai-chat-header">
+    <span>🤖 AI 助手</span>
+    <div class="ai-chat-header-actions">
+      <button class="ai-chat-header-btn" id="ai-chat-theme-toggle" title="切换亮暗模式">🌓</button>
+      <button class="ai-chat-header-btn" id="ai-chat-reset" title="重置对话">↺</button>
+      <button class="ai-chat-header-btn" id="ai-chat-close" title="关闭">✕</button>
+    </div>
+  </div>
+  <div class="ai-chat-messages" id="ai-chat-messages">
+    <div class="ai-chat-msg ai-chat-msg-bot">
+      <div class="ai-chat-avatar">🤖</div>
+      <div class="ai-chat-bubble">你好！有什么关于博客的问题想问？</div>
+    </div>
+  </div>
+  <div class="ai-chat-input-area">
+    <input type="text" class="ai-chat-input" id="ai-chat-input" placeholder="输入你的问题..." maxlength="500">
+    <button class="ai-chat-send" id="ai-chat-send">➤</button>
+  </div>
+  <div class="ai-chat-toolbar">
+    <button id="ai-chat-reset2">重置对话</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var cfg = window.AI_ASSISTANT_CONFIG;
+  var chatBtn = document.getElementById('ai-chat-btn');
+  var chatWin = document.getElementById('ai-chat-window');
+  var chatMsgs = document.getElementById('ai-chat-messages');
+  var chatInput = document.getElementById('ai-chat-input');
+  var chatSend = document.getElementById('ai-chat-send');
+  var chatClose = document.getElementById('ai-chat-close');
+  var chatReset = document.getElementById('ai-chat-reset');
+  var chatReset2 = document.getElementById('ai-chat-reset2');
+  var themeToggle = document.getElementById('ai-chat-theme-toggle');
+  var isOpen = false;
+  var isStreaming = false;
+
+  // Apply theme color
+  document.documentElement.style.setProperty('--chat-theme-color', cfg.themeColor);
+  // Apply background image
+  if (cfg.backgroundImage) {
+    chatMsgs.style.setProperty('--chat-bg-image', 'url(' + cfg.backgroundImage + ')');
+  }
+
+  // History
+  var history = window.AIAssistant ? window.AIAssistant.loadHistory() : [];
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      chatWin.style.display = 'flex';
+      requestAnimationFrame(function() {
+        chatWin.classList.add('open');
+      });
+      chatInput.focus();
+      if (window.AIAssistant && !window.AIAssistant.isLoaded()) {
+        window.AIAssistant.loadKnowledgeBase();
+      }
+      updateDarkMode();
+    } else {
+      chatWin.classList.remove('open');
+      setTimeout(function() { chatWin.style.display = 'none'; }, 250);
+    }
+  }
+
+  function updateDarkMode() {
+    var isDark = localStorage.getItem('dark_mode') === 'true';
+    chatWin.classList.toggle('dark-mode', isDark);
+  }
+
+  themeToggle.onclick = function() {
+    var isDark = localStorage.getItem('dark_mode') === 'true';
+    localStorage.setItem('dark_mode', !isDark ? 'true' : 'false');
+    updateDarkMode();
+    var eventName = !isDark ? 'dark-theme-set' : 'light-theme-set';
+    document.body.dispatchEvent(new CustomEvent(eventName));
+  };
+
+  chatBtn.onclick = toggleChat;
+  chatClose.onclick = toggleChat;
+
+  function addMessage(role, content) {
+    var msg = document.createElement('div');
+    msg.className = 'ai-chat-msg ai-chat-msg-' + role;
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = role === 'user' ? '🙂' : '🤖';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-chat-bubble';
+    if (role === 'bot' && typeof marked !== 'undefined') {
+      bubble.innerHTML = marked.parse(content);
+    } else {
+      bubble.textContent = content;
+    }
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    return { msg: msg, bubble: bubble };
+  }
+
+  function addTypingIndicator() {
+    var msg = document.createElement('div');
+    msg.className = 'ai-chat-msg ai-chat-msg-bot ai-chat-typing';
+    msg.id = 'ai-chat-typing';
+    var avatar = document.createElement('div');
+    avatar.className = 'ai-chat-avatar';
+    avatar.textContent = '🤖';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-chat-bubble';
+    bubble.innerHTML = '<div class="ai-chat-dot"></div><div class="ai-chat-dot"></div><div class="ai-chat-dot"></div>';
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    chatMsgs.appendChild(msg);
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    var el = document.getElementById('ai-chat-typing');
+    if (el) el.remove();
+  }
+
+  async function sendMessage() {
+    var query = chatInput.value.trim();
+    if (!query || isStreaming) return;
+
+    isStreaming = true;
+    chatInput.value = '';
+    chatSend.disabled = true;
+
+    var userEl = addMessage('user', query);
+    chatMsgs.appendChild(userEl.msg);
+
+    if (!window.AIAssistant) {
+      addMessage('bot', 'AI 助手脚本尚未加载完成，请刷新页面后重试。');
+      isStreaming = false;
+      chatSend.disabled = false;
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+      return;
+    }
+
+    addTypingIndicator();
+
+    var fullContent = '';
+    var botMsg = null;
+    var botBubble = null;
+
+    await window.AIAssistant.chat(query, history, function(chunk) {
+      if (!botMsg) {
+        removeTypingIndicator();
+        var m = addMessage('bot', '');
+        botMsg = m.msg;
+        botBubble = m.bubble;
+        chatMsgs.appendChild(botMsg);
+      }
+      fullContent += chunk;
+      if (typeof marked !== 'undefined') {
+        botBubble.innerHTML = marked.parse(fullContent);
+      } else {
+        botBubble.textContent = fullContent;
+      }
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    });
+
+    removeTypingIndicator();
+
+    if (!botMsg) {
+      var errEl = addMessage('bot', '抱歉，没有收到回复。请稍后重试。');
+      chatMsgs.appendChild(errEl.msg);
+    } else {
+      history.push({ role: 'user', content: query });
+      history.push({ role: 'assistant', content: fullContent });
+      window.AIAssistant.saveHistory(history);
+    }
+
+    isStreaming = false;
+    chatSend.disabled = false;
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    chatInput.focus();
+  }
+
+  function resetChat() {
+    chatMsgs.innerHTML = '';
+    history = [];
+    if (window.AIAssistant) {
+      window.AIAssistant.clearHistory();
+    }
+    var welcomeEl = addMessage('bot', cfg.welcomeMessage);
+    chatMsgs.appendChild(welcomeEl.msg);
+  }
+
+  chatSend.onclick = sendMessage;
+  chatInput.onkeydown = function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+  chatReset.onclick = resetChat;
+  chatReset2.onclick = resetChat;
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (isOpen && !chatWin.contains(e.target) && !chatBtn.contains(e.target)) {
+      toggleChat();
+    }
+  });
+
+  // Listen for dark mode changes from reimu theme
+  document.body.addEventListener('dark-theme-set', function() {
+    chatWin.classList.add('dark-mode');
+  });
+  document.body.addEventListener('light-theme-set', function() {
+    chatWin.classList.remove('dark-mode');
+  });
+
+  updateDarkMode();
+})();
+</script>
+
+</body>
+  </html>
+
